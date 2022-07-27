@@ -1,0 +1,83 @@
+<body xmlns="http://www.w3.org/1999/html">
+
+<div class="wrapper">
+<div class="container">
+  <header >
+
+  <input id="menu__toggle" type="checkbox"/>
+  <label class="menu__btn" for="menu__toggle">
+    <span></span>
+  </label>
+
+  <ul class="menuh">
+    <div class="menu1">
+      <li><a routerLink="/dashboard" class="menu__item">Магазин</a></li>
+      <li><a routerLink="/heroes" class="menu__item">Колекції</a></li>
+      <li><a href="" class="menu__item">Про бренд</a></li>
+    </div>
+    <div class="menu2">
+      <li class="menu__item1"><div class="box1"><a routerLink="/dashboard"><img src="{{logo}}" alt="logo" class="logo1"></a></div></li>
+    </div>
+    <br class="br">
+    <div class="menu3">
+      <li><app-hero-search  class="menu__item"></app-hero-search></li>
+    </div>
+    <br class="br">
+
+
+  </ul>
+
+
+  <ul class="nav-menu">
+
+    <div class="menu1">
+      <li><a routerLink="/dashboard" class="menu__item">Магазин</a></li>
+      <li><a routerLink="/heroes" class="menu__item">Колекції</a></li>
+      <li><a href="" class="menu__item">Про бренд</a></li>
+    </div>
+    <div class="menu3">
+      <li><app-hero-search  class="menu__item"></app-hero-search></li>
+    </div>
+    <br class="br">
+    <div class="downf">
+      <li><a class="footerpage1" href="https://www.instagram.com/">Instagram</a></li>
+      <li><a class="footerpage1" href="https://www.instagram.com/">Обране</a></li>
+      <li><a class="footerpage1" href="https://www.instagram.com/">Доставка і повернення</a></li>
+      <li><a class="footerpage1" href="https://www.instagram.com/">Контакти</a></li>
+      <br class="br">
+      <li>
+        <div class="footerpage1">© 2022</div>
+      </li>
+    </div>
+
+  </ul>
+
+    <div class="head"><a routerLink="/dashboard"><img src="{{logo}}" alt="logo" class="logo2"></a></div>
+
+</header>
+</div>
+<div class="contant">
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+</div>
+<br>
+
+<div class="footer">
+  <footer >
+  <br>
+  <a href="https://www.instagram.com/">Instagram</a>
+  <br>
+  <a href="https://www.instagram.com/">Обране</a>
+  <br>
+  <a href="https://www.instagram.com/">Доставка і повернення</a>
+  <br>
+  <a href="https://www.instagram.com/">Контакти</a>
+  <br>
+  <br>
+  © 2022
+</footer>
+</div>
+</div>
+
+</body>
+
