@@ -1,14 +1,15 @@
 <div class="pad">
   <h2>Останні надходження</h2>
-<div class="heroes-menu">
+  <div class="heroes-menu">
 
-  <a *ngFor="let hero of heroes"
-     routerLink="/detail/{{hero.id}}">
-    {{hero.name}}
-    {{hero.id}}
-    {{hero.img[1]}}
-  </a>
+    <a *ngFor="let hero of heroes"
+       routerLink="/detail/{{hero.id}}">
+      <img src="{{hero.img[1]}}" alt="photo dress">
+      {{hero.name}}
+      <br>
+      {{hero.price}}
+    </a>
 
 
-</div>
+  </div>
 </div>

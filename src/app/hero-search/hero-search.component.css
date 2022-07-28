@@ -36,7 +36,7 @@ li {
 }
 
 .search-result li a:hover {
-  background-color: #435A60;
+
   color: white;
 }
 
@@ -48,5 +48,5 @@ li{
 
 }
 #search-component{
-  width: 100%;
+  width: 80px;
 }

@@ -2,27 +2,28 @@
   margin: 0;
   padding: 0;
 }
-.logo1{
-  height: 45px;
-  width: 248px;
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  object-fit:cover;
+
+.logo1 {
+  height: 40px;
+  width: 180px;
+
+
 
 }
+
 .box1 {
   position: relative;
-  overflow:hidden;
+  overflow: hidden;
   height: 45px;
   width: 248px;
 
 }
+
 a {
   color: black
 }
-app-messages{
+
+app-messages {
   display: none;
 }
 
@@ -32,11 +33,14 @@ a:hover, a:link {
   margin: 3px;
   font-weight: bold;
 }
+
 .container {
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index:99999;
+  z-index: 99999;
+  height: 75px;
+  background-color: white;
 }
 
 .class a:hover, a:link {
@@ -53,14 +57,11 @@ h1 .menu__item1 {
   font-family: 'Casual Friday', sans-serif;
   color: black;
   font-size: 1.5em;
-
   margin: 0
-
 }
 
 
-
-.menuh{
+.menuh {
   list-style: none;
   display: flex;
   justify-content: space-between;
@@ -114,26 +115,35 @@ h1 .menu__item1 {
 }
 
 .contant {
-  padding-top: 65px;
+  padding-top: 80px;
   display: table-row;
-
   height: 100%;
 }
+
 .wrapper {
   display: table;
   height: 100%;
 }
-.nav-menu{
+
+.nav-menu {
   display: none;
 }
-.burger{
+
+.burger {
   display: flex;
 }
 
+.container {
+  display: flex;
+}
 
-@media screen and (max-width: 750px) {
-  header{
-    position:fixed;
+@media screen and (max-width: 800px) {
+  .contant {
+    display: table-row;
+  }
+
+  header {
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
@@ -142,40 +152,53 @@ h1 .menu__item1 {
     align-content: center;
     justify-content: center;
     align-items: center;
+    height: 55px;
+    background-color: white;
   }
+
+  .container {
+    height: 75px;
+    background-color: white;
+  }
+
   .contant {
     padding-top: 65px;
     display: table-row;
 
     height: 100%;
   }
+
   .wrapper {
     display: table;
     height: 100%;
   }
-  .logo2{
 
-    height: 45px;
-    width: 200px;
+  .logo2 {
+
+    height: 50px;
+    width: 225px;
     position: absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    object-fit:cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
   }
+
   .head {
     display: flex;
     padding-left: 40px;
     padding-right: 0;
     position: relative;
-    overflow:hidden;
-    height: 33px;
-    width: 281px;
-  }
-  .menuh{
+    overflow: hidden;
+    height: 50px;
+    width: 225px;
+  }/*отвечает за размер лого + еще нужно изменить в header*/
+
+  .menuh {
     display: none;
   }
-  .menu1{
+
+  .menu1 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -183,6 +206,7 @@ h1 .menu__item1 {
     align-content: flex-start;
     flex-direction: column;
   }
+
   .menu3 {
     display: flex;
     justify-content: center;
@@ -193,13 +217,14 @@ h1 .menu__item1 {
     margin-left: 20px;
 
   }
-.downf{
-  display: flex;
-  flex-grow: 1;
-  justify-content: flex-end;
-  flex-direction: column;
-  padding-bottom: 90px;
-}
+
+  .downf {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding-bottom: 90px;
+  }
 
 
   .footerpage1 {
@@ -221,7 +246,7 @@ h1 .menu__item1 {
 
   }
 
-   .menu__btn {
+  .menu__btn {
     display: flex;
     align-items: center;
     position: fixed;
@@ -230,33 +255,36 @@ h1 .menu__item1 {
     width: 26px;
     height: 20px;
     cursor: pointer;
-    z-index: 1;
+    z-index: 999999;
   }
 
-   .menu__item {
+  .menu__item {
     transition-duration: .25s;
     padding-left: 20px;
   }
 
-   .menu__btn > span,
-   .menu__btn > span::before,
-   .menu__btn > span::after {
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
     display: block;
     position: absolute;
     width: 100%;
     height: 2px;
     background-color: gray;
     transition-duration: .25s;
+    z-index: 999999;
   }
 
-   .menu__btn > span::before {
+  .menu__btn > span::before {
     content: '';
     top: -8px;
+    z-index: 999999;
   }
 
-   .menu__btn > span::after {
+  .menu__btn > span::after {
     content: '';
     top: 8px;
+    z-index: 999999;
   }
 
   .nav-menu {
@@ -279,23 +307,27 @@ h1 .menu__item1 {
     font-family: 'Casual Friday', sans-serif;
     color: black;
     font-size: 1em;
+    z-index: 99999;
   }
 
-   .menu__item:hover {
+  .menu__item:hover {
     background-color: #435A60;
   }
 
-   #menu__toggle:checked ~ .menu__btn > span {
+  #menu__toggle:checked ~ .menu__btn > span {
     transform: rotate(45deg);
   }
 
-   #menu__toggle:checked ~ .menu__btn > span::before {
+  #menu__toggle:checked ~ .menu__btn > span::before {
     top: 0;
     transform: rotate(0);
   }
 
-   #menu__toggle:checked ~ .menu__btn > span::after {
-    top: 0;
+  #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;color: #000000;
+    font-weight: 300;
+    font-family: 'FuturaPT';
+    font-size: 14px;
     transform: rotate(90deg);
   }
 

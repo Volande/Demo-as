@@ -16,13 +16,13 @@ h2 {
 }
 
 a {
-  background-color: #3f525c;
+
   border-radius: 2px;
   padding: 1rem;
   font-size: 1.2rem;
   text-decoration: none;
   display: inline-block;
-  color: #fff;
+
   text-align: center;
 
   min-width: 70px;
@@ -34,9 +34,21 @@ a {
   flex: 0 1 auto;
   align-self: auto;
 }
-.pad{
-  padding-top: 45px;
+
+.pad {
+  padding-top: 65px;
+  color: #000000;
+  font-weight: 300;
+  font-family: 'FuturaPT';
+  font-size: 14px;
+  line-height: 1.55;
 }
+
+.heroes-menu a img {
+  width: 200px;
+  height: 300px;
+}
+
 @media (min-width: 750px) {
   a {
     width: 18%;
@@ -46,4 +58,5 @@ a {
 
 a:hover {
   background-color: #000;
+  color: white;
 }

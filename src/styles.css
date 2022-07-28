@@ -11,8 +11,10 @@ body{
   margin: 0;
 }
 body, input[type="text"],button{
-  color: #333;
-  font-family: Cambria,Georgia, serif;
+  color: #000000;
+  font-weight: 300;
+  font-family: 'FuturaPT';
+  font-size: 14px;
 }
 button{
   background-color: #eee;
@@ -37,7 +39,10 @@ button:disabled{
 }
 /*everywhere else*/
 *{
-  font-family: Arial, Helvetica, sans-serif;
+  color: #000000;
+  font-weight: 300;
+  font-family: 'FuturaPT';
+  font-size: 14px;
 }
 html,body {
   height: 100%;
