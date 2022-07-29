@@ -5,4 +5,5 @@ export interface Hero {
   size: string[];
   price: string;
   content: string;
+
 }

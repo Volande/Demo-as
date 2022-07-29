@@ -18,6 +18,6 @@ export class DashboardComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes =>this.heroes = heroes.slice(1, 4));/*определяет сколько фото на главной*/
+      .subscribe(heroes =>this.heroes = heroes.slice(0, 6));/*определяет сколько фото на главной*/
   }
 }

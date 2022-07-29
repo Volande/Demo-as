@@ -6,9 +6,6 @@
 .logo1 {
   height: 40px;
   width: 180px;
-
-
-
 }
 
 .box1 {
@@ -16,7 +13,6 @@
   overflow: hidden;
   height: 45px;
   width: 248px;
-
 }
 
 a {
@@ -120,7 +116,7 @@ h1 .menu__item1 {
   height: 100%;
 }
 
-.wrapper {
+.wrapper2 {
   display: table;
   height: 100%;
 }
@@ -168,7 +164,7 @@ h1 .menu__item1 {
     height: 100%;
   }
 
-  .wrapper {
+  .wrapper2 {
     display: table;
     height: 100%;
   }
@@ -192,8 +188,9 @@ h1 .menu__item1 {
     overflow: hidden;
     height: 50px;
     width: 225px;
-  }/*отвечает за размер лого + еще нужно изменить в header*/
+  }
 
+  /*отвечает за размер лого + еще нужно изменить в header*/
   .menuh {
     display: none;
   }
@@ -324,7 +321,8 @@ h1 .menu__item1 {
   }
 
   #menu__toggle:checked ~ .menu__btn > span::after {
-    top: 0;color: #000000;
+    top: 0;
+    color: #000000;
     font-weight: 300;
     font-family: 'FuturaPT';
     font-size: 14px;
@@ -336,3 +334,4 @@ h1 .menu__item1 {
     left: 0;
   }
 }
+

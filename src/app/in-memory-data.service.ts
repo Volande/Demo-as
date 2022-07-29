@@ -54,8 +54,22 @@ export class InMemoryDataService implements InMemoryDbService {
         size: ["X","L"],
         content:'Топ можно носить в двух вариантах , завязывая на груди ,или на запах',
         price:'2000 ₴'},
+      {id:7,
+        name:'',
+        img:[
+          "./assets/photo/photo1.jpg",
+          "./assets/photo/photo3.jpg",
+          "./assets/photo/photo5.jpg",
+          "./assets/photo/photo7.jpg",
+          "./assets/photo/photo9.jpg",
+          "./assets/photo/photo11.jpg"
+        ]
 
+      }
     ];
+
+
+
     return {heroes};
   }
 
