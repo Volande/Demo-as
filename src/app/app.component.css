@@ -81,9 +81,9 @@ h1 .menu__item1 {
   list-style: none;
   display: flex;
   justify-content: space-between;
-  margin-left: 80px;
+
   align-items: center;
-  padding: 0 195px
+
 }
 
 .menu3 {
