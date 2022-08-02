@@ -65,6 +65,7 @@ body {
   object-position: bottom;
   width: 500px;
   height: 600px;
+  object-fit: cover;
 }
 
 .carousel-control {

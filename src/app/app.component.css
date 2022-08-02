@@ -8,11 +8,10 @@
   width: 180px;
 }
 
-.box1 {
-  position: relative;
-  overflow: hidden;
-  height: 45px;
-  width: 248px;
+.box1 a {
+
+  width: 210px;
+  height: 30px;
 }
 
 a {
@@ -35,8 +34,9 @@ a:hover, a:link {
   top: 0;
   left: 0;
   z-index: 99999;
-  height: 75px;
   background-color: white;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .class a:hover, a:link {
@@ -56,42 +56,44 @@ h1 .menu__item1 {
   margin: 0
 }
 
-
 .menuh {
-  list-style: none;
   display: flex;
-  justify-content: space-between;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 0;
-  align-items: center;
-  height: 100%;
-
+  flex-direction: row;
+  width: 100%;
 }
+
 
 .menu1 {
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding-right: 80px;
+  width: 100%;
 }
 
 .menu2 {
   list-style: none;
   display: flex;
-  justify-content: space-between;
-
-  align-items: center;
-
+  width: 100%;
+  align-items: flex-end;
+  text-align: center;
+  font-family: 'Casual Friday', sans-serif;
+  color: black;
+  font-size: 1.5em;
+  margin: 0;
+  justify-content: space-around;
 }
 
 .menu3 {
   list-style: none;
   display: flex;
-  justify-content: space-between;
-  margin-left: 200px;
+  justify-content: flex-end;
+  width: 100%;
   align-items: center;
+}
+
+header {
+  width: 100%;
 }
 
 #menu__toggle {
@@ -106,8 +108,54 @@ h1 .menu__item1 {
   display: none;
 }
 
-.footer {
+/*отвечает за меню коллекций*/
+button {
+  background-color: #fff;
+  font-size: 14px;
+}
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+  background-color: #fff;
+  font-size: 14px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding-top: 20px;
+}
+
+.dropdown-content a {
+  color: black;
+  width: 160px;
+  height: 30px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-content a:hover {
+  font-size: 14px;
+  text-decoration: none
+}
+
+button:hover {
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*конец меню коллекций*/
+.footer {
+  padding-left: 20px;
 }
 
 .contant {
@@ -169,25 +217,24 @@ h1 .menu__item1 {
     height: 100%;
   }
 
-  .logo2 {
+  a img .logo2 {
 
-    height: 50px;
-    width: 225px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
+    width: 210px;
+    height: 30px;
+
+  }
+
+  a {
+    width: 210px;
+    height: 30px;
   }
 
   .head {
     display: flex;
-    padding-left: 40px;
-    padding-right: 0;
     position: relative;
     overflow: hidden;
-    height: 50px;
-    width: 225px;
+    width: 220px;
+    height: 40px;
   }
 
   /*отвечает за размер лого + еще нужно изменить в header*/
@@ -225,9 +272,9 @@ h1 .menu__item1 {
 
 
   .footerpage1 {
-    display: block;
+    display: flex;
     padding-left: 20px;
-
+    height: 15px;
   }
 
   .br {
@@ -332,6 +379,12 @@ h1 .menu__item1 {
   #menu__toggle:checked ~ .nav-menu {
     visibility: visible;
     left: 0;
+  }
+  .dropdown{
+    margin-left: 3px;
+  }
+  .dropdown:hover{
+    background-color: #ffffff;
   }
 }
 

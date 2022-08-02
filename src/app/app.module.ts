@@ -14,6 +14,15 @@ import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryDataService} from './in-memory-data.service';
 import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { CarouselMainComponent } from './carousel-main/carousel-main.component';
+import { CollectionComponent } from './collection/collection.component';
+import { ClothesComponent } from './clothes/clothes.component';
+import { FilterComponent } from './filter/filter.component';
+import { DressComponent } from './dress/dress.component';
+import { AboutComponent } from './about/about.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material';
+
+
 
 @NgModule({
   declarations: [
@@ -23,13 +32,21 @@ import { CarouselMainComponent } from './carousel-main/carousel-main.component';
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
-    CarouselMainComponent
+    CarouselMainComponent,
+    CollectionComponent,
+    ClothesComponent,
+    FilterComponent,
+    DressComponent,
+    AboutComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatIconModule,
+    MatInputModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService,{dataEncapsulation:false}
     )

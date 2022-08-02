@@ -10,35 +10,47 @@
         <span></span>
       </label>
 
-      <ul class="menuh">
+      <div class="menuh ">
         <div class="menu1">
-          <li><a routerLink="/dashboard" class="menu__item">Магазин</a></li>
-          <li><a routerLink="/heroes" class="menu__item">Колекції</a></li>
-          <li><a href="" class="menu__item">Про бренд</a></li>
+          <a routerLink="/clothes" class="menu__item">Магазин</a>
+          <div class="dropdown">
+            <button class="menu__item">Колекції</button>
+            <div class="dropdown-content">
+              <a>Spring-Summer 2022</a>
+              <a>Fall-Winter 21/22</a>
+              <a>Spring-Summer 2021</a>
+            </div>
+          </div>
+          <a href="" class="menu__item" routerLink="/about">Про бренд</a>
         </div>
         <div class="menu2">
-          <li class="menu__item1">
-            <div class="box1"><a routerLink="/dashboard"><img src="{{logo}}" alt="logo" class="logo1"></a></div>
-          </li>
+
+          <div class="box1"><a routerLink="/dashboard">
+            <img src="./assets/logo.svg" width="210" height="30" alt="image description"></a></div>
+
         </div>
-        <br class="br">
+
         <div class="menu3">
-          <li>
-            <app-hero-search class="menu__item"></app-hero-search>
-          </li>
+
+          <app-hero-search class="menu__item"></app-hero-search>
+
         </div>
-        <br class="br">
-
-
-      </ul>
+      </div>
 
 
       <ul class="nav-menu">
 
         <div class="menu1">
-          <li><a routerLink="/dashboard" class="menu__item">Магазин</a></li>
-          <li><a routerLink="/heroes" class="menu__item">Колекції</a></li>
-          <li><a href="" class="menu__item">Про бренд</a></li>
+          <li><a routerLink="/clothes" class="menu__item">Магазин</a></li>
+          <li><div class="dropdown">
+            <button class="menu__item">Колекції</button>
+            <div class="dropdown-content">
+              <a>Spring-Summer 2022</a>
+              <a>Fall-Winter 21/22</a>
+              <a>Spring-Summer 2021</a>
+            </div>
+          </div></li>
+          <li><a routerLink="/about" class="menu__item">Про бренд</a></li>
         </div>
         <div class="menu3">
           <li>
@@ -60,17 +72,19 @@
 
       </ul>
 
-      <div class="head"><a routerLink="/dashboard"><img src="{{logo}}" alt="logo" class="logo2"></a></div>
+      <div class="head"><a routerLink="/dashboard"><img src="./assets/logo.svg" width="210" height="30"
+                                                        alt="image description" class="logo2"></a></div>
 
     </header>
   </div>
+
   <main>
     <div class="contant">
       <section>
-        <app-carousel-main></app-carousel-main>
+
       </section>
       <section>
-        <router-outlet> </router-outlet>
+        <router-outlet></router-outlet>
       </section>
       <app-messages></app-messages>
     </div>
