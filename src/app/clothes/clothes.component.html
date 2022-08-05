@@ -1,0 +1,23 @@
+<div class="menu-clothes">
+  <div><a class="menu-clothes1">Костюми</a></div>
+  <div><a class="menu-clothes2">Верхній одяг</a></div>
+  <div><a class="menu-clothes3"> Юбки</a></div>
+  <div><a class="menu-clothes4">Сукні</a></div>
+</div>
+<div class="clothes-page">
+  <div class="heroes-menu">
+    <div class=ImgField>
+      <a *ngFor="let hero of heroes"
+         routerLink="/detail/{{hero.id}}">
+        <div>
+          <img class="image first" src="{{hero.img[0]}}" alt="photo">
+          <img class="image second" src="{{hero.img[1]}}" alt="photo">
+        </div>
+        {{hero.name}}
+        <br>
+        {{hero.price}}
+      </a>
+    </div>
+  </div>
+</div>
+

@@ -180,8 +180,20 @@ button:hover {
 .container {
   display: flex;
 }
-
+.menuh .menu__item{
+  margin-left: 10px;
+}
+app-basket-mobile{
+  display: none;
+}
 @media screen and (max-width: 800px) {
+ app-basket-mobile{
+   display: flex;
+
+ }
+  app-basket{
+    display: none;
+  }
   .contant {
     display: table-row;
   }
@@ -235,6 +247,7 @@ button:hover {
     overflow: hidden;
     width: 220px;
     height: 40px;
+    z-index: 99;
   }
 
   /*отвечает за размер лого + еще нужно изменить в header*/
@@ -387,4 +400,10 @@ button:hover {
     background-color: #ffffff;
   }
 }
-
+app-hero-search{
+  margin-right: 10px;
+}
+.menu-mobile{
+  display: flex;
+}
+/* Dropdown Button */
