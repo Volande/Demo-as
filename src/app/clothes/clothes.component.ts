@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Hero} from "../hero";
-import {HeroService} from "../hero.service";
+import {Clothes} from "../clothes";
+import {ClothesService} from "../clothes.service";
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { FormsModule } from '@angular/forms';
 
@@ -10,9 +10,9 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./clothes.component.css']
 })
 export class ClothesComponent implements OnInit {
-  heroes: Hero[]=[];
+  heroes: Clothes[]=[];
 
-  constructor(private heroService:HeroService) { }
+  constructor(private heroService:ClothesService) { }
 
   ngOnInit(): void {
     this.getHeroes();

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
-import {HeroService} from "../hero.service";
+import { Clothes } from '../clothes';
+
+import {ClothesService} from "../clothes.service";
 import {MessageService} from "../message.service";
-import {DashboardComponent} from "../dashboard/dashboard.component";
+
 
 @Component({
   selector: 'app-heroes',
@@ -11,9 +11,9 @@ import {DashboardComponent} from "../dashboard/dashboard.component";
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[] = [];
+  heroes: Clothes[] = [];
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: ClothesService) { }
 
   ngOnInit(): void {
     this.getHeroes();
@@ -29,12 +29,12 @@ export class HeroesComponent implements OnInit {
   add(name: string): void {
     name = name.trim();
     if (!name) { return;}
-    this.heroService.addHero({name} as Hero)
+    this.heroService.addHero({name} as Clothes)
       .subscribe(hero =>{
         this.heroes.push(hero);
       })
   }
-  delete(hero: Hero): void{
+  delete(hero: Clothes): void{
     this.heroes = this.heroes.filter(h => h !== hero);
     this.heroService.deleteHero(hero.id).subscribe();
   }

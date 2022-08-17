@@ -1,21 +1,21 @@
-.menu-btn{
+.menu-btn {
   display: flex;
-  align-items: center;
-  position: absolute;
+  align-items: flex-start;
   top: 0;
-  right:0;
+  right: 0;
   width: 26px;
-  height: 26px;
+  height: 27px;
   cursor: pointer;
   z-index: 1;
-  margin-top: 15px;
+
 }
-.burger-menu{
+
+.burger-menu {
   display: flex;
   text-decoration: none;
 }
 
-.menu-btn >  span::before,
+.menu-btn > span::before,
 .menu-btn > span::after {
   display: none;
   position: absolute;
@@ -24,15 +24,18 @@
   background-color: #616161;
   transition-duration: .25s;
 }
+
 .menu-btn > span::before {
   content: '';
   top: -2px;
 }
-.menu-btn >  span::after {
+
+.menu-btn > span::after {
   content: '';
   top: 2px;
 }
-.menubox{
+
+.menubox {
   display: block;
   position: fixed;
   visibility: hidden;
@@ -41,14 +44,15 @@
   width: 400px;
   height: 100%;
   margin: 0;
-padding-left: 10px;
   list-style: none;
   background-color: #ECEFF1;
   box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
   transition-duration: .25s;
   lign-items: flex-start;
   justify-content: center;
+  padding-left: 2%;
 }
+
 .menu-item {
   display: block;
   padding: 12px 24px;
@@ -59,31 +63,38 @@ padding-left: 10px;
   text-decoration: none;
   transition-duration: .25s;
 }
+
 .menu-item:hover {
   background-color: #CFD8DC;
 }
-#menu-toggle{
+
+#menu-toggle {
   opacity: 0;
 }
-#menu-toggle:checked ~ .menu-btn >  span{
+
+#menu-toggle:checked ~ .menu-btn > span {
   transform: rotate(45deg);
 
 }
-#menu-toggle:checked ~ .menu-btn >  span::before{
+
+#menu-toggle:checked ~ .menu-btn > span::before {
   top: 0;
   transform: rotate(0);
-display: block;
+  display: block;
 }
-#menu-toggle:checked ~ .menu-btn >  span::after{
+
+#menu-toggle:checked ~ .menu-btn > span::after {
   top: 0;
   transform: rotate(90deg);
   display: block;
 }
-#menu-toggle:checked ~ .menubox{
+
+#menu-toggle:checked ~ .menubox {
   visibility: visible;
   right: 0;
 }
-.button{
+
+.button {
   border: 1px solid #000000;
   height: 20px;
   width: 20px;
@@ -92,57 +103,71 @@ display: block;
   justify-content: center;
   align-items: center;
   top: 0;
-  right:0;
-  margin-top: 13px;
+  right: 0;
+
 }
-.button:hover{
+
+.button:hover {
   color: white;
   background-color: #000000;
 }
-#menu-toggle:checked ~ .menu-btn >  .button{
+
+#menu-toggle:checked ~ .menu-btn > .button {
   display: none;
 }
-.menubox img{
+
+.menubox img {
   height: 200px;
   width: 130px;
+  object-fit: cover;
   border-radius: 5px;
 }
-h1{
- padding-top: 15px;
+
+h1 {
+  padding-top: 15px;
   font-size: 18px;
 }
-.menubox div{
-  display: flex;
 
+.menubox div {
+  display: flex;
+  justify-content: center;
   align-items: flex-start;
 }
-.menubox div ul li{
+
+.menubox div ul li {
   list-style: none;
 }
 
-li a:hover{
+li a:hover {
   text-decoration: black;
 }
-.button-basket input[type=radio]{
-  position: absolute;
-  left: -99999px;
+
+.button-basket {
+  padding-top: 5%;
+  width: 60%;
+  display: flex;
 }
-.button-basket{
-  padding-top: 20px;
-}
-.button-basket span{
-  border: 1px solid #000000;
+
+.button-basket a {
+  width: 100%;
+  border: 1px black solid;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
 }
-.button-basket  input[type=radio]:hover + span {
-  background-color: #000000;
+.button-basket a:hover{
+  background-color: black;
   color: white;
 }
-.burger-menu-mobile{
+.button-basket a:hover p{color: white;}
+.burger-menu-mobile {
   display: none;
 }
-@media screen and (max-width: 800px){
-  .menubox{
+
+@media screen and (max-width: 800px) {
+  .menubox {
     width: 200px;
   }
 }

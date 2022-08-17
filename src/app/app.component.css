@@ -37,6 +37,7 @@ a:hover, a:link {
   background-color: white;
   width: 100%;
   justify-content: space-around;
+
 }
 
 .class a:hover, a:link {
@@ -59,7 +60,7 @@ h1 .menu__item1 {
 .menuh {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 95%;
 }
 
 
@@ -82,6 +83,7 @@ h1 .menu__item1 {
   font-size: 1.5em;
   margin: 0;
   justify-content: space-around;
+  z-index: 5;
 }
 
 .menu3 {
@@ -114,54 +116,12 @@ button {
   font-size: 14px;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-  background-color: #fff;
-  font-size: 14px;
-}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #ffffff;
-  min-width: 160px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  padding-top: 20px;
-}
-
-.dropdown-content a {
-  color: black;
-  width: 160px;
-  height: 30px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
-.dropdown-content a:hover {
-  font-size: 14px;
-  text-decoration: none
-}
-
-button:hover {
-  color: black;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/*конец меню коллекций*/
-.footer {
-  padding-left: 20px;
-}
 
 .contant {
   padding-top: 80px;
   display: table-row;
-  height: 100%;
+
 }
 
 .wrapper2 {
@@ -180,20 +140,35 @@ button:hover {
 .container {
   display: flex;
 }
-.menuh .menu__item{
+
+.menuh .menu__item {
   margin-left: 10px;
 }
-app-basket-mobile{
+
+app-basket-mobile {
   display: none;
 }
-@media screen and (max-width: 800px) {
- app-basket-mobile{
-   display: flex;
 
- }
-  app-basket{
+.mobile-header {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  app-basket-mobile {
+    display: flex;
+
+  }
+
+  .mobile-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  app-basket {
     display: none;
   }
+
   .contant {
     display: table-row;
   }
@@ -218,35 +193,16 @@ app-basket-mobile{
   }
 
   .contant {
-    padding-top: 65px;
-    display: table-row;
-
-    height: 100%;
+    display: flex;
+    justify-content: center;
   }
 
-  .wrapper2 {
-    display: table;
-    height: 100%;
-  }
-
-  a img .logo2 {
-
-    width: 210px;
-    height: 30px;
-
-  }
-
-  a {
-    width: 210px;
-    height: 30px;
-  }
 
   .head {
     display: flex;
-    position: relative;
+
     overflow: hidden;
-    width: 220px;
-    height: 40px;
+
     z-index: 99;
   }
 
@@ -304,11 +260,8 @@ app-basket-mobile{
   }
 
   .menu__btn {
-    display: flex;
+position: absolute;
     align-items: center;
-    position: fixed;
-    top: 20px;
-    left: 20px;
     width: 26px;
     height: 20px;
     cursor: pointer;
@@ -318,30 +271,34 @@ app-basket-mobile{
   .menu__item {
     transition-duration: .25s;
     padding-left: 20px;
+    padding-bottom: 5%;
+
   }
 
   .menu__btn > span,
   .menu__btn > span::before,
   .menu__btn > span::after {
     display: block;
-    position: absolute;
     width: 100%;
     height: 2px;
     background-color: gray;
     transition-duration: .25s;
     z-index: 999999;
+margin: 0;
   }
 
   .menu__btn > span::before {
     content: '';
     top: -8px;
     z-index: 999999;
+    margin-bottom: 15%;
   }
 
   .menu__btn > span::after {
     content: '';
     top: 8px;
     z-index: 999999;
+    margin-top: 5%;
   }
 
   .nav-menu {
@@ -364,46 +321,44 @@ app-basket-mobile{
     font-family: 'Casual Friday', sans-serif;
     color: black;
     font-size: 1em;
-    z-index: 99999;
+    z-index: 999;
   }
 
-  .menu__item:hover {
-    background-color: #435A60;
-  }
+
 
   #menu__toggle:checked ~ .menu__btn > span {
     transform: rotate(45deg);
+
   }
 
   #menu__toggle:checked ~ .menu__btn > span::before {
     top: 0;
     transform: rotate(0);
+    margin-bottom:0;
+
   }
 
   #menu__toggle:checked ~ .menu__btn > span::after {
     top: 0;
-    color: #000000;
-    font-weight: 300;
-    font-family: 'FuturaPT';
-    font-size: 14px;
     transform: rotate(90deg);
+    margin-top: -5%;
   }
 
   #menu__toggle:checked ~ .nav-menu {
     visibility: visible;
     left: 0;
   }
-  .dropdown{
-    margin-left: 3px;
-  }
-  .dropdown:hover{
-    background-color: #ffffff;
-  }
+
+
 }
-app-hero-search{
-  margin-right: 10px;
-}
-.menu-mobile{
+
+
+.menu-mobile {
   display: flex;
 }
-/* Dropdown Button */
+
+@media screen and (max-width: 425px) {
+  .padd {
+    align-content: center;
+  }
+}

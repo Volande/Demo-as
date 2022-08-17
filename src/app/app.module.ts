@@ -6,13 +6,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import {InMemoryDataService} from './in-memory-data.service';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { CarouselMainComponent } from './carousel-main/carousel-main.component';
 import { ClothesComponent } from './clothes/clothes.component';
 import { AboutComponent } from './about/about.component';
@@ -20,6 +17,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { BasketComponent } from './basket/basket.component';
 import { BasketMobileComponent } from './basket-mobile/basket-mobile.component';
+import { ClothesSearchComponent } from './clothes-search/clothes-search.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { ClothesPageComponent } from './clothes-page/clothes-page.component';
+import { RelevantsComponent } from './relevants/relevants.component';
+import { CollectionMenuComponent } from './collection-menu/collection-menu.component';
+import { ConvertorComponent } from './convertor/convertor.component';
 
 
 
@@ -27,15 +30,18 @@ import { BasketMobileComponent } from './basket-mobile/basket-mobile.component';
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroDetailComponent,
     MessagesComponent,
-    DashboardComponent,
-    HeroSearchComponent,
     CarouselMainComponent,
     ClothesComponent,
     AboutComponent,
     BasketComponent,
     BasketMobileComponent,
+    ClothesSearchComponent,
+    MainPageComponent,
+    ClothesPageComponent,
+    RelevantsComponent,
+    CollectionMenuComponent,
+    ConvertorComponent,
 
   ],
   imports: [
