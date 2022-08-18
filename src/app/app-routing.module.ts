@@ -9,6 +9,10 @@ import {ClothesPageComponent} from "./clothes-page/clothes-page.component";
 import {RelevantsComponent} from "./relevants/relevants.component";
 import {CollectionMenuComponent} from "./collection-menu/collection-menu.component";
 import {ConvertorComponent} from "./convertor/convertor.component";
+import {InformationComponent} from "./information/information.component";
+import {ExchangeReturnComponent} from "./exchange-return/exchange-return.component";
+import {PreReplacementComponent} from "./pre-replacement/pre-replacement.component";
+import {ShippingPaymentComponent} from "./shipping-payment/shipping-payment.component";
 
 
 const routers: Routes = [
@@ -21,7 +25,11 @@ const routers: Routes = [
   {path: 'basket-mobile', component:BasketMobileComponent},
   {path:'relevants', component:RelevantsComponent},
   {path:'collection-menu', component:CollectionMenuComponent},
-  {path:'convertor' , component:ConvertorComponent}
+  {path:'convertor' , component:ConvertorComponent},
+  {path:'information', component:InformationComponent},
+  {path:'exchange-return', component:ExchangeReturnComponent},
+  {path:'shipping-payment', component:ShippingPaymentComponent},
+  {path:'pre-replacement', component:PreReplacementComponent}
 ]
 
 @NgModule({

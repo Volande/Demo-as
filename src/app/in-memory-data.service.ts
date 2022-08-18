@@ -7,7 +7,7 @@ import {Clothes} from './clothes';
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const heroes = [
+    const Clothes = [
       {
         id: 1,
 
@@ -281,7 +281,7 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
 
-    return {heroes};
+    return {heroes: Clothes};
   }
 
   getId(heroes: Clothes[]): number {

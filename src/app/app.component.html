@@ -1,30 +1,21 @@
 <body xmlns="http://www.w3.org/1999/html">
-
-
 <header class="container">
-
-
   <div class="menuh">
     <div class="menu1">
       <a routerLink="/clothes" class="menu__item">Магазин</a>
       <app-collection-menu></app-collection-menu>
-      <a href="" class="menu__item" routerLink="/about">Про бренд</a>
+      <app-information class="menu__item"></app-information>
     </div>
     <div class="menu2">
-
       <div class="box1"><a routerLink="/main-page">
         <img src="./assets/logo.svg" width="210" height="30" alt="image description"></a></div>
-
     </div>
-
     <div class="menu3">
       <app-convertor></app-convertor>
       <app-clothes-search class="menu__item"></app-clothes-search>
       <app-basket></app-basket>
     </div>
-
   </div>
-
   <div class="mobile-header">
     <div style="width: 26px;
     height: 20px;z-index: 9999;">
@@ -39,7 +30,7 @@
           <li>
             <app-collection-menu ></app-collection-menu>
           </li>
-          <li><a routerLink="/about" class="menu__item">Про бренд</a></li>
+          <li><app-information ></app-information></li>
         </div>
         <div class="menu3">
           <li>
@@ -54,53 +45,27 @@
           <li><a class="footerpage1" href="https://www.instagram.com/alexandrashklyar_store/?igshid=YmMyMTA2M2Y%3D">Instagram</a>
           </li>
           <li><a class="footerpage1" href="https://www.instagram.com/">Обране</a></li>
-          <li><a class="footerpage1" href="https://www.instagram.com/">Доставка і повернення</a></li>
           <li><a class="footerpage1" href="https://www.instagram.com/">Контакти</a></li>
           <br class="br">
           <li>
             <div class="footerpage1">© 2022</div>
           </li>
         </div>
-
       </ul>
     </div>
     <div class="head"><a routerLink="/main-page"><img src="./assets/logo.svg" width="210" height="30"
                                                       alt="image description" class="logo2"></a>
-
-
     </div>
     <div>
       <app-basket-mobile></app-basket-mobile>
     </div>
   </div>
 </header>
-
-
 <div class="contant">
 
   <router-outlet></router-outlet>
 
   <app-messages></app-messages>
 </div>
-
-<br>
-
-<div class="footer">
-  <footer>
-    <br>
-    <a href="https://www.instagram.com/">Instagram</a>
-    <br>
-    <a href="https://www.instagram.com/">Обране</a>
-    <br>
-    <a href="https://www.instagram.com/">Доставка і повернення</a>
-    <br>
-    <a href="https://www.instagram.com/">Контакти</a>
-    <br>
-    <br>
-    © 2022
-  </footer>
-</div>
-
-
 </body>
 

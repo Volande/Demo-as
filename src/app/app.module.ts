@@ -23,6 +23,10 @@ import { ClothesPageComponent } from './clothes-page/clothes-page.component';
 import { RelevantsComponent } from './relevants/relevants.component';
 import { CollectionMenuComponent } from './collection-menu/collection-menu.component';
 import { ConvertorComponent } from './convertor/convertor.component';
+import { InformationComponent } from './information/information.component';
+import { ShippingPaymentComponent } from './shipping-payment/shipping-payment.component';
+import { PreReplacementComponent } from './pre-replacement/pre-replacement.component';
+import { ExchangeReturnComponent } from './exchange-return/exchange-return.component';
 
 
 
@@ -42,6 +46,10 @@ import { ConvertorComponent } from './convertor/convertor.component';
     RelevantsComponent,
     CollectionMenuComponent,
     ConvertorComponent,
+    InformationComponent,
+    ShippingPaymentComponent,
+    PreReplacementComponent,
+    ExchangeReturnComponent,
 
   ],
   imports: [
