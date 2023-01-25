@@ -1,0 +1,73 @@
+<body xmlns="http://www.w3.org/1999/html">
+<header class="container">
+  <div class="menuh">
+    <div class="menu1">
+      <a routerLink="/clothes" class="menu__item">Магазин</a>
+      <app-collection-menu></app-collection-menu>
+
+    </div>
+    <div class="menu2">
+      <div class="box1"><a routerLink="/main-page">
+        <img src="./assets/logo.svg" width="210" height="30" alt="image description"></a></div>
+    </div>
+    <div class="menu3">
+      <app-login></app-login>
+      <app-convertor></app-convertor>
+      <app-clothes-search class="menu__item"></app-clothes-search>
+      <app-basket></app-basket>
+
+    </div>
+  </div>
+  <div class="mobile-header">
+    <div style="width: 26px;
+    height: 20px;z-index: 9999;">
+      <input id="menu__toggle" type="checkbox"/>
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
+      <ul class="nav-menu">
+
+        <div class="menu1">
+          <li><a routerLink="/clothes" class="menu__item">Магазин</a></li>
+          <li>
+            <app-collection-menu ></app-collection-menu>
+          </li>
+
+        </div>
+        <div class="menu3">
+          <li>
+            <app-clothes-search class="menu__item"></app-clothes-search>
+          </li>
+          <li>
+            <app-convertor class="menu__item"></app-convertor>
+          </li>
+        </div>
+        <br class="br">
+        <div class="downf">
+          <li><a class="footerpage1" href="https://www.instagram.com/alexandrashklyar_store/?igshid=YmMyMTA2M2Y%3D">Instagram</a>
+          </li>
+          <li><a class="footerpage1" href="https://www.instagram.com/">Обране</a></li>
+          <li><a class="footerpage1" href="https://www.instagram.com/">Контакти</a></li>
+          <br class="br">
+          <li>
+            <div class="footerpage1">© 2022</div>
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div class="head"><a routerLink="/main-page"><img src="./assets/logo.svg" width="210" height="30"
+                                                      alt="image description" class="logo2"></a>
+    </div>
+    <div>
+      <app-basket-mobile></app-basket-mobile>
+    </div>
+  </div>
+</header>
+<div class="contant">
+
+  <router-outlet></router-outlet>
+
+  <app-messages></app-messages>
+</div>
+</body>
+

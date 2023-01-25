@@ -1,0 +1,17 @@
+<app-carousel-main></app-carousel-main>
+<div class="pad">
+  <h2>Останні надходження</h2>
+  <div class="main-menu">
+      <a *ngFor="let clothes of wardrobe"
+         routerLink="/detail/{{clothes.id}}">
+        <div>
+          <img class="image first" src="{{clothes.image}}" alt="photo" >
+          <img class="image second" src="{{clothes.image}}" alt="photo">
+        </div>
+        {{clothes.title}}
+        <br>
+        <br>
+        {{clothes.price}}
+      </a>
+    </div>
+  </div>

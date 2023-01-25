@@ -1,0 +1,34 @@
+
+h2,h3{
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+}
+body{
+  margin: 0 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+body, input[type="text"],button{
+  color: #000000;
+  font-weight: 300;
+font-family: 'FuturaPT',Arial,sans-serif;
+  font-size: 14px;
+}
+
+/*everywhere else*/
+*{
+  color: #000000;
+  font-weight: 300;
+  font-family: 'FuturaPT',Arial,sans-serif;
+  font-size: 14px;
+}
+@media screen and (max-width: 800px) {
+  *,body, input[type="text"],button{font-size:15px}
+}
+footer a{
+  text-decoration: none;
+}
+

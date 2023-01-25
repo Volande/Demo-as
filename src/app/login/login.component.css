@@ -1,0 +1,180 @@
+.modal {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: left;
+  background: rgba(0, 0, 0, .9);
+  transition: opacity .25s ease;
+}
+.modal__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.modal-state {
+  display: none;
+
+}
+
+.modal-state:checked + .modal {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-state:checked + .modal .modal__inner {
+  top: 0;
+}
+
+form {
+  transition: top .25s ease;
+  position: absolute;
+  top: -20%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  margin: auto;
+  overflow: auto;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 1em 2em;
+  height: 50%;
+display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+form{
+  display: flex;
+}
+.modal__close {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  width: 1.1em;
+  height: 1.1em;
+  cursor: pointer;
+}
+
+.modal__close:after,
+.modal__close:before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 1.5em;
+  background: #ccc;
+  display: block;
+  transform: rotate(45deg);
+  left: 50%;
+  margin: -3px 0 0 -1px;
+  top: 0;
+}
+
+.modal__close:hover:after,
+.modal__close:hover:before {
+  background: #aaa;
+}
+
+.modal__close:before {
+  transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 768px) {
+
+  .modal__inner {
+    width: 90%;
+    height: 90%;
+    box-sizing: border-box;
+  }
+}
+
+
+
+.btn {
+  cursor: pointer;
+
+  display: inline-block;
+  padding: .5em 1em;
+  color:#000000;
+  border-radius: 3px;
+}
+
+.btn:hover,
+.btn:focus {
+
+}
+
+.btn:active {
+  box-shadow: 0 1px 2px rgb(171, 17, 17) inset;
+}
+
+h4 {
+  font-weight: bold;
+  color: #131313;
+}
+
+
+.form-control {
+
+  outline: 0;
+  outline-offset: 0;
+}
+
+.form-control:hover, .form-control:focus {
+
+  border-bottom-color: #2c3a41;
+}
+
+.username, .password {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  padding-left: 0;
+  font-weight: normal;
+  background: transparent;
+}
+.form-control::-webkit-input-placeholder {
+  color: #1f1e1e;
+}
+.form-control:focus::-webkit-input-placeholder {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.form-control:hover, .form-control:focus {
+  box-shadow: none;
+  border: none;
+  }
+
+.login {
+  padding: 6px 20px;
+  border-radius: 20px;
+  background: none;
+  border: 2px solid #1f1e1e;
+  color: #1f1e1e;
+  font-weight: bold;
+  transition: all .5s;
+  margin-top: 1em;
+}
+.login:hover {
+  background: #9b8f85;
+  color: #fff;
+}
+
+.underline:after{
+  content: '';
+position: absolute;
+  height: 1px;
+  width: 85%;
+  background: black;
+  display: flex;
+}
+

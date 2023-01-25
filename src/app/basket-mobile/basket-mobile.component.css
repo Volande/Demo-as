@@ -1,0 +1,175 @@
+.menu-btn {
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+
+}
+
+.burger-menu {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.menu-btn > span::before,
+.menu-btn > span::after {
+  position: absolute;
+  height: 2px;
+  width: 20px;
+  background-color: #616161;
+  transition-duration: .25s;
+  z-index: 99999;
+ display: none;
+  margin-top: -15px;
+
+
+}
+
+.menu-btn > span::before {
+  content: '';
+  top: -2px;
+  padding-bottom: 2%;
+
+}
+
+.menu-btn > span::after {
+  content: '';
+  top: 2px;
+  padding-top: 2%;
+}
+
+.menubox {
+  display: block;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  right: -100%;
+  width: 400px;
+  height: 100%;
+  margin: 0;
+  padding-left: 5%;
+  list-style: none;
+  background-color: #ECEFF1;
+  box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
+  transition-duration: .25s;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 999;
+
+}
+
+#menu-toggle {
+  opacity: 0;
+  z-index: 99999;
+  position: absolute;
+  right: 1%;
+  top: 20%;
+}
+
+#menu-toggle:checked ~ .menu-btn > span {
+  transform: rotate(45deg);
+  z-index: 99999;
+  transition-duration: .9s;
+}
+
+#menu-toggle:checked ~ .menu-btn > span::before {
+  top: 0;
+  transform: rotate(0);
+  z-index: 99999;
+display: block;
+
+}
+
+#menu-toggle:checked ~ .menu-btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+  z-index: 99999;
+  display: block;
+
+}
+
+#menu-toggle:checked ~ .menubox {
+  visibility: visible;
+  right: 0;
+  transition-duration: .5s;
+}
+
+.button {
+  border: 1px solid #000000;
+  height: 20px;
+  width: 20px;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.button:hover {
+  color: white;
+  background-color: #000000;
+}
+
+
+
+.menubox img {
+  height: 200px;
+  width: 130px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+h1 {
+  padding-top: 15px;
+  font-size: 18px;
+}
+
+.menubox div {
+  display: flex;
+
+  align-items: flex-start;
+}
+
+.menubox div ul li {
+  list-style: none;
+}
+
+li a:hover {
+  text-decoration: black;
+}
+.button-basket {
+  padding-top: 5%;
+  width: 60%;
+  display: flex;
+}
+
+.button-basket a {
+  width: 100%;
+  border: 1px black solid;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 18px;
+}
+.button-basket a:hover{
+  background-color: black;
+  color: white;
+}
+.button-basket a:hover p{color: white;}
+.burger-menu-mobile {
+  display: none;
+}
+
+.burger-menu-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 425px) {
+  .menubox {
+    width: 250px;
+  }
+}

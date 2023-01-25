@@ -1,0 +1,362 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.logo1 {
+  height: 40px;
+  width: 180px;
+}
+
+.box1 a {
+
+  width: 210px;
+  height: 30px;
+}
+
+a {
+  color: black
+}
+
+app-messages {
+  display: none;
+}
+
+a:hover, a:link {
+  text-decoration: none;
+  color: black;
+  margin: 3px;
+  font-weight: bold;
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background-color: white;
+  width: 100%;
+  justify-content: space-around;
+
+}
+
+.class a:hover, a:link {
+  font-weight: normal;
+}
+
+.head {
+  display: none;
+}
+
+h1 .menu__item1 {
+
+  text-align: center;
+  font-family: 'Casual Friday', sans-serif;
+  color: black;
+  font-size: 1.5em;
+  margin: 0
+}
+
+.menuh {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+}
+
+
+.menu1 {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.menu2 {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  text-align: center;
+  font-family: 'Casual Friday', sans-serif;
+  color: black;
+  font-size: 1.5em;
+  margin: 0;
+  justify-content: space-around;
+  z-index: 5;
+}
+
+.menu3 {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+}
+
+#menu__toggle {
+  opacity: 0;
+}
+
+.footerpage1 {
+  display: none;
+}
+
+.br {
+  display: none;
+}
+
+/*отвечает за меню коллекций*/
+button {
+  background-color: #fff;
+  font-size: 14px;
+}
+
+
+
+.contant {
+  display: table-row;
+}
+
+.wrapper2 {
+  display: table;
+  height: 100%;
+}
+
+.nav-menu {
+  display: none;
+}
+
+.burger {
+  display: flex;
+}
+
+.container {
+  display: flex;
+}
+
+.menuh .menu__item {
+  margin-left: 10px;
+}
+
+app-basket-mobile {
+  display: none;
+}
+
+.mobile-header {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  app-basket-mobile {
+    display: flex;
+
+  }
+
+  .mobile-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  app-basket {
+    display: none;
+  }
+
+  .contant {
+    display: table-row;
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    background-color: white;
+  }
+
+  .container {
+    height: 75px;
+    background-color: white;
+  }
+
+  .contant {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  .head {
+    display: flex;
+
+    overflow: hidden;
+
+    z-index: 99;
+  }
+
+  /*отвечает за размер лого + еще нужно изменить в header*/
+  .menuh {
+    display: none;
+  }
+
+  .menu1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    flex-direction: column;
+  }
+
+  .menu3 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    flex-direction: column;
+    margin-left: 20px;
+
+  }
+
+  .downf {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding-bottom: 90px;
+  }
+
+
+  .footerpage1 {
+    display: flex;
+    padding-left: 20px;
+    height: 15px;
+  }
+
+  .br {
+    display: block;
+  }
+
+  .box-burger .menu__item1 {
+    display: none;
+  }
+
+  li {
+    text-align: left;
+
+  }
+
+  .menu__btn {
+position: absolute;
+    align-items: center;
+    width: 26px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 999999;
+  }
+
+  .menu__item {
+    transition-duration: .25s;
+    padding-left: 20px;
+    padding-bottom: 5%;
+
+  }
+
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: gray;
+    transition-duration: .25s;
+    z-index: 999999;
+margin: 0;
+  }
+
+  .menu__btn > span::before {
+    content: '';
+    top: -8px;
+    z-index: 999999;
+    margin-bottom: 15%;
+  }
+
+  .menu__btn > span::after {
+    content: '';
+    top: 8px;
+    z-index: 999999;
+    margin-top: 5%;
+  }
+
+  .nav-menu {
+    display: flex;
+    position: fixed;
+    visibility: hidden;
+    flex-direction: column;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    text-align: center;
+    background-color: white;
+    box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
+    text-decoration: none;
+    transition-duration: .25s;
+    font-family: 'Casual Friday', sans-serif;
+    color: black;
+    font-size: 1em;
+    z-index: 999;
+  }
+
+
+
+  #menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+    margin-bottom:0;
+
+  }
+
+  #menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+    margin-top: -5%;
+  }
+
+  #menu__toggle:checked ~ .nav-menu {
+    visibility: visible;
+    left: 0;
+  }
+
+
+}
+
+
+.menu-mobile {
+  display: flex;
+}
+
+@media screen and (max-width: 425px) {
+  .padd {
+    align-content: center;
+  }
+}

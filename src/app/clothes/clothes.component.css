@@ -1,0 +1,154 @@
+.clothes-page {
+  display: flex;
+  width: 100%;
+  color: #000000;
+  font-weight: 300;
+  text-decoration: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.clothes-page div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+.menu-clothes {
+  padding:5% 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.menu-clothes a{
+  color: #000000;
+  font-weight: 300;
+  font-family: 'FuturaPT';
+  font-size: 15px;
+  text-decoration: none;
+  padding: 0 5px;
+  display: flex;
+  justify-content: space-around;
+  height: 30px;
+}
+
+
+.image.first, .image.second {
+  border: 2px solid transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.image.first {
+  opacity: 1;
+  display: block;
+  position: absolute;
+  z-index: 100;
+  transition-duration: 0.96s;
+  -webkit-transition-duration: 0.96s;
+  -moz-transition-duration: 0.96s;
+  -o-transition-duration: 0.96s;
+  -ms-transition-duration: 0.96s;
+}
+
+.image.first:hover {
+  opacity: 0.00;
+}
+
+div.clothes-page  {
+  display: inline-flex;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+
+}
+
+a div {
+  animation: 4s show ease;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+a {
+  border-radius: 2px;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+  max-width: 400px;
+  height: 600px;
+  box-sizing: border-box;
+  order: 0;
+  flex: 0 1 auto;
+}
+
+.clothes-page  a img {
+  height: 500px;
+  width: 100%;
+  max-width: 380px;
+  object-fit: cover;
+}
+@media screen and (max-width: 1024px) {
+  .menu-clothes {
+   padding-top: 8%;
+  }
+  a{
+    width: 100%;
+    max-width: 300px;
+    height: 500px;
+  }
+  .clothes-page  a img {
+    height: 400px;
+    width: 100%;
+    max-width: 280px;
+  }
+  }
+
+@media screen and (max-width: 800px) {
+  .menu-clothes{
+    padding-top: 0;
+  }
+  .clothes-page  {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0;
+  }
+
+  .clothes-page  a img {
+    object-fit: cover;
+  }
+
+  .image.first, .image.second {
+    object-fit: cover;
+  }
+
+  .clothes-page div {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 425px) {
+
+  .clothes-page div {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+}
