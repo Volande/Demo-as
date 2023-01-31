@@ -24,11 +24,7 @@ export class ClothesSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.wardrobe$ = this.searchTerms.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap((term: string) => this.clothesService.searchClothes(term)),
-    );
+
   }
 
 }

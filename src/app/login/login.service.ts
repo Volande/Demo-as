@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { LoginUser} from "../../dataModels/loginUser.service";
+
 import { environment } from '../../environments/environment';
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
@@ -12,21 +12,12 @@ export class LoginService {
 
   private _username: string = "";
   private _password: string = "";
+  isAuthenticated$: any;
   constructor(private http: HttpClient) {
 
   }
 
-  public login(userToLogin : LoginUser): Observable<any> {
-    let params = new HttpParams();
 
-    params = params.set('username', userToLogin.userNameValue);
-    params = params.set('password', userToLogin.userPassValue);
-
-
-
-
-    return this.http.post<any>(environment.apiBaseUrl + "/api/v1/auth/login", params);
-  }
 
   public signout(): Observable<any> {
     let jwtToken: String = this.getUserSecurityToken(),

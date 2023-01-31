@@ -1,6 +1,10 @@
 
 <div>
-    <label class="btn" for="modal-1">Вхід</label>
+
+  <label mat-button class="btn"  for="modal-1" *ngIf="!isAuthenticated">
+    Login</label>
+  <label mat-button *ngIf="isAuthenticated" (click)="logout()">
+    Logout</label>
 </div>
 
 <input class="modal-state" id="modal-1" type="checkbox" />
@@ -43,12 +47,12 @@
         <div class="col">
           <button type="submit"
                   class="btn btn-primary form-control"
-                  (click)="onClickLogin(loginForm)">Login</button>
+                 >Login</button>
         </div>
         <div class="col">
           <button type="clear"
                   class="btn btn-default form-control"
-                  (click)="onClickClear(loginForm)">Clear</button>
+                  >Clear</button>
         </div>
       </div>
     </form>

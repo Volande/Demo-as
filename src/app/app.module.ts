@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import {ClothesService} from "./clothes.service";
 
 
+
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
 

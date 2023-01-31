@@ -43,18 +43,7 @@ export class ClothesService {
   }
 
 
-  getHeroNo404<Data>(id: number): Observable<Clothes> {
-    const url = `${this.heroesUrl}/products/clothes/${id}`;
-    return this.http.get<Clothes[]>(url)
-      .pipe(
-        map(heroes => heroes[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} hero id=${id}`);
-        }),
-        catchError(this.handleError<Clothes>(`getHero id=${id}`))
-      );
-  }
+
 
 
   getHero(id: number): Observable<Clothes> {
@@ -62,47 +51,6 @@ export class ClothesService {
     return this.http.get<Clothes>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
       catchError(this.handleError<Clothes>(`getHero id=${id}`))
-    );
-  }
-
-
-  searchClothes(term: string): Observable<Clothes[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.get<Clothes[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        this.log(`found heroes matching "${term}"`) :
-        this.log(`no heroes matching "${term}"`)),
-      catchError(this.handleError<Clothes[]>('searchHeroes', []))
-    );
-  }
-
-
-
-
-  addHero(hero: Clothes): Observable<Clothes> {
-    return this.http.post<Clothes>(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap((newHero: Clothes) => this.log(`added hero w/ id=${newHero.id}`)),
-      catchError(this.handleError<Clothes>('addHero'))
-    );
-  }
-
-
-  deleteHero(id: number): Observable<Clothes> {
-    const url = `${this.heroesUrl}/${id}`;
-
-    return this.http.delete<Clothes>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<Clothes>('deleteHero'))
-    );
-  }
-
-
-  updateHero(hero: Clothes): Observable<any> {
-    return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<any>('updateHero'))
     );
   }
 

@@ -33,12 +33,7 @@ export class ClothesPageComponent implements OnInit {
     this.location.back()
   };
 
-  save(): void {
-    if (this.clothes) {
-      this.heroService.updateHero(this.clothes)
-        .subscribe(() => this.goBack());
-    }
-  }
+
 }
 
 

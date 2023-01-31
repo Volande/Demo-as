@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {FormsService} from "../common/form.service";
 import {LoginService} from "./login.service";
-import {LoginUser} from "../../dataModels/loginUser.service";
+
 
 @Component({
   selector: 'app-login',
@@ -25,12 +25,19 @@ export class LoginComponent implements OnInit {
     this._router = router;
   }
 
+  public isAuthenticated = false;
+
+  public logout(): void {
+    this._loginService.signout();
+  }
 
   ngOnInit() {
     let userLoggedIn: Boolean
       = this._loginService.checkUserLoggedIn();
     if (userLoggedIn) {
       this._router.navigate(['/main']);
+      this._loginService.isAuthenticated$.subscribe((isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated);
+
     }
   }
   public get username() {
@@ -56,41 +63,7 @@ export class LoginComponent implements OnInit {
     this._formsService.makeFormFieldsClean(loginForm);
   }
 
-  public onClickLogin(loginForm: any): void{
-    this._formsService.makeFormFieldsDirty(loginForm);
 
-    if (loginForm.valid) {
-      let userToLogin: LoginUser = new LoginUser(this._username, this._password);
-      let self:any = this;
 
-      self._loginService.login(userToLogin)
-        .subscribe((resp: any) => {
-          if (resp != null &&
-            resp.userId != null &&
-            resp.userId.trim() !== "" &&
-            resp.tokenValue != null &&
-            resp.tokenValue.trim() !== "") {
-
-            self._loginService.setSessionCurrentUser(resp);
-            self._router.navigate(['/main']);
-          }
-        }, (error: HttpErrorResponse) => {
-          if (error != null) {
-            if (error.status === 0) {
-              console.log("Client error.");
-            } else if (error.status === 401 || error.status === 403) {
-              self._userName = "";
-              self._userPass = "";
-              self._formsService.makeFormFieldsClean(loginForm);
-              console.log("You are not authorized.");
-            } else if (error.status === 500) {
-              console.log("Server error occurred.");
-            } else {
-              console.log("Unknown error: " + error.status);
-            }
-          }
-        });
-    }
-  }
 
 }
