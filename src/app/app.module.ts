@@ -23,6 +23,12 @@ import { CollectionMenuComponent } from './collection-menu/collection-menu.compo
 import { ConvertorComponent } from './convertor/convertor.component';
 import { LoginComponent } from './login/login.component';
 import {ClothesService} from "./clothes.service";
+import { RegisterComponent } from './register/register.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
+import { BoardUserComponent } from './board-user/board-user.component';
+// @ts-ignore
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 
 
 
@@ -53,7 +59,11 @@ export class XhrInterceptor implements HttpInterceptor {
     RelevantsComponent,
     CollectionMenuComponent,
     ConvertorComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    BoardAdminComponent,
+    BoardModeratorComponent,
+    BoardUserComponent
 
   ],
   imports: [
@@ -64,7 +74,7 @@ export class XhrInterceptor implements HttpInterceptor {
     MatIconModule,
     MatInputModule
   ],
-  providers: [ClothesService, {multi: true, provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor}],
+  providers: [ClothesService, {multi: true, provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor},authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

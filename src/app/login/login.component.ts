@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {Router} from "@angular/router";
-import {FormsService} from "../common/form.service";
-import {LoginService} from "./login.service";
-
+import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../_services/token-storage.service';
+import {UserInformation} from "../user-information";
 
 @Component({
   selector: 'app-login',
@@ -11,59 +9,58 @@ import {LoginService} from "./login.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  form: any = {
+    username: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  role:  string | undefined = "UnAuthorized";
 
-  private _username: string = "";
-  private _password: string = "";
-  private _loginService: LoginService;
-  private _formsService: FormsService;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
 
-  private _router: Router;
 
-  constructor(loginService: LoginService, formsService: FormsService, router: Router) {
-    this._loginService = loginService;
-    this._formsService = formsService;
-    this._router = router;
-  }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
-  public isAuthenticated = false;
 
-  public logout(): void {
-    this._loginService.signout();
-  }
-
-  ngOnInit() {
-    let userLoggedIn: Boolean
-      = this._loginService.checkUserLoggedIn();
-    if (userLoggedIn) {
-      this._router.navigate(['/main']);
-      this._loginService.isAuthenticated$.subscribe((isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated);
-
+  ngOnInit(): void {
+    if (this.tokenStorage.getUser()?.jwt) {
+      this.isLoggedIn = true;
+      this.role = this.tokenStorage.getUser()?.role;
     }
+
+
+   }
+
+  onSubmit(): void {
+    const { username, password } = this.form;
+
+    this.authService.login(username, password).subscribe(
+      userInfo => {
+
+        this.tokenStorage.saveUser(userInfo);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.role = this.tokenStorage.getUser()?.role;
+        this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
   }
-  public get username() {
-    return this._username;
+
+  reloadPage(): void {
+    window.location.reload();
   }
 
-  public set username(val: string) {
-    this._username = val;
+  logout(): void {
+    this.tokenStorage.signOut();
+    window.location.reload();
   }
-
-  public get password() {
-    return this._password;
-  }
-
-  public set password(val: string) {
-    this._password = val;
-  }
-
-  public onClickClear(loginForm: any): void{
-    this._username = "";
-    this._password = "";
-
-    this._formsService.makeFormFieldsClean(loginForm);
-  }
-
-
-
-
 }

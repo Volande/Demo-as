@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Clothes} from "../clothes";
 import {ClothesService} from "../clothes.service";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-relevants',
@@ -8,16 +9,16 @@ import {ClothesService} from "../clothes.service";
   styleUrls: ['./relevants.component.css']
 })
 export class RelevantsComponent implements OnInit {
-  wardrobe: Clothes[]=[];
+  clothes:  Clothes[]=[];
 
-  constructor(private heroService:ClothesService) { }
+  constructor(private userService:UserService) { }
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.getPublicContent();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes =>this.wardrobe = heroes.slice(0, 2));/*определяет сколько фото на главной*/
+  getPublicContent(): void {
+    this.userService.getPublicContent()
+      .subscribe(heroes =>this.clothes = heroes.slice(0, 4));/*определяет сколько фото на главной*/
   }
 }

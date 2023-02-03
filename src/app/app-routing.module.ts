@@ -10,6 +10,10 @@ import {RelevantsComponent} from "./relevants/relevants.component";
 import {CollectionMenuComponent} from "./collection-menu/collection-menu.component";
 import {ConvertorComponent} from "./convertor/convertor.component";
 import {LoginComponent} from "./login/login.component";
+import { BoardUserComponent } from "./board-user/board-user.component";
+import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
+import { BoardAdminComponent } from './board-admin/board-admin.component';
+import {RegisterComponent} from "./register/register.component";
 
 
 const routers: Routes = [
@@ -23,7 +27,11 @@ const routers: Routes = [
   {path:'relevants', component:RelevantsComponent},
   {path:'collection-menu', component:CollectionMenuComponent},
   {path:'convertor' , component:ConvertorComponent},
-  {path:'login' , component:LoginComponent}
+  {path:'login' , component:LoginComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'user', component: BoardUserComponent },
+  { path: 'mod', component: BoardModeratorComponent },
+  { path: 'admin', component: BoardAdminComponent },
 
 ]
 

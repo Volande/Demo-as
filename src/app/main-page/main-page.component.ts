@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Clothes} from "../clothes";
 import {ClothesService} from "../clothes.service";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-main-page',
@@ -8,16 +9,16 @@ import {ClothesService} from "../clothes.service";
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  wardrobe: Clothes[]=[];
+  wardrobe : Clothes[] = [];
 
-  constructor(private heroService:ClothesService) { }
+  constructor(private heroService:ClothesService,private userService:UserService) { }
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.getPublicContent();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(clothes =>this.wardrobe = clothes.slice(0, 3));/*определяет сколько фото на главной*/
+  getPublicContent(): void {
+    this.userService.getPublicContent()
+      .subscribe(clothes =>this.wardrobe = clothes.slice(0, 5)) ;/*определяет сколько фото на главной*/
   }
 }

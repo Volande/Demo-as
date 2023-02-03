@@ -84,6 +84,7 @@ h1 .menu__item1 {
   margin: 0;
   justify-content: space-around;
   z-index: 5;
+  margin-top: 5px;
 }
 
 .menu3 {
@@ -361,3 +362,7 @@ margin: 0;
   }
 }
 
+
+ul li::marker{
+  color: white;
+}

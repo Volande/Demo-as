@@ -3,6 +3,7 @@ import {Clothes} from "../clothes";
 import {ActivatedRoute} from "@angular/router";
 import {ClothesService} from "../clothes.service";
 import {Location} from "@angular/common";
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-clothes-page',
@@ -14,8 +15,9 @@ export class ClothesPageComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private heroService: ClothesService,
-    private location: Location
+
+    private location: Location,
+    private userService:UserService
   ) {
   }
 
@@ -25,7 +27,7 @@ export class ClothesPageComponent implements OnInit {
 
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id)
+    this.userService.getHero(id)
       .subscribe(clothes => this.clothes = clothes);
   }
 
