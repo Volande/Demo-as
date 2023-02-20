@@ -4,7 +4,7 @@
     <a *ngFor="let cloth of clothes"
        href="http://localhost:4200/shop/detail/{{cloth.id}}">
       <div class="carousel-relevants" routerLink="/detail/{{cloth.id}}">
-        <img class="image first" src="{{cloth.image[0].title}}"alt="photo">
+        <img class="image first" src="{{cloth.image[0].title}}" alt="photo">
         <img class="image second" src="{{cloth.image[1].title}}" alt="photo">
       </div>
       <div class="text">
@@ -19,32 +19,15 @@
 <div class="mobile-relevants">
   <div style="padding: 5% 0"><p>Вам також може сподобатись</p></div>
   <div class="parent">
-    <div class='child'><a href="http://localhost:4200/shop/detail/1"><img src='./assets/photo-dress/photo1.jpg'
+    <div class='child' *ngFor="let cloth of clothes"><a href="http://localhost:4200/shop/detail/{{cloth.id}}"><img src='{{cloth.image[0].title}}'
                                                                           class="photo-relevants-slider">
-      <p> Женственное платье
+      <div class="text">
+        {{cloth.title}}
         <br>
-        5000 ₴</p></a>
-    </div>
-    <div class='child'><a href="http://localhost:4200/shop/detail/2"><img src='./assets/photo-dress/photo2.jpg'
-                                                                          class="photo-relevants-slider">
-      <p>
-        Платье -бюстье
         <br>
-        6000 ₴
-      </p></a>
+        {{cloth.price}}
+      </div></a>
     </div>
-    <div class='child'><a href="http://localhost:4200/shop/detail/3"><img src='./assets/photo-dress/photo3.jpg'
-                                                                          class="photo-relevants-slider">
-      <p>Костюм топ с юбкой
-        <br>
-        7000 ₴</p></a>
-    </div>
-    <div class='child'><a href="http://localhost:4200/shop/detail/4"><img src='./assets/photo-dress/photo4.jpg'
-                                                                          class="photo-relevants-slider">
-      <p>Платье с шёлком
-        <br>
-        8000 ₴
-      </p></a>
-    </div>
+
   </div>
 </div>

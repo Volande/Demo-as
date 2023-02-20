@@ -153,6 +153,8 @@ app-basket-mobile {
 }
 
 @media screen and (max-width: 800px) {
+
+
   app-basket-mobile {
     display: flex;
 
@@ -205,7 +207,7 @@ app-basket-mobile {
     z-index: 99;
   }
 
-  /*отвечает за размер лого + еще нужно изменить в header*/
+
   .menuh {
     display: none;
   }
@@ -259,12 +261,12 @@ app-basket-mobile {
   }
 
   .menu__btn {
-position: absolute;
+    position: absolute;
     align-items: center;
     width: 26px;
     height: 20px;
     cursor: pointer;
-    z-index: 999999;
+    z-index: 99999;
   }
 
   .menu__item {
@@ -282,14 +284,14 @@ position: absolute;
     height: 2px;
     background-color: gray;
     transition-duration: .25s;
-    z-index: 999999;
-margin: 0;
+    z-index: 99999;
+    margin: 0;
   }
 
   .menu__btn > span::before {
     content: '';
     top: -8px;
-    z-index: 999999;
+    z-index: 99999;
     margin-bottom: 15%;
   }
 
@@ -320,7 +322,7 @@ margin: 0;
     font-family: 'Casual Friday', sans-serif;
     color: black;
     font-size: 1em;
-    z-index: 999;
+    z-index: 9999;
   }
 
 
@@ -349,6 +351,10 @@ margin: 0;
   }
 
 
+  .down img{
+    width: 80%;
+    height: 80%;
+  }
 }
 
 
@@ -360,9 +366,66 @@ margin: 0;
   .padd {
     align-content: center;
   }
+
+  .down img{
+    width: 60%;
+    height: 60%;
+  }
 }
 
 
 ul li::marker{
   color: white;
 }
+
+
+/*блок який відповідає за authentication на смартфоні*/
+.down{
+  border: none;
+}
+.auth-mobile {
+  display: flex;
+}
+.submenu-mobile{
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  list-style: none;
+  padding-bottom: 10px;
+}
+.auth-mobile> div:hover .submenu-mobile{
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  transition-duration: 0.3s;
+}
+
+.menusub-mobile{
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  width: 6px;
+
+}
+.menusub-mobile:after{
+  content: "";
+  border-style: solid;
+  border-width: 4px 3px 0 3px;
+  position: absolute;
+  left: 0;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  border-color: transparent transparent transparent transparent;
+  border-top-color: inherit;
+}
+.submenu-mobile:after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 60px;
+  background: #aaaaaa;
+}
+
+/*блок який відповідає за authentication на пк*/
+

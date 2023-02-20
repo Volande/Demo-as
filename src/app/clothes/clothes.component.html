@@ -10,8 +10,8 @@
       <a *ngFor="let clothes of wardrobe"
          routerLink="/detail/{{clothes.id}}">
         <div>
-          <img class="image first" src="{{clothes.image}}" alt="photo">
-          <img class="image second" src="" alt="photo">
+          <img class="image first" src="{{clothes.image[0].title}}" alt="photo">
+          <img class="image second" src="{{clothes.image[1].title}}" alt="photo">
         </div>
         {{clothes.title}}
         <br>

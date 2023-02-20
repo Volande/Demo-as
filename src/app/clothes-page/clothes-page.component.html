@@ -1,37 +1,9 @@
-<div *ngIf="clothes" class="padd">
 
-  <div class="carousel">
-    <div class="carousel-inner">
-
-      <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
-             checked="checked">
-      <div class="carousel-item">
-        <img src="{{clothes.image[0].title}}" alt="photo dress">
-      </div>
-
-      <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-      <div class="carousel-item">
-        <img src="{{clothes.image[1].title}}" alt="photo dress">
-      </div>
-
-
-      <label for="carousel-2" class="carousel-control prev control-1">‹</label>
-      <label for="carousel-2" class="carousel-control next control-1">›</label>
-      <label for="carousel-1" class="carousel-control prev control-2">‹</label>
-      <label for="carousel-1" class="carousel-control next control-2">›</label>
-      <label for="carousel-2" class="carousel-control prev control-1">‹</label>
-      <label for="carousel-1" class="carousel-control next control-2">›</label>
-      <ol class="carousel-indicators">
-        <li>
-          <label for="carousel-1" class="carousel-bullet">•</label>
-        </li>
-        <li>
-          <label for="carousel-2" class="carousel-bullet">•</label>
-        </li>
-
-      </ol>
-    </div>
+<div *ngIf="clothes" class="padd" xmlns="">
+  <div class="img-slider">
+<app-image-slider ></app-image-slider>
   </div>
+
   <div class="text">
     <p>{{clothes.title }}</p>
     {{clothes.price}}
@@ -40,8 +12,7 @@
     <p>Розмір</p>
 
     <div class="choice">
-      <label><input type="radio" name="r" checked><span>{{clothes.size[0]}}</span></label>
-      <label><input type="radio" name="r"><span>{{clothes.size[1]}}</span></label>
+      <label *ngFor="let cloth of clothes.size"><input type="radio" name="r" checked><span>{{cloth.title}}</span></label>
     </div>
     <div class="botton-buy">
       <label>

@@ -26,7 +26,7 @@ font-family: 'FuturaPT',Arial,sans-serif;
   font-size: 14px;
 }
 @media screen and (max-width: 800px) {
-  *,body, input[type="text"],button{font-size:15px}
+  *,body, button{font-size:15px}
 }
 footer a{
   text-decoration: none;

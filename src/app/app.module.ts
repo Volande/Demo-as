@@ -6,6 +6,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {Injectable, NgModule} from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
+
+
 import { MessagesComponent } from './messages/messages.component';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import { CarouselMainComponent } from './carousel-main/carousel-main.component';
@@ -26,9 +28,15 @@ import {ClothesService} from "./clothes.service";
 import { RegisterComponent } from './register/register.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardUserComponent } from './board-user/board-user.component';
+
 // @ts-ignore
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ImageSliderModule} from "./image-slider/image-slider.module";
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddProductComponent } from './add-product/add-product.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -63,17 +71,25 @@ export class XhrInterceptor implements HttpInterceptor {
     RegisterComponent,
     BoardAdminComponent,
     BoardModeratorComponent,
-    BoardUserComponent
+    AddProductComponent,
+
 
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatIconModule,
-    MatInputModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatIconModule,
+        MatInputModule,
+        NgbModule,
+        NgbPaginationModule,
+        NgbAlertModule,
+        ImageSliderModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+
+    ],
   providers: [ClothesService, {multi: true, provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor},authInterceptorProviders],
   bootstrap: [AppComponent]
 })

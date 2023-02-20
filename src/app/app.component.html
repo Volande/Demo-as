@@ -1,10 +1,11 @@
-<body xmlns="http://www.w3.org/1999/html">
+<body xmlns="http://www.w3.org/1999/html" xmlns:https="http://www.w3.org/1999/xhtml">
 <header class="container">
   <div class="menuh">
     <div class="menu1">
       <a routerLink="/clothes" class="menu__item">Магазин</a>
       <app-collection-menu></app-collection-menu>
 
+      <a routerLink="/about" class="menu__item">Про нас</a>
     </div>
     <div class="menu2">
       <div class="box1"><a routerLink="/main-page">
@@ -12,29 +13,27 @@
     </div>
     <div class="menu3">
 
-    <div><nav>
-      <ul class="navbar-nav mr-auto" routerLinkActive="active">
+    <div>
 
-        <li class="nav-item" *ngIf="showAdminBoard">
-          <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-        </li>
-        <li class="nav-item" *ngIf="showModeratorBoard">
-          <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
-        </li>
-        <li class="nav-item">
-          <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-        </li>
+        <ul class="submenu-desktop">
+          <li class="nav-item" *ngIf="showAdminBoard">
+            <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+          </li>
+          <li class="nav-item" *ngIf="showModeratorBoard">
+            <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+          </li>
+          <li class="nav-item">
+            <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+          </li>
+          <li>
+            <label  class="nav-link" (click)="logout()" *ngIf="isLoggedIn" >LogOut</label>
+          </li>
+        </ul>
 
-        <label href class="nav-link" (click)="logout()" *ngIf="isLoggedIn" >LogOut</label>
-      </ul>
 
-      <app-register *ngIf="!isLoggedIn" >></app-register>
-      <app-login *ngIf="!isLoggedIn"></app-login>
-
-    </nav>
     </div>
-
-
+      <app-register *ngIf="!isLoggedIn" ></app-register>
+      <app-login *ngIf="!isLoggedIn"></app-login>
 
 
 
@@ -44,9 +43,9 @@
 
     </div>
   </div>
+
   <div class="mobile-header">
-    <div style="width: 26px;
-    height: 20px;z-index: 9999;">
+<div>
       <input id="menu__toggle" type="checkbox"/>
       <label class="menu__btn" for="menu__toggle">
         <span></span>
@@ -59,13 +58,45 @@
             <app-collection-menu ></app-collection-menu>
           </li>
 
+          <li><a routerLink="/about" class="menu__item">Про нас</a></li>
         </div>
+
+
         <div class="menu3">
+
           <li>
             <app-clothes-search class="menu__item"></app-clothes-search>
           </li>
           <li>
             <app-convertor class="menu__item"></app-convertor>
+          </li>
+
+          <li>
+            <div class="auth-mobile">
+              <div><button class="down"><img src="https://shklar-images.s3.eu-central-1.amazonaws.com/auth-icon.png"></button>
+                <div class="menusub-mobile"></div>
+                <ul class="submenu-mobile" routerLinkActive="active">
+                  <li class="nav-item" *ngIf="showAdminBoard">
+                    <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+                  </li>
+                  <li class="nav-item" *ngIf="showModeratorBoard">
+                    <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+                  </li>
+                  <li>
+                    <label  class="nav-link" (click)="logout()" *ngIf="isLoggedIn" >LogOut</label>
+                  </li>
+                  <li>
+                    <label  class="nav-link" routerLink="/register" *ngIf="!isLoggedIn" >Sign Up</label>
+                  </li>
+                  <li>
+                    <label class="btn-log" routerLink="/login"  *ngIf="!isLoggedIn" >Login</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
         </div>
         <br class="br">
@@ -80,11 +111,14 @@
           </li>
         </div>
       </ul>
-    </div>
+</div>
     <div class="head"><a routerLink="/main-page"><img src="./assets/logo.svg" width="210" height="30"
                                                       alt="image description" class="logo2"></a>
     </div>
+
+
     <div>
+
       <app-basket-mobile></app-basket-mobile>
     </div>
   </div>
@@ -92,8 +126,16 @@
 <div class="contat">
 
   <router-outlet></router-outlet>
-
+  <div *ngIf="showAdminBoard">
+    <button class="fabAddCarStyle" aria-label="add car button" (click)="this.addCarBtn()" color="primary"
+            id="Add car button">
+      <img  width="36" style=" margin-left: 5px">
+      <div style="margin-right: 5px">Add car</div>
+    </button>
+  </div>
   <app-messages></app-messages>
 </div>
+
+
 </body>
 

@@ -40,13 +40,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe(
       userInfo => {
-
         this.tokenStorage.saveUser(userInfo);
-
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.role = this.tokenStorage.getUser()?.role;
         this.reloadPage();
+        this.replacePage();
       },
       err => {
         this.errorMessage = err.error.message;
@@ -59,8 +58,7 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
-  logout(): void {
-    this.tokenStorage.signOut();
-    window.location.reload();
+  replacePage(): void{
+    window.location.replace("/shop/main-page");
   }
 }

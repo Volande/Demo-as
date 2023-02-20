@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ClothesService} from "./clothes.service";
 import {TokenStorageService} from "./_services/token-storage.service";
+import {MatDialog} from "@angular/material/dialog";
+import {Overlay} from "@angular/cdk/overlay";
+import {AddProductComponent} from "./add-product/add-product.component";
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,9 @@ export class AppComponent {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService,
+              public dialog: MatDialog,
+              public overlay: Overlay,) { }
 
   ngOnInit(): void {
     const user = this.tokenStorageService.getUser();
@@ -32,6 +35,7 @@ export class AppComponent {
       this.showModeratorBoard = this.role.includes('ROLE_MODERATOR');
 
       this.username = user.username;
+      this.addCarBtn();
     }
   }
 
@@ -39,4 +43,17 @@ export class AppComponent {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
-}
+
+  addCarBtn(): void {
+    this.addCar();
+
+  }
+
+  addCar(): void {
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      data: {car: null},
+      scrollStrategy: this.overlay.scrollStrategies.noop(),
+    });
+
+
+}}

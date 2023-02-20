@@ -4,6 +4,10 @@ import {ActivatedRoute} from "@angular/router";
 import {ClothesService} from "../clothes.service";
 import {Location} from "@angular/common";
 import {UserService} from "../_services/user.service";
+import {Image} from "../image";
+
+
+
 
 @Component({
   selector: 'app-clothes-page',
@@ -12,17 +16,28 @@ import {UserService} from "../_services/user.service";
 })
 export class ClothesPageComponent implements OnInit {
   clothes: Clothes | undefined;
+  image: Image [] = [];
 
-  constructor(
+
+
+
+  constructor (
+
     private route: ActivatedRoute,
 
     private location: Location,
-    private userService:UserService
+    private userService:UserService,
+
   ) {
+
   }
+
+
+
 
   ngOnInit(): void {
     this.getHero();
+
   }
 
   getHero(): void {
@@ -30,6 +45,10 @@ export class ClothesPageComponent implements OnInit {
     this.userService.getHero(id)
       .subscribe(clothes => this.clothes = clothes);
   }
+
+
+
+
 
   goBack(): void {
     this.location.back()
