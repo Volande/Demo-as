@@ -427,5 +427,23 @@ ul li::marker{
   background: #aaaaaa;
 }
 
-/*блок який відповідає за authentication на пк*/
+
+.fabAddClothesStyle {
+  position: fixed;
+  border: none;
+  width: auto;
+  height: 50px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #007aff;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
 

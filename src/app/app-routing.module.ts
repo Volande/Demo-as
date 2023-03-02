@@ -14,12 +14,11 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import {RegisterComponent} from "./register/register.component";
 import {ImageSliderComponent} from "./image-slider/image-slider.component";
-import {AddProductComponent} from "./add-product/add-product.component";
+
 
 
 const routers: Routes = [
   {path: 'main-page', component: MainPageComponent},
-  {path:'add-product', component:AddProductComponent},
   {path:'', redirectTo: '/main-page', pathMatch: 'full'},
   {path: 'detail/:id' , component: ClothesPageComponent},
   {path: 'clothes' , component: ClothesComponent},
@@ -34,7 +33,7 @@ const routers: Routes = [
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   {path:'image-slider', component:ImageSliderComponent},
-  {path:'add-product', component:AddProductComponent}
+
 
 ]
 

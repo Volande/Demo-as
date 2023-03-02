@@ -1,39 +1,39 @@
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable, of, throwError} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
-import { Clothes } from './clothes';
-import { MessageService } from './message.service';
+import {Clothes} from './clothes';
+import {MessageService} from './message.service';
+import {Size} from "./size";
 
 
 interface GetResponse {
   _embedded: {
     clothes: Clothes[];
-    _links: {self: {href: string}};
+    _links: { self: { href: string } };
   };
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class ClothesService {
 
   private heroesUrl = 'http://localhost:8082'  //URL to web api
 
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
   authenticated = false;
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService) {
+  }
 
 
-
-  getHeroes (): Observable<Clothes[]> {
+  getHeroes(): Observable<Clothes[]> {
     return this.http.get<GetResponse>(`${this.heroesUrl}/products/findAll`)
       .pipe(
         map(response => response._embedded.clothes),
@@ -43,7 +43,41 @@ export class ClothesService {
   }
 
 
+  putClothe(
+    title: string ,
+    content: string,
+    compound: string,
+    price: number,
+    availability: boolean,
 
+    sizes: Size[]) {
+
+    // @ts-ignore
+    let clothes = {
+      title: title,
+      content: content,
+      compound: compound,
+      price: price,
+      availability: availability,
+      size: sizes
+
+    } as Clothes
+
+    const formData = new FormData;
+    formData.append('clothes',new Blob([JSON.stringify(clothes)],{
+      type: 'application/json'
+    }))
+
+
+    return this.http.post(this.heroesUrl + "/products/save",
+      formData).pipe(
+      tap(_ => this.log(`isTokenValid error`)),
+      catchError((err) => {
+        return throwError(err);
+      })
+    )
+
+      }
 
 
   getHero(id: number): Observable<Clothes> {

@@ -5,8 +5,9 @@ export interface Clothes {
   id: number;
   title: string;
   image: Image[];
-  size: Size[];
-  price: string;
+  size:Size[];
+  price: number;
   content: string;
   compound:string;
+  availability: boolean;
 }

@@ -1,38 +1,47 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-h2,h3{
+
+h2, h3 {
   color: #444;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
 }
-body{
+
+body {
   margin: 0 2%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
 }
-body, input[type="text"],button{
+
+body, input[type="text"], button {
   color: #000000;
   font-weight: 300;
-font-family: 'FuturaPT',Arial,sans-serif;
+  font-family: 'FuturaPT', Arial, sans-serif;
   font-size: 14px;
 }
 
 /*everywhere else*/
-*{
+* {
   color: #000000;
   font-weight: 300;
-  font-family: 'FuturaPT',Arial,sans-serif;
+  font-family: 'FuturaPT', Arial, sans-serif;
   font-size: 14px;
 }
+
 @media screen and (max-width: 800px) {
-  *,body, button{font-size:15px}
+  *, body, button {
+    font-size: 15px
+  }
 }
-footer a{
+
+footer a {
   text-decoration: none;
 }
+
 * {
-  margin: 0;/*это свойство можно удалить, если вы используете reset, normalize или нечто подобное*/
+  margin: 0; /*это свойство можно удалить, если вы используете reset, normalize или нечто подобное*/
 }
 
 html,
@@ -48,13 +57,10 @@ body {
 .content {
   flex: 1 0 auto;
 
-  padding: 1rem;/*это свойство можно удалить, добавлено для наглядности*/
-  background: #e6f2ff;/*это свойство можно удалить, добавлено для наглядности*/
+  padding: 1rem; /*это свойство можно удалить, добавлено для наглядности*/
+  background: #e6f2ff; /*это свойство можно удалить, добавлено для наглядности*/
 }
 
 footer {
   flex: 0 0 auto;
-
-
-
 }

@@ -1,4 +1,4 @@
-<body xmlns="http://www.w3.org/1999/html" xmlns:https="http://www.w3.org/1999/xhtml">
+<body xmlns="http://www.w3.org/1999/html">
 <header class="container">
   <div class="menuh">
     <div class="menu1">
@@ -13,7 +13,7 @@
     </div>
     <div class="menu3">
 
-    <div>
+      <div>
 
         <ul class="submenu-desktop">
           <li class="nav-item" *ngIf="showAdminBoard">
@@ -26,15 +26,14 @@
             <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
           </li>
           <li>
-            <label  class="nav-link" (click)="logout()" *ngIf="isLoggedIn" >LogOut</label>
+            <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
           </li>
         </ul>
 
 
-    </div>
-      <app-register *ngIf="!isLoggedIn" ></app-register>
+      </div>
+      <app-register *ngIf="!isLoggedIn"></app-register>
       <app-login *ngIf="!isLoggedIn"></app-login>
-
 
 
       <app-convertor></app-convertor>
@@ -45,7 +44,7 @@
   </div>
 
   <div class="mobile-header">
-<div>
+    <div>
       <input id="menu__toggle" type="checkbox"/>
       <label class="menu__btn" for="menu__toggle">
         <span></span>
@@ -55,7 +54,7 @@
         <div class="menu1">
           <li><a routerLink="/clothes" class="menu__item">Магазин</a></li>
           <li>
-            <app-collection-menu ></app-collection-menu>
+            <app-collection-menu></app-collection-menu>
           </li>
 
           <li><a routerLink="/about" class="menu__item">Про нас</a></li>
@@ -73,7 +72,9 @@
 
           <li>
             <div class="auth-mobile">
-              <div><button class="down"><img src="https://shklar-images.s3.eu-central-1.amazonaws.com/auth-icon.png"></button>
+              <div>
+                <button class="down"><img src="https://shklar-images.s3.eu-central-1.amazonaws.com/auth-icon.png">
+                </button>
                 <div class="menusub-mobile"></div>
                 <ul class="submenu-mobile" routerLinkActive="active">
                   <li class="nav-item" *ngIf="showAdminBoard">
@@ -86,13 +87,13 @@
                     <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
                   </li>
                   <li>
-                    <label  class="nav-link" (click)="logout()" *ngIf="isLoggedIn" >LogOut</label>
+                    <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
                   </li>
                   <li>
-                    <label  class="nav-link" routerLink="/register" *ngIf="!isLoggedIn" >Sign Up</label>
+                    <label class="nav-link" routerLink="/register" *ngIf="!isLoggedIn">Sign Up</label>
                   </li>
                   <li>
-                    <label class="btn-log" routerLink="/login"  *ngIf="!isLoggedIn" >Login</label>
+                    <label class="btn-log" routerLink="/login" *ngIf="!isLoggedIn">Login</label>
                   </li>
                 </ul>
               </div>
@@ -111,7 +112,7 @@
           </li>
         </div>
       </ul>
-</div>
+    </div>
     <div class="head"><a routerLink="/main-page"><img src="./assets/logo.svg" width="210" height="30"
                                                       alt="image description" class="logo2"></a>
     </div>
@@ -126,14 +127,11 @@
 <div class="contat">
 
   <router-outlet></router-outlet>
-  <div *ngIf="showAdminBoard">
-    <button class="fabAddCarStyle" aria-label="add car button" (click)="this.addCarBtn()" color="primary"
-            id="Add car button">
-      <img  width="36" style=" margin-left: 5px">
-      <div style="margin-right: 5px">Add car</div>
-    </button>
-  </div>
+  <button mat-button class="fabAddClothesStyle" (click)="openDialog()" *ngIf="showAdminBoard">Add clothes</button>
+
   <app-messages></app-messages>
+
+
 </div>
 
 
