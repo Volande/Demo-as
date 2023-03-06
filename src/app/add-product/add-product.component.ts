@@ -85,7 +85,7 @@ export class AddProductComponent implements OnInit {
         this.reactiveForm.value.compound,
         this.reactiveForm.value.price,
         this.reactiveForm.value.availability,
-        this.reactiveForm.value.sizes
+        this.reactiveForm.value.sizes.split(',')
       ).subscribe(() => {
         this.dialog.closeAll()
       });

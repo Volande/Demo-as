@@ -1,11 +1,11 @@
 import {Image} from "./image";
 import {Size} from "./size";
 
-export interface Clothes {
+export interface Clothes_dto {
   id: number;
   title: string;
   image: Image[];
-  size: Size[];
+  size: Array<string>;
   price: number;
   content: string;
   compound:string;

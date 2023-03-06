@@ -7,6 +7,7 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {Clothes} from './clothes';
 import {MessageService} from './message.service';
 import {Size} from "./size";
+import {Clothes_dto} from "./clothes_dto";
 
 
 interface GetResponse {
@@ -49,8 +50,10 @@ export class ClothesService {
     compound: string,
     price: number,
     availability: boolean,
+    sizes  : Array<string>
+  ) {
 
-    sizes: Size[]) {
+
 
     // @ts-ignore
     let clothes = {
@@ -61,7 +64,7 @@ export class ClothesService {
       availability: availability,
       size: sizes
 
-    } as Clothes
+    } as Clothes_dto
 
     const formData = new FormData;
     formData.append('clothes',new Blob([JSON.stringify(clothes)],{
