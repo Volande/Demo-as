@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UserInformation} from "../user-information";
+import {UserInformation} from "../entity/user-information";
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';

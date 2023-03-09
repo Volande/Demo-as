@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-import {Clothes} from '../clothes';
+import {Clothes} from '../entity/clothes';
 import {ClothesService} from '../clothes.service';
 
 @Component({

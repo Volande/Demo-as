@@ -4,10 +4,10 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
-import {Clothes} from './clothes';
+import {Clothes} from './entity/clothes';
 import {MessageService} from './message.service';
-import {Size} from "./size";
-import {Clothes_dto} from "./clothes_dto";
+import {Size} from "./entity/size";
+import {Clothes_dto} from "./entity/clothes_dto";
 
 
 interface GetResponse {
@@ -48,6 +48,8 @@ export class ClothesService {
     title: string ,
     content: string,
     compound: string,
+    categories:  Array<string>,
+    newCategory:Array<string>,
     price: number,
     availability: boolean,
     sizes  : Array<string>
@@ -60,6 +62,7 @@ export class ClothesService {
       title: title,
       content: content,
       compound: compound,
+      categories: categories || newCategory,
       price: price,
       availability: availability,
       size: sizes

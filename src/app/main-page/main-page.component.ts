@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Clothes} from "../clothes";
+import {Clothes} from "../entity/clothes";
 import {ClothesService} from "../clothes.service";
 import {UserService} from "../_services/user.service";
 

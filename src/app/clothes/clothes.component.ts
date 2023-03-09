@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Clothes} from "../clothes";
+import {Clothes} from "../entity/clothes";
 import {ClothesService} from "../clothes.service";
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { FormsModule } from '@angular/forms';

@@ -2,7 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ClothesService} from "../clothes.service";
-import {Clothes} from "../clothes";
+import {Clothes} from "../entity/clothes";
+import {UserService} from "../_services/user.service";
+import {Categories} from "../entity/categories";
 
 @Component({
   selector: 'app-add-product',
@@ -20,26 +22,41 @@ export class AddProductComponent implements OnInit {
 
   availability : string[] =["true","false"]
 
+  categories: Categories[] = [];
+
+  ngOnInit(): void {
+    this.getCategories();
+  }
+
+  getCategories(): void {
+    this.userService.getCategories()
+      .subscribe(categories =>this.categories = categories) ;
+  }
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes | null },
+
     private formBuilder: FormBuilder,
     public clothesService: ClothesService,
     public dialog: MatDialog,
+    private userService:UserService,
   ) {
+
+
+
 
     this.reactiveForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
       content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
       compound: ['',[Validators.required, Validators.maxLength(this.compoundMaxLength)]],
+      categories: ['',[]],
+      newCategory: [''],
       availability: ['',[]],
       price: [''],
       sizes: ['']
     })
   }
 
-  ngOnInit(): void {
-    this.initForm();
-  }
+
 
 
   initForm(): void {
@@ -83,6 +100,8 @@ export class AddProductComponent implements OnInit {
         this.reactiveForm.value.title,
         this.reactiveForm.value.content,
         this.reactiveForm.value.compound,
+        this.reactiveForm.value.categories.title.split(','),
+        this.reactiveForm.value.newCategory.split(','),
         this.reactiveForm.value.price,
         this.reactiveForm.value.availability,
         this.reactiveForm.value.sizes.split(',')

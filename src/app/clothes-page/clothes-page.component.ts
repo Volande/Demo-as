@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Clothes} from "../clothes";
+import {Clothes} from "../entity/clothes";
 import {ActivatedRoute} from "@angular/router";
 import {ClothesService} from "../clothes.service";
 import {Location} from "@angular/common";
 import {UserService} from "../_services/user.service";
-import {Image} from "../image";
+import {Image} from "../entity/image";
 
 
 

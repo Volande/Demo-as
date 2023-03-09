@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Image} from "../image";
+import {Image} from "../entity/image";
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
 import {UserService} from "../_services/user.service";

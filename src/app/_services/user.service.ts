@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Clothes} from "../clothes";
+import {Clothes} from "../entity/clothes";
 import {catchError, tap} from "rxjs/operators";
+import {Categories} from "../entity/categories";
 
 
 const API_URL = 'http://localhost:8082/';
@@ -16,6 +17,11 @@ export class UserService {
   getPublicContent(): Observable<Clothes[]> {
     return this.http.get<Clothes[]>(API_URL + 'products/');
   }
+
+  getCategories():Observable<Categories[]> {
+    return this.http.get<Categories[]>(API_URL + 'products/categories');
+  }
+
 
 
   getHero(id: number): Observable<Clothes> {
