@@ -45,16 +45,17 @@ export class ClothesService {
 
 
   putClothe(
-    title: string ,
+    title: string,
     content: string,
     compound: string,
-    categories:  Array<string>,
-    newCategory:Array<string>,
     price: number,
     availability: boolean,
-    sizes  : Array<string>
+    sizes: Array<string>,
+    categories: Array<string>,
+    newCategory: Array<string>,
+    collection: string,
+    newCollection: string,
   ) {
-
 
 
     // @ts-ignore
@@ -62,15 +63,16 @@ export class ClothesService {
       title: title,
       content: content,
       compound: compound,
-      categories: categories || newCategory,
       price: price,
       availability: availability,
-      size: sizes
+      size: sizes,
+      categories: categories || newCategory,
+      collection: collection || newCollection,
 
     } as Clothes_dto
 
     const formData = new FormData;
-    formData.append('clothes',new Blob([JSON.stringify(clothes)],{
+    formData.append('clothes', new Blob([JSON.stringify(clothes)], {
       type: 'application/json'
     }))
 
@@ -83,7 +85,7 @@ export class ClothesService {
       })
     )
 
-      }
+  }
 
 
   getHero(id: number): Observable<Clothes> {

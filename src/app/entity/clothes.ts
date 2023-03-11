@@ -10,4 +10,6 @@ export interface Clothes {
   content: string;
   compound:string;
   availability: boolean;
+  collection:string;
+  categories:string
 }

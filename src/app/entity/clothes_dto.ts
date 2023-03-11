@@ -6,6 +6,7 @@ export interface Clothes_dto {
   title: string;
   image: Image[];
   size: Array<string>;
+  collection:string;
   categories: Array<string>;
   price: number;
   content: string;

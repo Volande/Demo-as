@@ -5,6 +5,7 @@ import {ClothesService} from "../clothes.service";
 import {Clothes} from "../entity/clothes";
 import {UserService} from "../_services/user.service";
 import {Categories} from "../entity/categories";
+import {Collection} from "../entity/collection";
 
 @Component({
   selector: 'app-add-product',
@@ -18,45 +19,51 @@ export class AddProductComponent implements OnInit {
 
   titleMaxLength = 30;
   contentMaxLength = 400;
-  compoundMaxLength= 300;
+  compoundMaxLength = 300;
 
-  availability : string[] =["true","false"]
+  availability: string[] = ["true", "false"]
 
   categories: Categories[] = [];
 
+  collection: Collection[] = [];
+
   ngOnInit(): void {
     this.getCategories();
+    this.getCollection();
+
+  }
+
+  getCollection(): void {
+    this.userService.getCollection()
+      .subscribe(collection => this.collection = collection);
   }
 
   getCategories(): void {
     this.userService.getCategories()
-      .subscribe(categories =>this.categories = categories) ;
+      .subscribe(categories => this.categories = categories);
   }
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes | null },
-
     private formBuilder: FormBuilder,
     public clothesService: ClothesService,
     public dialog: MatDialog,
-    private userService:UserService,
+    private userService: UserService,
   ) {
-
-
-
 
     this.reactiveForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
       content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
-      compound: ['',[Validators.required, Validators.maxLength(this.compoundMaxLength)]],
+      compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
+      availability: ['', []],
+      price: [''],
+      sizes: [''],
+      collection: [[]],
       categories: ['',[]],
       newCategory: [''],
-      availability: ['',[]],
-      price: [''],
-      sizes: ['']
+      newCollection: [''],
     })
   }
-
-
 
 
   initForm(): void {
@@ -67,7 +74,9 @@ export class AddProductComponent implements OnInit {
         compound: this.data.clothes.compound,
         price: this.data.clothes.price,
         availability: this.data.clothes.availability,
-        sizes: this.data.clothes.size
+        sizes: this.data.clothes.size,
+        collection: this.data.clothes.collection,
+
       });
     }
   }
@@ -95,19 +104,20 @@ export class AddProductComponent implements OnInit {
     }
 
 
-
-      this.clothesService.putClothe(
-        this.reactiveForm.value.title,
-        this.reactiveForm.value.content,
-        this.reactiveForm.value.compound,
-        this.reactiveForm.value.categories.title.split(','),
-        this.reactiveForm.value.newCategory.split(','),
-        this.reactiveForm.value.price,
-        this.reactiveForm.value.availability,
-        this.reactiveForm.value.sizes.split(',')
-      ).subscribe(() => {
-        this.dialog.closeAll()
-      });
+    this.clothesService.putClothe(
+      this.reactiveForm.value.title,
+      this.reactiveForm.value.content,
+      this.reactiveForm.value.compound,
+      this.reactiveForm.value.price,
+      this.reactiveForm.value.availability,
+      this.reactiveForm.value.sizes.split(','),
+      (this.reactiveForm.value.categories.title || '').split(','),
+      this.reactiveForm.value.newCategory.split(','),
+      this.reactiveForm.value.collection.title,
+      this.reactiveForm.value.newCollection,
+    ).subscribe(() => {
+      this.dialog.closeAll()
+    });
 
   }
 }
