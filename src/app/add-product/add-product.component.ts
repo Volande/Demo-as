@@ -104,7 +104,7 @@ export class AddProductComponent implements OnInit {
     }
 
 
-    this.clothesService.putClothe(
+    this.clothesService.saveClothe(
       this.reactiveForm.value.title,
       this.reactiveForm.value.content,
       this.reactiveForm.value.compound,

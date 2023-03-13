@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
@@ -8,6 +8,7 @@ import {Clothes} from './entity/clothes';
 import {MessageService} from './message.service';
 import {Size} from "./entity/size";
 import {Clothes_dto} from "./entity/clothes_dto";
+import {Categories} from "./entity/categories";
 
 
 interface GetResponse {
@@ -44,7 +45,7 @@ export class ClothesService {
   }
 
 
-  putClothe(
+  saveClothe(
     title: string,
     content: string,
     compound: string,
@@ -56,8 +57,6 @@ export class ClothesService {
     collection: string,
     newCollection: string,
   ) {
-
-
     // @ts-ignore
     let clothes = {
       title: title,
@@ -85,6 +84,24 @@ export class ClothesService {
       })
     )
 
+  }
+
+  saveNewSize(sizes: string) : Observable<any> {
+    let params = new HttpParams();
+    params = params.set('title', sizes);
+    return this.http.post(this.heroesUrl + '/products/sizes', params);
+  }
+
+  saveNewCategory(category: string) : Observable<any> {
+    let params = new HttpParams();
+    params = params.set('title', category);
+    return this.http.post(this.heroesUrl + '/products/newCategory', params);
+  }
+
+  saveNewCollection(collection: string) : Observable<any> {
+    let params = new HttpParams();
+    params = params.set('title', collection);
+    return this.http.post(this.heroesUrl + '/products/newCollection', params);
   }
 
 

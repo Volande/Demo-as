@@ -5,6 +5,7 @@ import {Clothes} from "../entity/clothes";
 import {catchError, tap} from "rxjs/operators";
 import {Categories} from "../entity/categories";
 import {Collection} from "../entity/collection";
+import {Size} from "../entity/size";
 
 
 const API_URL = 'http://localhost:8082/';
@@ -24,6 +25,10 @@ export class UserService {
   }
   getCollection():Observable<Collection[]> {
     return this.http.get<Collection[]>(API_URL + 'products/collection');
+  }
+
+  getSizes():Observable<Size[]> {
+    return this.http.get<Size[]>(API_URL + 'products/sizes');
   }
 
 

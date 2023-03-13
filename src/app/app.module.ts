@@ -23,7 +23,7 @@ import {LoginComponent} from './login/login.component';
 import {ClothesService} from "./clothes.service";
 import {RegisterComponent} from './register/register.component';
 import {BoardAdminComponent} from './board-admin/board-admin.component';
-import {BoardModeratorComponent} from './board-moderator/board-moderator.component';
+
 
 
 import {authInterceptorProviders} from './_helpers/auth.interceptor';
@@ -38,6 +38,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { AddProductComponent } from './add-product/add-product.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -70,32 +72,33 @@ export class XhrInterceptor implements HttpInterceptor {
     LoginComponent,
     RegisterComponent,
     BoardAdminComponent,
-    BoardModeratorComponent,
     AddProductComponent,
 
 
 
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatIconModule,
-        NgbModule,
-        NgbPaginationModule,
-        NgbAlertModule,
-        ImageSliderModule,
-        MatDialogModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatIconModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
+    ImageSliderModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatTableModule,
 
 
-    ],
+  ],
   providers: [ClothesService, {
     multi: true,
     provide: HTTP_INTERCEPTORS,

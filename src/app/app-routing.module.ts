@@ -10,7 +10,6 @@ import {RelevantsComponent} from "./relevants/relevants.component";
 import {CollectionMenuComponent} from "./collection-menu/collection-menu.component";
 import {ConvertorComponent} from "./convertor/convertor.component";
 import {LoginComponent} from "./login/login.component";
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import {RegisterComponent} from "./register/register.component";
 import {ImageSliderComponent} from "./image-slider/image-slider.component";
@@ -30,7 +29,6 @@ const routers: Routes = [
   {path:'convertor' , component:ConvertorComponent},
   {path:'login' , component:LoginComponent},
   { path: 'register', component: RegisterComponent },
-  { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   {path:'image-slider', component:ImageSliderComponent},
 

@@ -1,5 +1,111 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
-</div>
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" style="margin-top: 3%">
+  <mat-tab label="Розміри">
+    <mat-table [dataSource]="sizes" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumnsNew"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumnsNew;"></mat-row>
+    </mat-table>
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="reactiveFormSize">
+
+        <H2>Додати розмір</H2>
+
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="sizes mat form field">
+          <mat-label>Назва</mat-label>
+          <input matInput type="text" id="sizes input" formControlName="sizes" >
+
+        </mat-form-field>
+
+        <mat-dialog-actions>
+          <button mat-button class="mat-raised-button mat-primary" (click)="onSubmitSizes()" id="Submit buttonSizes">Зберегти</button>
+        </mat-dialog-actions>
+
+      </form>
+    </mat-dialog-content>
+
+
+  </mat-tab>
+  <mat-tab label="Категорії">
+    <mat-table [dataSource]="categories" class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumnsNew"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumnsNew;"></mat-row>
+    </mat-table>
+
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="reactiveFormCategory">
+
+        <H2>Додати категорію</H2>
+
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="category mat form field">
+          <mat-label>Назва</mat-label>
+          <input matInput type="text" id="category input" formControlName="category" >
+
+        </mat-form-field>
+
+        <mat-dialog-actions>
+          <button mat-button class="mat-raised-button mat-primary" (click)="onSubmitCategory()" id="Submit buttonCategory">Зберегти</button>
+        </mat-dialog-actions>
+
+      </form>
+    </mat-dialog-content>
+  </mat-tab>
+  <mat-tab label="Коллекції">
+    <mat-table [dataSource]="collection" class="mat-elevation-z8">
+
+
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No.</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumnsNew"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumnsNew;"></mat-row>
+    </mat-table>
+
+    <mat-dialog-content class="mat-typography">
+      <form [formGroup]="reactiveFormCollection">
+
+        <H2>Додати категорію</H2>
+
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="collection mat form field">
+          <mat-label>Назва</mat-label>
+          <input matInput type="text" id="collection input" formControlName="collection" >
+
+        </mat-form-field>
+
+        <mat-dialog-actions>
+          <button mat-button class="mat-raised-button mat-primary" (click)="onSubmitCollection()" id="Submit buttonCollection">Зберегти</button>
+        </mat-dialog-actions>
+
+      </form>
+    </mat-dialog-content>
+  </mat-tab>
+</mat-tab-group>
