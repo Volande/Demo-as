@@ -1,12 +1,40 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {ClothesService} from "../clothes.service";
 import {Clothes} from "../entity/clothes";
 import {UserService} from "../_services/user.service";
 import {Categories} from "../entity/categories";
 import {Collection} from "../entity/collection";
+import {FileValidator} from "ngx-material-file-input";
 
+export function requiredExtension(expectedExtensions: string[]): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (control.value) {
+      let fileName = control.value.files[0].name;
+      let forbidden = true;
+
+      console.log(expectedExtensions[0]);
+
+      for (let extension of expectedExtensions) {
+        if (fileName.endsWith(extension)) {
+          forbidden = false;
+        }
+      }
+
+      return forbidden ? {wrongExtension: {value: control.value}} : null;
+    }
+    return null;
+  }
+}
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -20,12 +48,17 @@ export class AddProductComponent implements OnInit {
   titleMaxLength = 30;
   contentMaxLength = 400;
   compoundMaxLength = 300;
+  readonly maxSize = 1_048_576;
 
   availability: string[] = ["true", "false"]
 
   categories: Categories[] = [];
 
   collection: Collection[] = [];
+
+  image: File;
+
+  test: any;
 
   ngOnInit(): void {
     this.getCategories();
@@ -62,6 +95,7 @@ export class AddProductComponent implements OnInit {
       categories: ['',[]],
       newCategory: [''],
       newCollection: [''],
+      image: new FormControl('', [Validators.required, FileValidator.maxContentSize(this.maxSize), requiredExtension(['png', 'jpg', 'jpeg'])]),
     })
   }
 
@@ -115,6 +149,7 @@ export class AddProductComponent implements OnInit {
       this.reactiveForm.value.newCategory.split(','),
       this.reactiveForm.value.collection.title,
       this.reactiveForm.value.newCollection,
+      this.reactiveForm.value.image
     ).subscribe(() => {
       this.dialog.closeAll()
     });

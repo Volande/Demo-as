@@ -56,6 +56,7 @@ export class ClothesService {
     newCategory: Array<string>,
     collection: string,
     newCollection: string,
+    image: File
   ) {
     // @ts-ignore
     let clothes = {
@@ -71,6 +72,7 @@ export class ClothesService {
     } as Clothes_dto
 
     const formData = new FormData;
+    formData.append('image',image)
     formData.append('clothes', new Blob([JSON.stringify(clothes)], {
       type: 'application/json'
     }))
