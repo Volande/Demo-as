@@ -40,7 +40,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatTableModule} from "@angular/material/table";
-
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 
 @Injectable()
@@ -96,6 +96,7 @@ export class XhrInterceptor implements HttpInterceptor {
     MatSelectModule,
     MatTabsModule,
     MatTableModule,
+    MaterialFileInputModule
 
 
   ],

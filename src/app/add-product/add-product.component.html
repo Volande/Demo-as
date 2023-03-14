@@ -45,35 +45,43 @@
     </mat-form-field>
 
 
+    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
+      <mat-label>Категорія</mat-label>
 
-      <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-        <mat-label>Категорія</mat-label>
+      <mat-select id="categories" formControlName="categories">
+        <mat-option id="No categories selected">None</mat-option>
+        <mat-option *ngFor="let choice of categories" [value]="choice"
+                    id="categories mat option">{{choice.title}}</mat-option>
 
-        <mat-select id="categories" formControlName="categories">
-          <mat-option id="No categories selected">None</mat-option>
-          <mat-option *ngFor="let choice of categories" [value]="choice"
-                      id="categories mat option">{{choice.title}}</mat-option>
-
-        </mat-select>
+      </mat-select>
 
 
-      </mat-form-field>
+    </mat-form-field>
 
     <br>
 
 
-      <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-        <mat-label>Коллекція</mat-label>
+    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
+      <mat-label>Коллекція</mat-label>
 
-        <mat-select id="collection" formControlName="collection">
-          <mat-option id="No collection selected">None</mat-option>
-          <mat-option *ngFor="let choice of collection" [value]="choice"
-                      id="collection mat option">{{choice.title}}</mat-option>
+      <mat-select id="collection" formControlName="collection">
+        <mat-option id="No collection selected">None</mat-option>
+        <mat-option *ngFor="let choice of collection" [value]="choice"
+                    id="collection mat option">{{choice.title}}</mat-option>
 
-        </mat-select>
+      </mat-select>
 
 
-      </mat-form-field>
+    </mat-form-field>
+
+
+
+    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="image mat form field">
+      <mat-label>Фото</mat-label>
+      <ngx-mat-file-input formControlName="image" ></ngx-mat-file-input>
+
+
+    </mat-form-field>
     <br>
 
     <mat-form-field class="input-long" appearance="fill">
@@ -83,6 +91,7 @@
       <mat-hint align="end">{{this.reactiveForm.value.content.length}}
         / {{this.contentMaxLength}}</mat-hint>
     </mat-form-field>
+
 
     <mat-dialog-actions>
       <button mat-button class="mat-raised-button" (click)="dialog.closeAll()" id="Cancel button">Close</button>
