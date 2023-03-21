@@ -22,12 +22,6 @@
 
     <br>
 
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="compound mat form field">
-      <mat-label>Компоненти</mat-label>
-      <input matInput type="text" id="compound input" formControlName="compound" maxlength="{{this.compoundMaxLength}}">
-      <mat-hint align="end">{{this.reactiveForm.value.compound.length}}
-        / {{this.compoundMaxLength}}</mat-hint>
-    </mat-form-field>
 
     <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="price mat form field">
       <mat-label>Ціна</mat-label>
@@ -36,14 +30,18 @@
     </mat-form-field>
 
 
-    <br>
-
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="sizes mat form field">
+    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
       <mat-label>Розмір</mat-label>
-      <input matInput type="text" id="sizes input" formControlName="sizes">
+      <mat-select id="sizes" formControlName="sizes" multiple>
+
+        <mat-option *ngFor="let choice of sizes" [value]="choice"
+                    id="sizes mat option">{{choice.title}}</mat-option>
+
+      </mat-select>
 
     </mat-form-field>
 
+    <br>
 
     <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
       <mat-label>Категорія</mat-label>
@@ -57,8 +55,6 @@
 
 
     </mat-form-field>
-
-    <br>
 
 
     <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
@@ -75,13 +71,34 @@
     </mat-form-field>
 
 
+    <br>
 
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="image mat form field">
-      <mat-label>Фото</mat-label>
-      <ngx-mat-file-input formControlName="image" ></ngx-mat-file-input>
+    <div>
+      <input class="input-long" type="file" multiple placeholder="Select Files to be upload" formControlName="images"
+             (change)=selectFile($event)>
+    </div>
+    <div *ngIf="url">
+      <div *ngIf="url===''; else urlImage">
+        <br>
+        <img [src]="data.clothes?.image" width="550px">
+
+      </div>
+
+      <ng-template #urlImage>
+        <br><div *ngFor="let choice of url"> <img [src]="choice" width="550px"></div>
+
+      </ng-template>
+    </div>
 
 
+    <mat-form-field class="input-long" appearance="fill" style="margin-right: 50px" id="compound mat form field">
+      <mat-label>Компоненти</mat-label>
+      <textarea matInput id="compound input" formControlName="compound"
+                maxlength="{{this.compoundMaxLength}}"></textarea>
+      <mat-hint align="end">{{this.reactiveForm.value.compound.length}}
+        / {{this.compoundMaxLength}}</mat-hint>
     </mat-form-field>
+
     <br>
 
     <mat-form-field class="input-long" appearance="fill">

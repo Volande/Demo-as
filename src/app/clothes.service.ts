@@ -6,9 +6,9 @@ import {catchError, map, tap} from 'rxjs/operators';
 
 import {Clothes} from './entity/clothes';
 import {MessageService} from './message.service';
-import {Size} from "./entity/size";
 import {Clothes_dto} from "./entity/clothes_dto";
-import {Categories} from "./entity/categories";
+import {Size} from "./entity/size";
+
 
 
 interface GetResponse {
@@ -53,10 +53,8 @@ export class ClothesService {
     availability: boolean,
     sizes: Array<string>,
     categories: Array<string>,
-    newCategory: Array<string>,
     collection: string,
-    newCollection: string,
-    image: File
+    images: File[]
   ) {
     // @ts-ignore
     let clothes = {
@@ -66,13 +64,17 @@ export class ClothesService {
       price: price,
       availability: availability,
       size: sizes,
-      categories: categories || newCategory,
-      collection: collection || newCollection,
+      categories: categories ,
+      collection: collection ,
 
     } as Clothes_dto
 
     const formData = new FormData;
-    formData.append('image',image)
+    if (images.length > 0) {
+      for (const row of images) {
+        formData.append('image', row);
+      }
+    }
     formData.append('clothes', new Blob([JSON.stringify(clothes)], {
       type: 'application/json'
     }))
@@ -91,7 +93,7 @@ export class ClothesService {
   saveNewSize(sizes: string) : Observable<any> {
     let params = new HttpParams();
     params = params.set('title', sizes);
-    return this.http.post(this.heroesUrl + '/products/sizes', params);
+    return this.http.post(this.heroesUrl + '/products/newSize', params);
   }
 
   saveNewCategory(category: string) : Observable<any> {

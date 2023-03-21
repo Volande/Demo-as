@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
+  AbstractControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -15,6 +15,7 @@ import {UserService} from "../_services/user.service";
 import {Categories} from "../entity/categories";
 import {Collection} from "../entity/collection";
 import {FileValidator} from "ngx-material-file-input";
+import {Size} from "../entity/size";
 
 export function requiredExtension(expectedExtensions: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -35,6 +36,7 @@ export function requiredExtension(expectedExtensions: string[]): ValidatorFn {
     return null;
   }
 }
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -56,14 +58,16 @@ export class AddProductComponent implements OnInit {
 
   collection: Collection[] = [];
 
-  image: File;
+  sizes: Size[] = [];
+  images: File[] = [];
 
   test: any;
+
 
   ngOnInit(): void {
     this.getCategories();
     this.getCollection();
-
+    this.getSizes();
   }
 
   getCollection(): void {
@@ -74,6 +78,50 @@ export class AddProductComponent implements OnInit {
   getCategories(): void {
     this.userService.getCategories()
       .subscribe(categories => this.categories = categories);
+  }
+
+  getSizes(): void {
+    this.userService.getSizes()
+      .subscribe(sizes => this.sizes = sizes);
+  }
+
+  url: string | ArrayBuffer = "";
+  selectedFiles: File[];
+  result: any;
+  currentfile: File;
+
+
+  selectFile(event: any) {
+    this.images = event.target.files;
+    this.url = event.target.files;
+    for (let i = 0; i < event.target.files; i++) {
+      this.images.push(event.target.files[i]);
+
+    }
+
+  }
+
+  onChange(event: any) {
+    this.url = "";
+    this.test = event.target.files[0];
+
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event: ProgressEvent) => {
+        let temp = (<FileReader>event.target).result;
+        if (temp == null) {
+          this.url = "";
+        } else {
+          this.url = temp;
+        }
+      }
+
+
+      this.images = event.target.files[0];
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 
   constructor(
@@ -90,12 +138,13 @@ export class AddProductComponent implements OnInit {
       compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
       availability: ['', []],
       price: [''],
-      sizes: [''],
+      sizes: [[]],
       collection: [[]],
-      categories: ['',[]],
+      categories: ['', []],
       newCategory: [''],
       newCollection: [''],
-      image: new FormControl('', [Validators.required, FileValidator.maxContentSize(this.maxSize), requiredExtension(['png', 'jpg', 'jpeg'])]),
+      images: new FormControl('', [Validators.required, FileValidator.maxContentSize(this.maxSize), requiredExtension(['png', 'jpg', 'jpeg'])]),
+
     })
   }
 
@@ -144,12 +193,10 @@ export class AddProductComponent implements OnInit {
       this.reactiveForm.value.compound,
       this.reactiveForm.value.price,
       this.reactiveForm.value.availability,
-      this.reactiveForm.value.sizes.split(','),
+      this.reactiveForm.value.sizes,
       (this.reactiveForm.value.categories.title || '').split(','),
-      this.reactiveForm.value.newCategory.split(','),
       this.reactiveForm.value.collection.title,
-      this.reactiveForm.value.newCollection,
-      this.reactiveForm.value.image
+      this.images
     ).subscribe(() => {
       this.dialog.closeAll()
     });
