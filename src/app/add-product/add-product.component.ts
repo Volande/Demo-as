@@ -16,6 +16,7 @@ import {Categories} from "../entity/categories";
 import {Collection} from "../entity/collection";
 import {FileValidator} from "ngx-material-file-input";
 import {Size} from "../entity/size";
+import {Observable} from "rxjs";
 
 export function requiredExtension(expectedExtensions: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -61,13 +62,12 @@ export class AddProductComponent implements OnInit {
   sizes: Size[] = [];
   images: File[] = [];
 
-  test: any;
-
 
   ngOnInit(): void {
     this.getCategories();
     this.getCollection();
     this.getSizes();
+    this.initForm();
   }
 
   getCollection(): void {
@@ -85,44 +85,46 @@ export class AddProductComponent implements OnInit {
       .subscribe(sizes => this.sizes = sizes);
   }
 
-  url: string | ArrayBuffer = "";
-  selectedFiles: File[];
+
   result: any;
-  currentfile: File;
+
+  selectedFiles?: FileList;
+  selectedFileNames: string[] = [];
+
+  progressInfos: any[] = [];
+  message: string[] = [];
+
+  previews: string[] = [];
 
 
   selectFile(event: any) {
     this.images = event.target.files;
-    this.url = event.target.files;
     for (let i = 0; i < event.target.files; i++) {
       this.images.push(event.target.files[i]);
-
     }
+    this.message = [];
+    this.progressInfos = [];
+    this.selectedFileNames = [];
+    this.selectedFiles = event.target.files;
 
-  }
+    this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
 
-  onChange(event: any) {
-    this.url = "";
-    this.test = event.target.files[0];
+        reader.onload = (e: any) => {
+          console.log(e.target.result);
+          this.previews.push(e.target.result);
+        };
 
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+        reader.readAsDataURL(this.selectedFiles[i]);
 
-      reader.onload = (event: ProgressEvent) => {
-        let temp = (<FileReader>event.target).result;
-        if (temp == null) {
-          this.url = "";
-        } else {
-          this.url = temp;
-        }
+        this.selectedFileNames.push(this.selectedFiles[i].name);
       }
-
-
-      this.images = event.target.files[0];
-
-      reader.readAsDataURL(event.target.files[0]);
     }
   }
+
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes | null },
@@ -136,13 +138,11 @@ export class AddProductComponent implements OnInit {
       title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
       content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
       compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
-      availability: ['', []],
+      availability: [ []],
       price: [''],
       sizes: [[]],
       collection: [[]],
-      categories: ['', []],
-      newCategory: [''],
-      newCollection: [''],
+      categories: ['',[]],
       images: new FormControl('', [Validators.required, FileValidator.maxContentSize(this.maxSize), requiredExtension(['png', 'jpg', 'jpeg'])]),
 
     })
@@ -156,9 +156,12 @@ export class AddProductComponent implements OnInit {
         content: this.data.clothes.content,
         compound: this.data.clothes.compound,
         price: this.data.clothes.price,
-        availability: this.data.clothes.availability,
+        availability: this.data.clothes.availability.toString(),
         sizes: this.data.clothes.size,
-        collection: this.data.clothes.collection,
+        collection: this.data.clothes.collection.toString(),
+        categories: this.data.clothes.categories,
+
+
 
       });
     }
@@ -194,7 +197,7 @@ export class AddProductComponent implements OnInit {
       this.reactiveForm.value.price,
       this.reactiveForm.value.availability,
       this.reactiveForm.value.sizes,
-      (this.reactiveForm.value.categories.title || '').split(','),
+      this.reactiveForm.value.categories,
       this.reactiveForm.value.collection.title,
       this.images
     ).subscribe(() => {

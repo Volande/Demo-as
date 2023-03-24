@@ -1,5 +1,16 @@
+<div *ngIf="showAdminBoard" class="buttons">
 
+  <button mat-button color="primary"
+          (click)="this.changeClothesBtn()"
+          class="fabButton"
+          id="change clothe button"
+          style="max-height: 40px">
+    Змінити одяг
+  </button>
+
+</div>
 <div *ngIf="clothes" class="padd" xmlns="">
+
   <div class="img-slider">
 <app-image-slider ></app-image-slider>
   </div>
@@ -8,8 +19,11 @@
     <p>{{clothes.title }}</p>
     {{clothes.price}}
     <br>
-
-    <p>Розмір</p>
+    {{clothes.availability}}
+    <br>
+    <div *ngFor="let choice of clothes.categories">
+      <p >{{choice.title}}</p>
+    </div>
 
     <div class="choice">
       <label *ngFor="let cloth of clothes.size"><input type="radio" name="r" checked><span>{{cloth.title}}</span></label>

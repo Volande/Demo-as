@@ -46,8 +46,8 @@
     <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
       <mat-label>Категорія</mat-label>
 
-      <mat-select id="categories" formControlName="categories">
-        <mat-option id="No categories selected">None</mat-option>
+      <mat-select id="categories" formControlName="categories" multiple>
+
         <mat-option *ngFor="let choice of categories" [value]="choice"
                     id="categories mat option">{{choice.title}}</mat-option>
 
@@ -77,18 +77,12 @@
       <input class="input-long" type="file" multiple placeholder="Select Files to be upload" formControlName="images"
              (change)=selectFile($event)>
     </div>
-    <div *ngIf="url">
-      <div *ngIf="url===''; else urlImage">
-        <br>
-        <img [src]="data.clothes?.image" width="550px">
 
-      </div>
 
-      <ng-template #urlImage>
-        <br> <img [src]="url" width="550px">
-
-      </ng-template>
+    <div>
+      <img *ngFor='let preview of previews' [src]="preview" style="width: 200px;margin: 2%">
     </div>
+
 
 
     <mat-form-field class="input-long" appearance="fill" style="margin-right: 50px" id="compound mat form field">

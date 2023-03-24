@@ -36,11 +36,9 @@ export class ClothesService {
 
 
   getHeroes(): Observable<Clothes[]> {
-    return this.http.get<GetResponse>(`${this.heroesUrl}/products/findAll`)
+    return this.http.get<Clothes[]>(`${this.heroesUrl}/products/findAll`)
       .pipe(
-        map(response => response._embedded.clothes),
-        tap(clothes => this.log(`fetched clothes`)),
-        catchError(this.handleError('getHeroes', []))
+        catchError(this.handleError<Clothes[]>('getClothes', []))
       );
   }
 

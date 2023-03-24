@@ -1,5 +1,7 @@
 import {Image} from "./image";
 import {Size} from "./size";
+import {Categories} from "./categories";
+import {Collection} from "./collection";
 
 export interface Clothes {
   id: number;
@@ -9,7 +11,7 @@ export interface Clothes {
   price: number;
   content: string;
   compound:string;
-  availability: boolean;
-  collection:string;
-  categories:string
+  availability: string;
+  collection:Collection;
+  categories:Categories[];
 }

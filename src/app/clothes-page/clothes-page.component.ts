@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Clothes} from "../entity/clothes";
 import {ActivatedRoute} from "@angular/router";
 import {ClothesService} from "../clothes.service";
 import {Location} from "@angular/common";
 import {UserService} from "../_services/user.service";
 import {Image} from "../entity/image";
-
-
+import {TokenStorageService} from "../_services/token-storage.service";
+import {MatDialog} from "@angular/material/dialog";
+import {Overlay} from "@angular/cdk/overlay";
+import {AddProductComponent} from "../add-product/add-product.component";
 
 
 @Component({
@@ -18,21 +20,32 @@ export class ClothesPageComponent implements OnInit {
   clothes: Clothes | undefined;
   image: Image [] = [];
 
+  isLoggedIn = false;
+  showAdminBoard = false;
 
+  username?: string;
 
+  private role: string = "UnAuthorized";
 
-  constructor (
-
+  constructor(
+    private tokenStorageService: TokenStorageService,
     private route: ActivatedRoute,
-
     private location: Location,
-    private userService:UserService,
-
+    private userService: UserService,
+    public dialog: MatDialog,
+    public overlay: Overlay,
   ) {
+    const user = this.tokenStorageService.getUser();
+    this.isLoggedIn = (user != null);
 
+    if (user) {
+      this.role = user.role;
+
+      this.showAdminBoard = this.role.includes('ADMIN');
+      this.username = user.username;
+
+    }
   }
-
-
 
 
   ngOnInit(): void {
@@ -46,9 +59,24 @@ export class ClothesPageComponent implements OnInit {
       .subscribe(clothes => this.clothes = clothes);
   }
 
+  changeClothesBtn(): void {
+    const dialogRef = this.dialog.open(AddProductComponent, {
+      data: {clothes: this.clothes},
+      scrollStrategy: this.overlay.scrollStrategies.noop(),
+    });
 
+    dialogRef.afterClosed().subscribe(() => {
+      this.getHero();
+    });
+  }
 
+  getClothesCategories(): string | any {
+    // @ts-ignore
+    for(let choice of this.clothes?.categories){
+      return choice.toString();
+    }
 
+  }
 
   goBack(): void {
     this.location.back()
