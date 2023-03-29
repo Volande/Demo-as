@@ -46,10 +46,10 @@
     <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
       <mat-label>Категорія</mat-label>
 
-      <mat-select id="categories" formControlName="categories" multiple>
+      <mat-select id="categories" formControlName="categories"  multiple [value]="productCategories">
 
         <mat-option *ngFor="let choice of categories" [value]="choice"
-                    id="categories mat option">{{choice.title}}</mat-option>
+                    >{{choice}}</mat-option>
 
       </mat-select>
 

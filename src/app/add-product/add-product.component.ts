@@ -55,8 +55,10 @@ export class AddProductComponent implements OnInit {
 
   availability: string[] = ["true", "false"]
 
-  categories: Categories[] = [];
+  categories: string[] = [];
 
+
+  productCategories: string[] = [];
   collection: Collection[] = [];
 
   sizes: Size[] = [];
@@ -64,10 +66,21 @@ export class AddProductComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+
     this.getCategories();
+    if (this.data) {
+      if (this.data.clothes) {
+        this.data.clothes.categories.forEach((element) => {
+          this.productCategories.push(element.title)
+        })
+      }
+    }
     this.getCollection();
     this.getSizes();
     this.initForm();
+
+
   }
 
   getCollection(): void {
@@ -77,7 +90,11 @@ export class AddProductComponent implements OnInit {
 
   getCategories(): void {
     this.userService.getCategories()
-      .subscribe(categories => this.categories = categories);
+      .subscribe(categories => {
+        categories.forEach((element) => {
+          this.categories.push(element.title)
+        })
+      });
   }
 
   getSizes(): void {
@@ -138,12 +155,16 @@ export class AddProductComponent implements OnInit {
       title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
       content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
       compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
-      availability: [ []],
+      availability: [[]],
       price: [''],
       sizes: [[]],
       collection: [[]],
-      categories: ['',[]],
-      images: new FormControl('', [Validators.required, FileValidator.maxContentSize(this.maxSize), requiredExtension(['png', 'jpg', 'jpeg'])]),
+      categories: [[]],
+      images: new FormControl('', [
+        Validators.required,
+        FileValidator.maxContentSize(this.maxSize),
+        requiredExtension(['png', 'jpg', 'jpeg'])
+      ]),
 
     })
   }
@@ -152,18 +173,23 @@ export class AddProductComponent implements OnInit {
   initForm(): void {
     if (this.data.clothes) {
       this.reactiveForm.patchValue({
+
         title: this.data.clothes.title,
         content: this.data.clothes.content,
         compound: this.data.clothes.compound,
         price: this.data.clothes.price,
         availability: this.data.clothes.availability.toString(),
-        sizes: this.data.clothes.size,
-        collection: this.data.clothes.collection.toString(),
-        categories: this.data.clothes.categories,
-
-
+        sizes: this.data.clothes.size.reduce((sizes, value, index) => {
+          if (index > 0)
+            sizes += ', ';
+          return sizes + value.title;
+        }, ''),
+        collection: {id: this.data.clothes.collection.id},
+        categories: this.productCategories,
 
       });
+
+
     }
   }
 

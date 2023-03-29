@@ -21,9 +21,7 @@
     <br>
     {{clothes.availability}}
     <br>
-    <div *ngFor="let choice of clothes.categories">
-      <p >{{choice.title}}</p>
-    </div>
+
 
     <div class="choice">
       <label *ngFor="let cloth of clothes.size"><input type="radio" name="r" checked><span>{{cloth.title}}</span></label>

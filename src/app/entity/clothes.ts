@@ -14,4 +14,5 @@ export interface Clothes {
   availability: string;
   collection:Collection;
   categories:Categories[];
+  productCategories: Categories[];
 }
