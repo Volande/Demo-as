@@ -193,6 +193,7 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+
   onSubmit() {
 
     const controls = this.reactiveForm.controls;
