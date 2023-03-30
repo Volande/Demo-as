@@ -56,19 +56,27 @@ export class AddProductComponent implements OnInit {
   availability: string[] = ["true", "false"]
 
   categories: string[] = [];
-
-
   productCategories: string[] = [];
-  collection: Collection[] = [];
-
-  sizes: Size[] = [];
+  productCollection: string[] = [];
+  collection: string[] = [];
+  sizes: string[] = [];
+  productSizes: string[] = [];
   images: File[] = [];
+
+  productImages: string[]=[];
 
 
   ngOnInit(): void {
 
-
+    if (this.data) {
+      if (this.data.clothes) {
+        this.data.clothes.image.forEach((element) => {
+          this.productImages.push(element.title)
+        })
+      }
+    }
     this.getCategories();
+
     if (this.data) {
       if (this.data.clothes) {
         this.data.clothes.categories.forEach((element) => {
@@ -76,8 +84,21 @@ export class AddProductComponent implements OnInit {
         })
       }
     }
+
     this.getCollection();
+
+
     this.getSizes();
+
+    if (this.data) {
+      if (this.data.clothes) {
+        this.data.clothes.size.forEach((element) => {
+          this.productSizes.push(element.title)
+        })
+      }
+    }
+
+
     this.initForm();
 
 
@@ -85,7 +106,11 @@ export class AddProductComponent implements OnInit {
 
   getCollection(): void {
     this.userService.getCollection()
-      .subscribe(collection => this.collection = collection);
+      .subscribe(collection => {
+        collection.forEach((element) => {
+          this.collection.push(element.title)
+        })
+      });
   }
 
   getCategories(): void {
@@ -99,7 +124,11 @@ export class AddProductComponent implements OnInit {
 
   getSizes(): void {
     this.userService.getSizes()
-      .subscribe(sizes => this.sizes = sizes);
+      .subscribe(sizes => {
+        sizes.forEach((element) => {
+          this.sizes.push(element.title)
+        })
+      });
   }
 
 
@@ -144,30 +173,32 @@ export class AddProductComponent implements OnInit {
 
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes | null },
+    @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes  },
     private formBuilder: FormBuilder,
     public clothesService: ClothesService,
     public dialog: MatDialog,
     private userService: UserService,
   ) {
 
-    this.reactiveForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
-      content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
-      compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
-      availability: [[]],
-      price: [''],
-      sizes: [[]],
-      collection: [[]],
-      categories: [[]],
-      images: new FormControl('', [
-        Validators.required,
-        FileValidator.maxContentSize(this.maxSize),
-        requiredExtension(['png', 'jpg', 'jpeg'])
-      ]),
+      this.reactiveForm = this.formBuilder.group({
+        title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
+        content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
+        compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
+        availability: [[]],
+        price: [''],
+        sizes: [[]],
+        collection: [[]],
+        categories: [[]],
+        images: new FormControl('', [
+          Validators.required,
+          FileValidator.maxContentSize(this.maxSize),
+          requiredExtension(['png', 'jpg', 'jpeg'])
+        ]),
 
-    })
-  }
+      })
+    }
+
+
 
 
   initForm(): void {
@@ -179,13 +210,10 @@ export class AddProductComponent implements OnInit {
         compound: this.data.clothes.compound,
         price: this.data.clothes.price,
         availability: this.data.clothes.availability.toString(),
-        sizes: this.data.clothes.size.reduce((sizes, value, index) => {
-          if (index > 0)
-            sizes += ', ';
-          return sizes + value.title;
-        }, ''),
-        collection: {id: this.data.clothes.collection.id},
+        sizes: this.productSizes,
+        collection: this.data.clothes.collection.title,
         categories: this.productCategories,
+        previews: this.productImages
 
       });
 
@@ -196,40 +224,38 @@ export class AddProductComponent implements OnInit {
 
   onSubmit() {
 
-    const controls = this.reactiveForm.controls;
 
-    /** Проверяем форму на валидность */
-    if (this.reactiveForm.invalid/* ||
-
-      (this.reactiveForm.value.image == undefined && !this.data.car) ||
-      (this.reactiveForm.value.image._fileNames != undefined &&
-        (!this.image.name.endsWith('jpg') &&
-          !this.image.name.endsWith('png') &&
-          !this.image.name.endsWith('jpeg')))
-*/) {
-
-      /** Если форма не валидна, то помечаем все контролы как touched*/
-      Object.keys(controls)
-        .forEach(controlName => controls[controlName].markAsTouched());
-
-      /** Прерываем выполнение метода*/
-      return;
-    }
-
-
-    this.clothesService.saveClothe(
-      this.reactiveForm.value.title,
-      this.reactiveForm.value.content,
-      this.reactiveForm.value.compound,
-      this.reactiveForm.value.price,
-      this.reactiveForm.value.availability,
-      this.reactiveForm.value.sizes,
-      this.reactiveForm.value.categories,
-      this.reactiveForm.value.collection.title,
-      this.images
-    ).subscribe(() => {
-      this.dialog.closeAll()
-    });
+   if(this.data) {
+      this.clothesService.updateClothe(
+        this.data.clothes.id,
+        this.reactiveForm.value.title,
+        this.reactiveForm.value.content,
+        this.reactiveForm.value.compound,
+        this.reactiveForm.value.price,
+        this.reactiveForm.value.availability,
+        this.reactiveForm.value.sizes,
+        this.reactiveForm.value.categories,
+        this.reactiveForm.value.collection,
+        this.data.clothes.image,
+        this.images
+      ).subscribe(() => {
+        this.dialog.closeAll()
+      });
+    }else {
+     this.clothesService.saveClothe(
+       this.reactiveForm.value.title,
+       this.reactiveForm.value.content,
+       this.reactiveForm.value.compound,
+       this.reactiveForm.value.price,
+       this.reactiveForm.value.availability,
+       this.reactiveForm.value.sizes,
+       this.reactiveForm.value.categories,
+       this.reactiveForm.value.collection,
+       this.images
+     ).subscribe(() => {
+       this.dialog.closeAll()
+     });
+   }
 
   }
 }

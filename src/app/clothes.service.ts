@@ -8,6 +8,7 @@ import {Clothes} from './entity/clothes';
 import {MessageService} from './message.service';
 import {Clothes_dto} from "./entity/clothes_dto";
 import {Size} from "./entity/size";
+import {Image} from "./entity/image";
 
 
 
@@ -42,6 +43,55 @@ export class ClothesService {
       );
   }
 
+  updateClothe(
+    id: number,
+    title: string,
+    content: string,
+    compound: string,
+    price: number,
+    availability: boolean,
+    sizes: Array<string>,
+    categories: Array<string>,
+    collection: string,
+    productImages: Image[],
+    images: File[],
+
+  ) {
+    // @ts-ignore
+    let clothes = {
+      id: id,
+      title: title,
+      content: content,
+      compound: compound,
+      price: price,
+      availability: availability,
+      size: sizes,
+      categories: categories ,
+      collection: collection ,
+      image:productImages
+
+    } as Clothes_dto
+
+    const formData = new FormData;
+    if (images.length > 0) {
+      for (const row of images) {
+        formData.append('image', row);
+      }
+    }
+    formData.append('clothes', new Blob([JSON.stringify(clothes)], {
+      type: 'application/json'
+    }))
+
+
+    return this.http.post(this.heroesUrl + "/products/save",
+      formData).pipe(
+      tap(_ => this.log(`isTokenValid error`)),
+      catchError((err) => {
+        return throwError(err);
+      })
+    )
+
+  }
 
   saveClothe(
     title: string,

@@ -1,7 +1,14 @@
 <mat-dialog-content class="mat-typography">
   <form [formGroup]="reactiveForm">
 
-    <H2>Додати одяг</H2>
+
+    <div *ngIf="this.data; else elseBack">
+      <H2>Змінити одяг</H2>
+    </div>
+    <ng-template #elseBack>
+      <H2>Додати одяг</H2>
+    </ng-template>
+
 
     <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="title mat form field">
       <mat-label>Назва</mat-label>
@@ -32,10 +39,10 @@
 
     <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
       <mat-label>Розмір</mat-label>
-      <mat-select id="sizes" formControlName="sizes" multiple>
+      <mat-select id="sizes" formControlName="sizes" multiple [value]="productSizes">
 
         <mat-option *ngFor="let choice of sizes" [value]="choice"
-                    id="sizes mat option">{{choice.title}}</mat-option>
+                    >{{choice}}</mat-option>
 
       </mat-select>
 
@@ -63,7 +70,7 @@
       <mat-select id="collection" formControlName="collection">
         <mat-option id="No collection selected">None</mat-option>
         <mat-option *ngFor="let choice of collection" [value]="choice"
-                    id="collection mat option">{{choice.title}}</mat-option>
+                    id="collection mat option">{{choice}}</mat-option>
 
       </mat-select>
 
@@ -79,9 +86,12 @@
     </div>
 
 
-    <div>
+    <div style="width:500px;margin: 2%">
+      <img *ngFor='let preview of productImages' [src]="preview" style="width: 200px;margin: 2%">
       <img *ngFor='let preview of previews' [src]="preview" style="width: 200px;margin: 2%">
     </div>
+
+
 
 
 
