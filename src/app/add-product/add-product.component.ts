@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
+import {CdkDragDrop, moveItemInArray, CdkDrag} from '@angular/cdk/drag-drop';
 import {
   FormBuilder,
   FormControl,
@@ -170,6 +171,18 @@ export class AddProductComponent implements OnInit {
       }
     }
   }
+
+
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.data.clothes.image, event.previousIndex, event.currentIndex);
+  }
+
+
+  delete(index: any) {
+    this.data.clothes.image.splice(index,1);
+  }
+
+
 
 
   constructor(

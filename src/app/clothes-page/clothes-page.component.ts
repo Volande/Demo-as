@@ -63,6 +63,8 @@ export class ClothesPageComponent implements OnInit {
     const dialogRef = this.dialog.open(AddProductComponent, {
       data: {clothes: this.clothes},
       scrollStrategy: this.overlay.scrollStrategies.noop(),
+      width:'70%',
+      height:'72%'
     });
 
     dialogRef.afterClosed().subscribe(() => {

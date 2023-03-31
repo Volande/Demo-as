@@ -41,6 +41,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatTableModule} from "@angular/material/table";
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import {DragDropModule} from "@angular/cdk/drag-drop";
+import { DndListModule } from 'ngx-drag-and-drop-lists';
 
 
 @Injectable()
@@ -77,29 +79,31 @@ export class XhrInterceptor implements HttpInterceptor {
 
 
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatIconModule,
-    NgbModule,
-    NgbPaginationModule,
-    NgbAlertModule,
-    ImageSliderModule,
-    MatDialogModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatTableModule,
-    MaterialFileInputModule
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatIconModule,
+        NgbModule,
+        NgbPaginationModule,
+        NgbAlertModule,
+        ImageSliderModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatTableModule,
+        MaterialFileInputModule,
+        DragDropModule,
+        DndListModule
 
 
-  ],
+    ],
   providers: [ClothesService, {
     multi: true,
     provide: HTTP_INTERCEPTORS,

@@ -9,109 +9,121 @@
       <H2>Додати одяг</H2>
     </ng-template>
 
+    <mat-tab-group>
+      <mat-tab label="Одяг">
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="title mat form field">
+          <mat-label>Назва</mat-label>
+          <input matInput type="text" id="title input" formControlName="title" maxlength="{{this.titleMaxLength}}">
+          <mat-hint align="end">{{this.reactiveForm.value.title.length}}
+            / {{this.titleMaxLength}}</mat-hint>
+        </mat-form-field>
 
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="title mat form field">
-      <mat-label>Назва</mat-label>
-      <input matInput type="text" id="title input" formControlName="title" maxlength="{{this.titleMaxLength}}">
-      <mat-hint align="end">{{this.reactiveForm.value.title.length}}
-        / {{this.titleMaxLength}}</mat-hint>
-    </mat-form-field>
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
+          <mat-label>Наявність</mat-label>
+          <mat-select id="availability" formControlName="availability">
+            <mat-option id="No availability selected">None</mat-option>
+            <mat-option *ngFor="let choice of availability" [value]="choice"
+                        id="availability mat option">{{choice}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-      <mat-label>Наявність</mat-label>
-      <mat-select id="availability" formControlName="availability">
-        <mat-option id="No availability selected">None</mat-option>
-        <mat-option *ngFor="let choice of availability" [value]="choice"
-                    id="availability mat option">{{choice}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="price mat form field">
+          <mat-label>Ціна</mat-label>
+          <input matInput type="text" id="price input" formControlName="price">
 
-
-    <br>
-
-
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="price mat form field">
-      <mat-label>Ціна</mat-label>
-      <input matInput type="text" id="price input" formControlName="price">
-
-    </mat-form-field>
+        </mat-form-field>
 
 
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-      <mat-label>Розмір</mat-label>
-      <mat-select id="sizes" formControlName="sizes" multiple [value]="productSizes">
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
+          <mat-label>Розмір</mat-label>
+          <mat-select id="sizes" formControlName="sizes" multiple [value]="productSizes">
 
-        <mat-option *ngFor="let choice of sizes" [value]="choice"
-                    >{{choice}}</mat-option>
+            <mat-option *ngFor="let choice of sizes" [value]="choice"
+            >{{choice}}</mat-option>
 
-      </mat-select>
+          </mat-select>
 
-    </mat-form-field>
-
-    <br>
-
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-      <mat-label>Категорія</mat-label>
-
-      <mat-select id="categories" formControlName="categories"  multiple [value]="productCategories">
-
-        <mat-option *ngFor="let choice of categories" [value]="choice"
-                    >{{choice}}</mat-option>
-
-      </mat-select>
+        </mat-form-field>
 
 
-    </mat-form-field>
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
+          <mat-label>Категорія</mat-label>
+
+          <mat-select id="categories" formControlName="categories" multiple [value]="productCategories">
+
+            <mat-option *ngFor="let choice of categories" [value]="choice"
+            >{{choice}}</mat-option>
+
+          </mat-select>
 
 
-    <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-      <mat-label>Коллекція</mat-label>
-
-      <mat-select id="collection" formControlName="collection">
-        <mat-option id="No collection selected">None</mat-option>
-        <mat-option *ngFor="let choice of collection" [value]="choice"
-                    id="collection mat option">{{choice}}</mat-option>
-
-      </mat-select>
+        </mat-form-field>
 
 
-    </mat-form-field>
+        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
+          <mat-label>Коллекція</mat-label>
+
+          <mat-select id="collection" formControlName="collection">
+            <mat-option id="No collection selected">None</mat-option>
+            <mat-option *ngFor="let choice of collection" [value]="choice"
+                        id="collection mat option">{{choice}}</mat-option>
+
+          </mat-select>
 
 
-    <br>
-
-    <div>
-      <input class="input-long" type="file" multiple placeholder="Select Files to be upload" formControlName="images"
-             (change)=selectFile($event)>
-    </div>
+        </mat-form-field>
 
 
-    <div style="width:500px;margin: 2%">
-      <img *ngFor='let preview of productImages' [src]="preview" style="width: 200px;margin: 2%">
-      <img *ngFor='let preview of previews' [src]="preview" style="width: 200px;margin: 2%">
-    </div>
+        <br>
+
+        <div>
+          <input class="input-long" type="file" multiple placeholder="Select Files to be upload"
+                 formControlName="images"
+                 (change)=selectFile($event)>
+        </div>
 
 
+        <div style="width:500px;margin: 2%">
+          <img *ngFor='let preview of previews' [src]="preview" style="width: 200px;margin: 2%">
+        </div>
 
 
+        <mat-form-field class="input-long" appearance="fill" style="margin-right: 50px" id="compound mat form field">
+          <mat-label>Компоненти</mat-label>
+          <textarea matInput id="compound input" formControlName="compound"
+                    maxlength="{{this.compoundMaxLength}}"></textarea>
+          <mat-hint align="end">{{this.reactiveForm.value.compound.length}}
+            / {{this.compoundMaxLength}}</mat-hint>
+        </mat-form-field>
 
-    <mat-form-field class="input-long" appearance="fill" style="margin-right: 50px" id="compound mat form field">
-      <mat-label>Компоненти</mat-label>
-      <textarea matInput id="compound input" formControlName="compound"
-                maxlength="{{this.compoundMaxLength}}"></textarea>
-      <mat-hint align="end">{{this.reactiveForm.value.compound.length}}
-        / {{this.compoundMaxLength}}</mat-hint>
-    </mat-form-field>
+        <br>
 
-    <br>
+        <mat-form-field class="input-long" appearance="fill">
+          <mat-label>Опис</mat-label>
+          <textarea matInput id="content" formControlName="content"
+                    maxlength="{{this.contentMaxLength}}"></textarea>
+          <mat-hint align="end">{{this.reactiveForm.value.content.length}}
+            / {{this.contentMaxLength}}</mat-hint>
+        </mat-form-field>
+      </mat-tab>
 
-    <mat-form-field class="input-long" appearance="fill">
-      <mat-label>Опис</mat-label>
-      <textarea matInput id="content" formControlName="content"
-                maxlength="{{this.contentMaxLength}}"></textarea>
-      <mat-hint align="end">{{this.reactiveForm.value.content.length}}
-        / {{this.contentMaxLength}}</mat-hint>
-    </mat-form-field>
+
+      <mat-tab label="Змінити порядок фото чи видалити фото" *ngIf="this.data">
+        <div cdkDropList (cdkDropListDropped)="onDrop($event)" >
+          <div class="box" *ngFor="let item of data.clothes.image, index as i" cdkDrag>
+            <img  [src]="item.title" style="width: 100px;margin: 2%">
+            <div style="display: flex">
+              <button mat-icon-button>
+                <div style="display: flex" (click)="delete(i)">
+                  <p>{{i+1}}</p>
+                 <div> <img src="https://img.icons8.com/ios-glyphs/30/null/empty-trash--v1.png"/></div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
 
 
     <mat-dialog-actions>

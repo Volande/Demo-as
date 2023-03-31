@@ -49,8 +49,11 @@ export class AppComponent {
 
 
   openDialog() {
+     this.dialog.open((AddProductComponent),{
+       width:'70%',
+       height:'72%'
+    });
 
-     this.dialog.open(AddProductComponent);
   }
 
 
