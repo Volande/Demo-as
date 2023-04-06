@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Clothes} from "../entity/clothes";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ClothesService} from "../clothes.service";
 import {Location} from "@angular/common";
 import {UserService} from "../_services/user.service";
@@ -9,6 +9,7 @@ import {TokenStorageService} from "../_services/token-storage.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Overlay} from "@angular/cdk/overlay";
 import {AddProductComponent} from "../add-product/add-product.component";
+import {ConfirmationComponent} from "../confirmation/confirmation.component";
 
 
 @Component({
@@ -34,6 +35,7 @@ export class ClothesPageComponent implements OnInit {
     private userService: UserService,
     public dialog: MatDialog,
     public overlay: Overlay,
+    private router: Router,
   ) {
     const user = this.tokenStorageService.getUser();
     this.isLoggedIn = (user != null);
@@ -72,17 +74,17 @@ export class ClothesPageComponent implements OnInit {
     });
   }
 
-  getClothesCategories(): string | any {
-    // @ts-ignore
-    for(let choice of this.clothes?.categories){
-      return choice.toString();
-    }
 
+
+  deleteClothesBtn(clothes: Clothes): void {
+    const dialogRef = this.dialog.open(ConfirmationComponent,
+      {
+        data: {clothes: clothes},
+        scrollStrategy: this.overlay.scrollStrategies.noop(),
+      });
+
+    dialogRef.afterClosed().subscribe(()=>this.router.navigateByUrl("", { skipLocationChange: true }))
   }
-
-  goBack(): void {
-    this.location.back()
-  };
 
 
 }

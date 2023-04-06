@@ -8,6 +8,15 @@
     Змінити одяг
   </button>
 
+  <button *ngIf="clothes != undefined" mat-button color="primary"
+          (click)="deleteClothesBtn(clothes)"
+          class="fabButton"
+
+          id="{{'delete '+clothes.title}}"
+          style="max-height: 40px">
+    Видалити одяг
+  </button>
+
 </div>
 <div *ngIf="clothes" class="padd" xmlns="">
 

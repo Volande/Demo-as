@@ -37,12 +37,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { AddProductComponent } from './add-product/add-product.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatTableModule} from "@angular/material/table";
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { DndListModule } from 'ngx-drag-and-drop-lists';
+
 
 
 @Injectable()
@@ -75,6 +77,7 @@ export class XhrInterceptor implements HttpInterceptor {
     RegisterComponent,
     BoardAdminComponent,
     AddProductComponent,
+    ConfirmationComponent,
 
 
 

@@ -11,7 +11,7 @@ import {UserService} from "../_services/user.service";
 export class MainPageComponent implements OnInit {
   wardrobe : Clothes[] = [];
 
-  constructor(private heroService:ClothesService,private userService:UserService) { }
+  constructor(private userService:UserService) { }
 
   ngOnInit(): void {
     this.getPublicContent();
@@ -19,6 +19,6 @@ export class MainPageComponent implements OnInit {
 
   getPublicContent(): void {
     this.userService.getPublicContent()
-      .subscribe(clothes =>this.wardrobe = clothes.slice(0, 5)) ;/*определяет сколько фото на главной*/
+      .subscribe(clothes =>this.wardrobe = clothes.slice(0,9)) ;/*определяет сколько фото на главной*/
   }
 }

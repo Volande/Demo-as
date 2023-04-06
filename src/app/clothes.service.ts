@@ -9,6 +9,7 @@ import {MessageService} from './message.service';
 import {Clothes_dto} from "./entity/clothes_dto";
 import {Size} from "./entity/size";
 import {Image} from "./entity/image";
+import {Categories} from "./entity/categories";
 
 
 
@@ -179,6 +180,19 @@ export class ClothesService {
 
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
+  }
+
+  deleteCar(carId: number) {
+
+
+    return this.http.delete(
+      this.heroesUrl +'/products' + "/" + carId
+    ).pipe(
+      tap(_ => this.log(`isTokenValid error`)),
+      catchError((err) => {
+        return throwError(err);
+      })
+    )
   }
 }
 
