@@ -64,7 +64,7 @@ export class AddProductComponent implements OnInit {
   productSizes: string[] = [];
   images: File[] = [];
 
-  productImages: string[]=[];
+  productImages: string[] = [];
 
 
   ngOnInit(): void {
@@ -76,6 +76,7 @@ export class AddProductComponent implements OnInit {
         })
       }
     }
+
     this.getCategories();
 
     if (this.data) {
@@ -179,39 +180,35 @@ export class AddProductComponent implements OnInit {
 
 
   delete(index: any) {
-    this.data.clothes.image.splice(index,1);
+    this.data.clothes.image.splice(index, 1);
   }
 
 
-
-
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes  },
+    @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes },
     private formBuilder: FormBuilder,
     public clothesService: ClothesService,
     public dialog: MatDialog,
     private userService: UserService,
   ) {
 
-      this.reactiveForm = this.formBuilder.group({
-        title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
-        content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
-        compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
-        availability: [[]],
-        price: [''],
-        sizes: [[]],
-        collection: [[]],
-        categories: [[]],
-        images: new FormControl('', [
-          Validators.required,
-          FileValidator.maxContentSize(this.maxSize),
-          requiredExtension(['png', 'jpg', 'jpeg'])
-        ]),
+    this.reactiveForm = this.formBuilder.group({
+      title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
+      content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
+      compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
+      availability: [[]],
+      price: [''],
+      sizes: [[]],
+      collection: [[]],
+      categories: [[]],
+      images: new FormControl('', [
+        Validators.required,
+        FileValidator.maxContentSize(this.maxSize),
+        requiredExtension(['png', 'jpg', 'jpeg'])
+      ]),
 
-      })
-    }
-
-
+    })
+  }
 
 
   initForm(): void {
@@ -238,7 +235,7 @@ export class AddProductComponent implements OnInit {
   onSubmit() {
 
 
-   if(this.data) {
+    if (this.data) {
       this.clothesService.updateClothe(
         this.data.clothes.id,
         this.reactiveForm.value.title,
@@ -252,23 +249,25 @@ export class AddProductComponent implements OnInit {
         this.data.clothes.image,
         this.images
       ).subscribe(() => {
-        this.dialog.closeAll()
+        this.dialog.closeAll();
+        window.location.reload()
       });
-    }else {
-     this.clothesService.saveClothe(
-       this.reactiveForm.value.title,
-       this.reactiveForm.value.content,
-       this.reactiveForm.value.compound,
-       this.reactiveForm.value.price,
-       this.reactiveForm.value.availability,
-       this.reactiveForm.value.sizes,
-       this.reactiveForm.value.categories,
-       this.reactiveForm.value.collection,
-       this.images
-     ).subscribe(() => {
-       this.dialog.closeAll()
-     });
-   }
+    } else {
+      this.clothesService.saveClothe(
+        this.reactiveForm.value.title,
+        this.reactiveForm.value.content,
+        this.reactiveForm.value.compound,
+        this.reactiveForm.value.price,
+        this.reactiveForm.value.availability,
+        this.reactiveForm.value.sizes,
+        this.reactiveForm.value.categories,
+        this.reactiveForm.value.collection,
+        this.images
+      ).subscribe(() => {
+        this.dialog.closeAll();
+        window.location.reload()
+      });
+    }
 
   }
 }

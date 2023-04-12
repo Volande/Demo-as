@@ -182,11 +182,11 @@ export class ClothesService {
     this.messageService.add(`HeroService: ${message}`);
   }
 
-  deleteCar(carId: number) {
+  deleteCar(clotheId: number) {
 
 
     return this.http.delete(
-      this.heroesUrl +'/products' + "/" + carId
+      this.heroesUrl +'/products' + "/" + clotheId
     ).pipe(
       tap(_ => this.log(`isTokenValid error`)),
       catchError((err) => {
