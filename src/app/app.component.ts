@@ -3,6 +3,9 @@ import {TokenStorageService} from "./_services/token-storage.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {Overlay} from "@angular/cdk/overlay";
 import {AddProductComponent} from "./add-product/add-product.component";
+import {LoginComponent} from "./login/login.component";
+import {PopupFormLoginComponent} from "./popup-form-login/popup-form-login.component";
+import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.component";
 
 
 @Component({
@@ -46,7 +49,26 @@ export class AppComponent {
     window.location.reload();
   }
 
+  openLoginMobile():void{
+    window.location.assign("http://localhost:4200/shop/login");
+  }
 
+  openSingUpMobile():void{
+    window.location.assign("http://localhost:4200/shop/register");
+  }
+
+
+  openLoginDialog():void{
+    this.dialog.open((PopupFormLoginComponent),{
+
+    });
+  }
+
+  openSingUpDialog():void{
+    this.dialog.open((PopupFormSingupComponent),{
+
+    });
+  }
 
   openDialog() {
      this.dialog.open((AddProductComponent),{

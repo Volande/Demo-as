@@ -26,8 +26,18 @@
 
 
       </div>
-      <app-register *ngIf="!isLoggedIn"></app-register>
-      <app-login *ngIf="!isLoggedIn"></app-login>
+
+
+      <div  *ngIf="!isLoggedIn"><button (click)="openSingUpDialog()"  style="border: none" value="Login"
+                                       id="Sign up button">
+        Рєстрація
+      </button></div>
+
+
+      <div style="padding-left: 2%" *ngIf="!isLoggedIn"><button (click)="openLoginDialog()" style="border: none;"  value="Login"
+                   id="Sign in button">
+        Вхід
+      </button></div>
 
 
       <app-convertor></app-convertor>
@@ -79,10 +89,10 @@
                     <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
                   </li>
                   <li>
-                    <label class="nav-link" routerLink="/register" *ngIf="!isLoggedIn">Sign Up</label>
+                    <label  (click)="openSingUpMobile()" *ngIf="!isLoggedIn">Sign Up</label>
                   </li>
                   <li>
-                    <label class="btn-log" routerLink="/login" *ngIf="!isLoggedIn">Login</label>
+                    <label  (click)="openLoginMobile()" *ngIf="!isLoggedIn">Login</label>
                   </li>
                 </ul>
               </div>

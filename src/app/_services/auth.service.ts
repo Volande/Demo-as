@@ -24,8 +24,9 @@ export class AuthService {
   register(username: string, email: string, password: string): Observable<any> {
     let params = new HttpParams();
     params = params.set('username', username);
-    params = params.set('password', password);
     params = params.set('email', email);
+    params = params.set('password', password);
+
     return this.http.post(AUTH_API + 'user/newUser', params);
   }
 }

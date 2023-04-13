@@ -32,7 +32,9 @@ body, input[type="text"], button {
 
 @media screen and (max-width: 800px) {
   *, body, button {
-    font-size: 15px
+    font-size: 15px;
+
+
   }
 }
 

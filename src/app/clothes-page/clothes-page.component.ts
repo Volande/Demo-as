@@ -9,7 +9,7 @@ import {TokenStorageService} from "../_services/token-storage.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Overlay} from "@angular/cdk/overlay";
 import {AddProductComponent} from "../add-product/add-product.component";
-import {ConfirmationComponent} from "../confirmation/confirmation.component";
+import {ConfirmationDeleteProductComponent} from "../confirmation-delete-product/confirmation-delete-product.component";
 
 
 @Component({
@@ -77,7 +77,7 @@ export class ClothesPageComponent implements OnInit {
 
 
   deleteClothesBtn(clothes: Clothes): void {
-    const dialogRef = this.dialog.open(ConfirmationComponent,
+    const dialogRef = this.dialog.open(ConfirmationDeleteProductComponent,
       {
         data: {clothes: clothes},
         scrollStrategy: this.overlay.scrollStrategies.noop(),

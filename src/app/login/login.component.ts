@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { TokenStorageService } from '../_services/token-storage.service';
+import {Component, Injectable, OnInit} from '@angular/core';
+import {AuthService} from '../_services/auth.service';
+import {TokenStorageService} from '../_services/token-storage.service';
 import {UserInformation} from "../entity/user-information";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,17 +18,26 @@ export class LoginComponent implements OnInit {
     username: null,
     password: null
   };
+
+  reactiveForm: FormGroup = this.formBuilder.group({
+    login: ['', [Validators.required, Validators.maxLength(30)]],
+    password1: ['', [Validators.required, Validators.maxLength(30)]],
+  });
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  role:  string | undefined = "UnAuthorized";
+  role: string | undefined = "UnAuthorized";
 
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
 
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private authService: AuthService,
+              private tokenStorage: TokenStorageService,
+              private formBuilder: FormBuilder,
+              public dialog: MatDialog) {
+  }
 
 
   ngOnInit(): void {
@@ -33,10 +47,10 @@ export class LoginComponent implements OnInit {
     }
 
 
-   }
+  }
 
   onSubmit(): void {
-    const { username, password } = this.form;
+    const {username, password} = this.form;
 
     this.authService.login(username, password).subscribe(
       userInfo => {
@@ -58,7 +72,7 @@ export class LoginComponent implements OnInit {
     window.location.reload();
   }
 
-  replacePage(): void{
+  replacePage(): void {
     window.location.replace("/shop/main-page");
   }
 }

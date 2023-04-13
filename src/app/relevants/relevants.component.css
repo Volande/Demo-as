@@ -88,12 +88,20 @@ a {
     object-fit: cover;
   }
 .text{
-  width: 180px;
+  width: 150px;
 }
 }
 @media screen and (max-width: 800px) {
   .computer-relevants {
     display: none;
+  }
+  .parent{
+    width: 100%;
+    max-width:750px;
+    height: 100%;
+  }
+  .child{
+    height: 100%;
   }
 
   .mobile-relevants {

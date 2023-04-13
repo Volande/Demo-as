@@ -182,7 +182,7 @@ export class ClothesService {
     this.messageService.add(`HeroService: ${message}`);
   }
 
-  deleteCar(clotheId: number) {
+  deleteClothe(clotheId: number) {
 
 
     return this.http.delete(

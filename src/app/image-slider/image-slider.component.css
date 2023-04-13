@@ -30,7 +30,8 @@
 
 .slider {
   position: relative;
-  height: 100%;
+  width: 500px;
+  height: 700px;
 }
 
 .dotsContainer {
@@ -43,4 +44,27 @@
   margin: 0 3px;
   cursor: pointer;
   font-size: 20px;
+}
+@media screen and (max-width: 800px) {
+  .slider {
+    width: 100%;
+    max-width: 600px;
+    height: 800px;
+  }}
+
+@media screen and (max-width: 375px){
+  .slider {
+    width: 100%;
+    max-width: 375px;
+    height: 575px;
+  }
+
+}
+@media screen and (max-width: 320px){
+  .slider {
+    width: 100%;
+    max-width: 320px;
+    height: 520px;
+  }
+
 }
