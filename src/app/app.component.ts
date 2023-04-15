@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {TokenStorageService} from "./_services/token-storage.service";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {Overlay} from "@angular/cdk/overlay";
 import {AddProductComponent} from "./add-product/add-product.component";
-import {LoginComponent} from "./login/login.component";
+import {LoginComponent} from "./login-mobile/login-mobile.component";
 import {PopupFormLoginComponent} from "./popup-form-login/popup-form-login.component";
 import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.component";
 
@@ -11,7 +11,8 @@ import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.co
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   logo = './assets/photo-dress/logo.jpg';
@@ -64,9 +65,9 @@ export class AppComponent {
     });
   }
 
-  openSingUpDialog():void{
+  openSingUpDialog(){
     this.dialog.open((PopupFormSingupComponent),{
-
+    panelClass: 'custom-dialog-container'
     });
   }
 

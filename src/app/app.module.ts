@@ -19,7 +19,7 @@ import {ClothesPageComponent} from './clothes-page/clothes-page.component';
 import {RelevantsComponent} from './relevants/relevants.component';
 import {CollectionMenuComponent} from './collection-menu/collection-menu.component';
 import {ConvertorComponent} from './convertor/convertor.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './login-mobile/login-mobile.component';
 import {ClothesService} from "./clothes.service";
 import {RegisterComponent} from './register/register.component';
 import {BoardAdminComponent} from './board-admin/board-admin.component';

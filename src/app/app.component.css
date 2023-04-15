@@ -447,3 +447,18 @@ ul li::marker{
   z-index: 1000;
 }
 
+.mat-dialog-container {
+  padding: 0 !important;
+
+border-radius: 15px;
+}
+.mat-form-field{
+  display: flex !important;
+  flex-direction: column;
+  align-items: center
+}
+
+.mat-form-field-wrapper.ng-tns-c100-1 {
+  width: 100% !important;
+}
+

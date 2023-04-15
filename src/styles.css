@@ -33,8 +33,6 @@ body, input[type="text"], button {
 @media screen and (max-width: 800px) {
   *, body, button {
     font-size: 15px;
-
-
   }
 }
 
@@ -65,4 +63,9 @@ body {
 
 footer {
   flex: 0 0 auto;
+}
+
+
+::ng-deep.mat-dialog-container {
+  padding: 0 !important;
 }

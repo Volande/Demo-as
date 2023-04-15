@@ -10,15 +10,15 @@ import {MatDialog} from "@angular/material/dialog";
 })
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login-mobile.component.html',
+  styleUrls: ['./login-mobile.component.css']
 })
 export class LoginComponent implements OnInit {
   form: any = {
     username: null,
     password: null
   };
-
+  hide = true;
   reactiveForm: FormGroup = this.formBuilder.group({
     login: ['', [Validators.required, Validators.maxLength(30)]],
     password1: ['', [Validators.required, Validators.maxLength(30)]],

@@ -1,0 +1,45 @@
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+
+    <h2 class="active">Реєстрація </h2>
+
+
+    <form [formGroup]="reactiveForm" id="Login form" style="display:flex;flex-direction: column;align-items: center  ">
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Логін</mat-label>
+        <input matInput type="text" id="login" formControlName="login" maxlength="30">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill"  >
+        <mat-label>Пошта</mat-label>
+        <input matInput type="text" id="email" formControlName="email" maxlength="30" placeholder="pat@example.com">
+
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Пароль</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" type="text" id="password" formControlName="password" maxlength="30" placeholder="Пароль">
+      </mat-form-field>
+
+
+      <h4 *ngIf="errorMessage.localeCompare('')" class="errorColour" id="Incorrect login or password warning">
+        Incorrect login or password</h4>
+
+
+      <button class="btn" (click)="onSubmit()" id="Submit button">
+        Увійти
+      </button>
+
+
+
+    </form>
+  </div>
+</div>
+
+
+

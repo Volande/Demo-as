@@ -13,6 +13,6 @@ export interface Clothes {
   compound:string;
   availability: string;
   collection:Collection;
-  categories:Array<Categories>;
+  categories:Categories[];
   productCategories: Categories[];
 }

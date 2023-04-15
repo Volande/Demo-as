@@ -182,8 +182,8 @@ export class ClothesService {
     this.messageService.add(`HeroService: ${message}`);
   }
 
-  deleteClothe(clotheId: number) {
 
+  deleteClothe(clotheId: number) {
 
     return this.http.delete(
       this.heroesUrl +'/products' + "/" + clotheId
