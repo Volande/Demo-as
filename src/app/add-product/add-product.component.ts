@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {CdkDragDrop, moveItemInArray, CdkDrag} from '@angular/cdk/drag-drop';
 import {
   FormBuilder,

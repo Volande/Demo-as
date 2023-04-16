@@ -19,18 +19,19 @@ import {ClothesPageComponent} from './clothes-page/clothes-page.component';
 import {RelevantsComponent} from './relevants/relevants.component';
 import {CollectionMenuComponent} from './collection-menu/collection-menu.component';
 import {ConvertorComponent} from './convertor/convertor.component';
-import {LoginComponent} from './login-mobile/login-mobile.component';
-import {ClothesService} from "./clothes.service";
-import {RegisterComponent} from './register/register.component';
-import {BoardAdminComponent} from './board-admin/board-admin.component';
 
+import {ClothesService} from "./clothes.service";
+
+import {BoardAdminComponent} from './board-admin/board-admin.component';
+import { PopupFormLoginComponent } from './popup-form-login/popup-form-login.component';
+import { PopupFormSingupComponent } from './popup-form-singup/popup-form-singup.component';
 
 
 import {authInterceptorProviders} from './_helpers/auth.interceptor';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ImageSliderModule} from "./image-slider/image-slider.module";
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
-import {MatDialogModule} from "@angular/material/dialog";
+import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -44,8 +45,7 @@ import {MatTableModule} from "@angular/material/table";
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { DndListModule } from 'ngx-drag-and-drop-lists';
-import { PopupFormLoginComponent } from './popup-form-login/popup-form-login.component';
-import { PopupFormSingupComponent } from './popup-form-singup/popup-form-singup.component';
+
 
 
 
@@ -77,8 +77,6 @@ export class XhrInterceptor implements HttpInterceptor {
     RelevantsComponent,
     CollectionMenuComponent,
     ConvertorComponent,
-    LoginComponent,
-    RegisterComponent,
     BoardAdminComponent,
     AddProductComponent,
     ConfirmationDeleteProductComponent,
@@ -109,13 +107,15 @@ export class XhrInterceptor implements HttpInterceptor {
         MatTableModule,
         MaterialFileInputModule,
         DragDropModule,
-        DndListModule
+        DndListModule,
+
 
 
     ],
   providers: [ClothesService, {
     multi: true,
-    provide: HTTP_INTERCEPTORS,
+    provide: [HTTP_INTERCEPTORS ,MatDialogRef],
+    useValue: {},
     useClass: XhrInterceptor
   }, authInterceptorProviders,],
   bootstrap: [AppComponent],

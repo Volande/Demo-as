@@ -1,8 +1,14 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
 
 
 
-    <!-- Tabs Titles -->
     <h2 class="active"> Вхід </h2>
+    <button style="border: none" (click)="openSingUpDialog()" value="Login" id="Sign up mobile button">
+      <h2 class="inactive"> Рєстрація</h2>
+    </button>
+
+
     <form [formGroup]="reactiveForm" id="Login form" style="display:flex;flex-direction: column;align-items: center  ">
 
 
@@ -12,10 +18,10 @@
       </mat-form-field>
 
 
-
-      <mat-form-field class="example-full-width"  appearance="fill">
+      <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Пароль</mat-label>
-        <input matInput style="width: 90%" [type]="hide ? 'password' : 'text'" type="text" id="password" formControlName="password" maxlength="30" placeholder="Пароль">
+        <input matInput style="width: 90%" [type]="hide ? 'password' : 'text'" type="text" id="password"
+               formControlName="password" maxlength="30" placeholder="Пароль">
 
       </mat-form-field>
 
@@ -24,15 +30,15 @@
         Incorrect login or password</h4>
 
 
-        <button class="btn" (click)="onSubmit()" id="Submit button">
-          Увійти
-        </button>
-
+      <button class="btn" (click)="onSubmit()" id="Submit button">
+        Увійти
+      </button>
 
 
     </form>
 
-
+  </div>
+</div>
 
 
 

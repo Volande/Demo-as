@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Optional} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../_services/auth.service";
 import {TokenStorageService} from "../_services/token-storage.service";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {PopupFormLoginComponent} from "../popup-form-login/popup-form-login.component";
 
 @Component({
   selector: 'app-popup-form-singup',
@@ -24,7 +25,9 @@ export class PopupFormSingupComponent implements OnInit {
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
+    @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
   ) {
 
   }
@@ -42,6 +45,11 @@ export class PopupFormSingupComponent implements OnInit {
 
   replacePage(): void {
     window.location.replace("/shop/main-page");
+  }
+
+  openLoginDialog(){
+    this.dialogPopupLogin = this.dialog.open(PopupFormLoginComponent);
+    this.dialogPopupSingUp.close()
   }
 
   onSubmit() {

@@ -74,8 +74,6 @@
         </mat-form-field>
 
 
-        <br>
-
         <div>
           <input class="input-long" type="file" multiple placeholder="Select Files to be upload"
                  formControlName="images"
@@ -88,8 +86,6 @@
         </div>
 
 
-
-
         <mat-form-field class="input-long" appearance="fill" style="margin-right: 50px" id="compound mat form field">
           <mat-label>Компоненти</mat-label>
           <textarea matInput id="compound input" formControlName="compound"
@@ -98,7 +94,6 @@
             / {{this.compoundMaxLength}}</mat-hint>
         </mat-form-field>
 
-        <br>
 
         <mat-form-field class="input-long" appearance="fill">
           <mat-label>Опис</mat-label>
@@ -111,14 +106,16 @@
 
 
       <mat-tab label="Змінити порядок фото чи видалити фото" *ngIf="this.data">
-        <div cdkDropList (cdkDropListDropped)="onDrop($event)" >
-          <div class="box" *ngFor="let item of data.clothes.image, index as i" cdkDrag>
-            <img  [src]="item.title" style="width: 100px;margin: 2%">
+        <div cdkDropList (cdkDropListDropped)="onDrop($event)">
+          <div style="display: flex;align-items: flex-end;" class="box" *ngFor="let item of data.clothes.image, index as i" cdkDrag>
+            <p>{{i + 1}}</p>
+
+            <img [src]="item.title" style="width: 100px;margin: 2%">
+
             <div style="display: flex">
               <button mat-icon-button>
                 <div style="display: flex" (click)="delete(i)">
-                  <p>{{i+1}}</p>
-                 <div> <img src="https://img.icons8.com/ios-glyphs/30/null/empty-trash--v1.png"/></div>
+                  <div><img src="https://img.icons8.com/ios-glyphs/30/null/empty-trash--v1.png"/></div>
                 </div>
               </button>
             </div>

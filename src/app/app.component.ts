@@ -1,9 +1,9 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, Optional, ViewEncapsulation} from '@angular/core';
 import {TokenStorageService} from "./_services/token-storage.service";
-import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {Overlay} from "@angular/cdk/overlay";
 import {AddProductComponent} from "./add-product/add-product.component";
-import {LoginComponent} from "./login-mobile/login-mobile.component";
+
 import {PopupFormLoginComponent} from "./popup-form-login/popup-form-login.component";
 import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.component";
 
@@ -27,6 +27,9 @@ export class AppComponent {
 
   constructor(private tokenStorageService: TokenStorageService,
               public dialog: MatDialog,
+
+              @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
+              @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
               public overlay: Overlay,
               ) { }
 
@@ -60,14 +63,13 @@ export class AppComponent {
 
 
   openLoginDialog():void{
-    this.dialog.open((PopupFormLoginComponent),{
-
+    this.dialogPopupLogin=this.dialog.open((PopupFormLoginComponent),{
     });
   }
 
   openSingUpDialog(){
-    this.dialog.open((PopupFormSingupComponent),{
-    panelClass: 'custom-dialog-container'
+   this.dialogPopupSingUp = this.dialog.open((PopupFormSingupComponent),{
+
     });
   }
 

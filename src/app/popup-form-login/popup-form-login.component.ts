@@ -1,8 +1,8 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit, Optional} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../_services/auth.service";
 import {TokenStorageService} from "../_services/token-storage.service";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {PopupFormSingupComponent} from "../popup-form-singup/popup-form-singup.component";
 
 @Injectable({
@@ -26,7 +26,9 @@ export class PopupFormLoginComponent implements OnInit {
     private authService: AuthService,
     private tokenStorage: TokenStorageService,
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
+    @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
   ) {
 
   }
@@ -53,6 +55,12 @@ export class PopupFormLoginComponent implements OnInit {
     this.dialog.open(PopupFormSingupComponent)
    this.dialog.afterAllClosed
   }
+
+  openSingUpDialog(){
+    this.dialogPopupSingUp = this.dialog.open(PopupFormSingupComponent);
+    this.dialogPopupLogin.close()
+  }
+
 
   onSubmit() {
     const controls = this.reactiveForm.controls;

@@ -28,16 +28,20 @@
       </div>
 
 
-      <div  *ngIf="!isLoggedIn"><button (click)="openSingUpDialog()"  style="border: none" value="Login"
-                                        id="Sign up button">
-        Рєстрація
-      </button></div>
+      <div *ngIf="!isLoggedIn">
+        <button (click)="openSingUpDialog()" style="border: none" value="Login"
+                id="Sign up button">
+          Рєстрація
+        </button>
+      </div>
 
 
-      <div style="padding-left: 2%" *ngIf="!isLoggedIn"><button (click)="openLoginDialog()" style="border: none;"  value="Login"
-                                                                id="Sign in button">
-        Вхід
-      </button></div>
+      <div style="padding-left: 2%;padding-right: 2%" *ngIf="!isLoggedIn">
+        <button (click)="openLoginDialog()" style="border: none;" value="Login"
+                id="Sign in button">
+          Вхід
+        </button>
+      </div>
 
 
       <app-convertor></app-convertor>
@@ -89,11 +93,20 @@
                     <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
                   </li>
                   <li>
-                    <label  (click)="openSingUpMobile()" *ngIf="!isLoggedIn">Sign Up</label>
+                    <div *ngIf="!isLoggedIn">
+                      <button (click)="openSingUpDialog()" style="border: none" value="Login"
+                              id="Sign up mobile button">
+                        Рєстрація
+                      </button>
+                    </div>
+
                   </li>
-                  <li>
-                    <label  (click)="openLoginMobile()" *ngIf="!isLoggedIn">Login</label>
-                  </li>
+                  <div style="padding-left: 2%" *ngIf="!isLoggedIn">
+                    <button (click)="openLoginDialog()" style="border: none;" value="Login"
+                            id="Sign in mobile button">
+                      Вхід
+                    </button>
+                  </div>
                 </ul>
               </div>
             </div>
