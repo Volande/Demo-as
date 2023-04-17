@@ -12,7 +12,6 @@ import {Image} from "./entity/image";
 import {Categories} from "./entity/categories";
 
 
-
 interface GetResponse {
   _embedded: {
     clothes: Clothes[];
@@ -30,6 +29,7 @@ export class ClothesService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
   authenticated = false;
+  clothes: Clothes[];
 
   constructor(
     private http: HttpClient,
@@ -44,6 +44,28 @@ export class ClothesService {
       );
   }
 
+  putClothes() {
+    return this.clothes
+  }
+
+  findProductByCollection(collection: string) {
+
+
+    let collectionFind = {
+      collection: collection
+    }
+
+
+    return this.http.post<Clothes[]>(this.heroesUrl + "/products/filter",
+      JSON.stringify(collectionFind)).subscribe((response: Clothes[]) => {
+        this.clothes = response;
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
+
   updateClothe(
     id: number,
     title: string,
@@ -56,7 +78,6 @@ export class ClothesService {
     collection: string,
     productImages: Image[],
     images: File[],
-
   ) {
     // @ts-ignore
     let clothes = {
@@ -67,9 +88,9 @@ export class ClothesService {
       price: price,
       availability: availability,
       size: sizes,
-      categories: categories ,
-      collection: collection ,
-      image:productImages
+      categories: categories,
+      collection: collection,
+      image: productImages
 
     } as Clothes_dto
 
@@ -113,8 +134,8 @@ export class ClothesService {
       price: price,
       availability: availability,
       size: sizes,
-      categories: categories ,
-      collection: collection ,
+      categories: categories,
+      collection: collection,
 
     } as Clothes_dto
 
@@ -139,19 +160,19 @@ export class ClothesService {
 
   }
 
-  saveNewSize(sizes: string) : Observable<any> {
+  saveNewSize(sizes: string): Observable<any> {
     let params = new HttpParams();
     params = params.set('title', sizes);
     return this.http.post(this.heroesUrl + '/products/newSize', params);
   }
 
-  saveNewCategory(category: string) : Observable<any> {
+  saveNewCategory(category: string): Observable<any> {
     let params = new HttpParams();
     params = params.set('title', category);
     return this.http.post(this.heroesUrl + '/products/newCategory', params);
   }
 
-  saveNewCollection(collection: string) : Observable<any> {
+  saveNewCollection(collection: string): Observable<any> {
     let params = new HttpParams();
     params = params.set('title', collection);
     return this.http.post(this.heroesUrl + '/products/newCollection', params);
@@ -186,7 +207,7 @@ export class ClothesService {
   deleteClothe(clotheId: number) {
 
     return this.http.delete(
-      this.heroesUrl +'/products' + "/" + clotheId
+      this.heroesUrl + '/products' + "/" + clotheId
     ).pipe(
       tap(_ => this.log(`isTokenValid error`)),
       catchError((err) => {

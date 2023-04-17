@@ -107,7 +107,8 @@
 
       <mat-tab label="Змінити порядок фото чи видалити фото" *ngIf="this.data">
         <div cdkDropList (cdkDropListDropped)="onDrop($event)">
-          <div style="display: flex;align-items: flex-end;" class="box" *ngFor="let item of data.clothes.image, index as i" cdkDrag>
+          <div style="display: flex;align-items: flex-end;" class="box"
+               *ngFor="let item of data.clothes.image, index as i" cdkDrag>
             <p>{{i + 1}}</p>
 
             <img [src]="item.title" style="width: 100px;margin: 2%">

@@ -3,6 +3,7 @@ import {Clothes} from "../entity/clothes";
 import {ClothesService} from "../clothes.service";
 import { FilterPipeModule } from 'ngx-filter-pipe';
 import { FormsModule } from '@angular/forms';
+import {UserService} from "../_services/user.service";
 
 @Component({
   selector: 'app-clothes',
@@ -10,17 +11,22 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./clothes.component.css']
 })
 export class ClothesComponent implements OnInit {
-  wardrobe: Clothes[]=[];
+  wardrobe: Clothes[];
 
-  constructor(private heroService:ClothesService) { }
+  constructor(private clothesService:ClothesService,
+              private userService : UserService) { }
 
   ngOnInit(): void {
     this.getHeroes();
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes =>this.wardrobe = heroes.slice(0,5));/*определяет сколько фото на главной*/
+    if(this.wardrobe == null)  {
+      this.userService.getPublicContent()
+        .subscribe(clothes => this.wardrobe = clothes.slice(0, 9));/*определяет сколько фото на главной*/
+    }else {
+      this.wardrobe = this.clothesService.putClothes()
+    }
   }
 
 }

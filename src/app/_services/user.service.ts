@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Clothes} from "../entity/clothes";
-import {catchError, tap} from "rxjs/operators";
 import {Categories} from "../entity/categories";
 import {Collection} from "../entity/collection";
 import {Size} from "../entity/size";
@@ -32,8 +31,6 @@ export class UserService {
   }
 
 
-
-
   getHero(id: number): Observable<Clothes> {
     const url = API_URL + "products/clothes/" + id;
     return this.http.get<Clothes>(url);
@@ -42,16 +39,6 @@ export class UserService {
 
 
 
-  getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
-  }
 
-  getModeratorBoard(): Observable<any> {
-    return this.http.get(API_URL + 'mod', { responseType: 'text' });
-  }
-
-  getAdminBoard(): Observable<any> {
-    return this.http.get(API_URL + 'admin', { responseType: 'text' });
-  }
 }
 

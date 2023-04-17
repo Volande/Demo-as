@@ -14,9 +14,10 @@ a {
   transition: .3s linear;
 }
 
-li a {
+li button {
   color: #222;
   padding: 3% 5%;
+  border: none;
 }
 
 .topmenu > div {

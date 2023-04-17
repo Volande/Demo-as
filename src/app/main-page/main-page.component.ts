@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Clothes} from "../entity/clothes";
 import {ClothesService} from "../clothes.service";
 import {UserService} from "../_services/user.service";
+import {CollectionMenuComponent} from "../collection-menu/collection-menu.component";
 
 @Component({
   selector: 'app-main-page',
@@ -18,7 +19,12 @@ export class MainPageComponent implements OnInit {
   }
 
   getPublicContent(): void {
-    this.userService.getPublicContent()
-      .subscribe(clothes =>this.wardrobe = clothes.slice(0,9)) ;/*определяет сколько фото на главной*/
+
+
+      this.userService.getPublicContent()
+        .subscribe(clothes => this.wardrobe = clothes.slice(0, 9));/*определяет сколько фото на главной*/
+
+
+
   }
 }
