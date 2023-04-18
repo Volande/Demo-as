@@ -8,7 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // <-- NgModel 
 import {MessagesComponent} from './messages/messages.component';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {CarouselMainComponent} from './carousel-main/carousel-main.component';
-import {ClothesComponent} from './clothes/clothes.component';
+import {MarketComponent} from './market/market.component';
 import {AboutComponent} from './about/about.component';
 
 import {BasketComponent} from './basket/basket.component';
@@ -31,7 +31,7 @@ import {authInterceptorProviders} from './_helpers/auth.interceptor';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ImageSliderModule} from "./image-slider/image-slider.module";
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
-import {MatDialogModule, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -45,6 +45,7 @@ import {MatTableModule} from "@angular/material/table";
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { DndListModule } from 'ngx-drag-and-drop-lists';
+import {MatSidenavModule} from "@angular/material/sidenav";
 
 
 
@@ -67,7 +68,7 @@ export class XhrInterceptor implements HttpInterceptor {
     AppComponent,
     MessagesComponent,
     CarouselMainComponent,
-    ClothesComponent,
+    MarketComponent,
     AboutComponent,
     BasketComponent,
     BasketMobileComponent,
@@ -86,35 +87,35 @@ export class XhrInterceptor implements HttpInterceptor {
 
 
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatIconModule,
-        NgbModule,
-        NgbPaginationModule,
-        NgbAlertModule,
-        ImageSliderModule,
-        MatDialogModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatTabsModule,
-        MatTableModule,
-        MaterialFileInputModule,
-        DragDropModule,
-        DndListModule,
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatIconModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
+    ImageSliderModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatTableModule,
+    MaterialFileInputModule,
+    DragDropModule,
+    DndListModule,
+    MatSidenavModule,
 
 
-
-    ],
+  ],
   providers: [ClothesService, {
     multi: true,
-    provide: [HTTP_INTERCEPTORS ,MatDialogRef],
+    provide: [HTTP_INTERCEPTORS ,MatDialogRef,{provide: MAT_DIALOG_DATA, useValue: {}}],
     useValue: {},
     useClass: XhrInterceptor
   }, authInterceptorProviders,],

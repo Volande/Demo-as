@@ -48,22 +48,27 @@ export class ClothesService {
     return this.clothes
   }
 
-  findProductByCollection(collection: string) {
+  findProduct(
+    availability: boolean,
+    priceMin: number,
+    priceMax:number,
+    sizes: string[],
+    collection: string,
+    categories: string[]) {
 
 
     let collectionFind = {
-      collection: collection
+      availability: availability,
+      minPrice: priceMin,
+      maxPrice:priceMax,
+      sizes: sizes,
+      collection: collection,
+      categories: categories
     }
 
 
     return this.http.post<Clothes[]>(this.heroesUrl + "/products/filter",
-      JSON.stringify(collectionFind)).subscribe((response: Clothes[]) => {
-        this.clothes = response;
-      },
-      (error) => {
-        console.log(error);
-      }
-    )
+      JSON.stringify(collectionFind))
   }
 
   updateClothe(

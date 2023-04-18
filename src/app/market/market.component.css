@@ -152,3 +152,29 @@ a {
     flex-wrap: wrap;
   }
 }
+
+
+
+element.style {
+  padding-top: 10%;
+}
+
+ .mat-drawer-container {
+   position: relative;
+   z-index: 1;
+   box-sizing: border-box;
+   -webkit-overflow-scrolling: touch;
+   display: block;
+   overflow: hidden;
+ }
+.mat-drawer-container{
+  background-color: white !important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline{
+  background-color: white;
+}
+
+.mat-form-field-ripple{
+  background-color: white;
+}

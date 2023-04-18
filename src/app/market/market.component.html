@@ -1,0 +1,107 @@
+<mat-sidenav-container class="example-container" style="padding-top: 10%;">
+  <mat-sidenav #sidenav [mode]=" 'side'" style="padding-top: 10%;width: 30%; ">
+    <p>
+      <button mat-button (click)="sidenav.toggle()"> Назад</button>
+    </p>
+    <mat-dialog-content class="mat-typography">
+    <form [formGroup]="reactiveForm">
+
+
+
+
+          <mat-form-field class="input-short"  style="margin-right: 50px">
+            <mat-label>Наявність</mat-label>
+            <mat-select id="availability" formControlName="availability">
+              <mat-option id="No availability selected">None</mat-option>
+              <mat-option *ngFor="let choice of availability" [value]="choice"
+                          id="availability mat option">{{choice}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="input-short"  style="margin-right: 50px" id="price min mat form field">
+            <mat-label>Мінімальна ціна</mat-label>
+            <input matInput type="text" id="price min input" formControlName="priceMin">
+
+          </mat-form-field>
+      <mat-form-field class="input-short"  style="margin-right: 50px" id="price max mat form field">
+        <mat-label>Максимальна ціна</mat-label>
+        <input matInput type="text" id="price max input" formControlName="priceMax">
+
+      </mat-form-field>
+
+
+          <mat-form-field class="input-short"  style="margin-right: 50px">
+            <mat-label>Розмір</mat-label>
+            <mat-select id="sizes" formControlName="sizes" multiple [value]="sizes">
+
+              <mat-option *ngFor="let choice of sizes" [value]="choice"
+              >{{choice}}</mat-option>
+
+            </mat-select>
+
+          </mat-form-field>
+
+
+
+
+
+          <mat-form-field class="input-short"  style="margin-right: 50px">
+            <mat-label>Категорія</mat-label>
+
+            <mat-select id="categories" formControlName="categories" multiple [value]="categories">
+
+              <mat-option *ngFor="let choice of categories" [value]="choice"
+              >{{choice}}</mat-option>
+
+            </mat-select>
+
+
+          </mat-form-field>
+
+
+          <mat-form-field class="input-short"  style="margin-right: 50px">
+            <mat-label>Коллекція</mat-label>
+
+            <mat-select id="collection" formControlName="collection">
+              <mat-option id="No collection selected">None</mat-option>
+              <mat-option *ngFor="let choice of collection" [value]="choice"
+                          id="collection mat option">{{choice}}</mat-option>
+
+            </mat-select>
+
+
+          </mat-form-field>
+
+
+
+
+        <mat-dialog-actions>
+
+          <button mat-button class="mat-raised-button mat-primary" (click)="onSubmit()" id="Submit button">Відобразити</button>
+        </mat-dialog-actions>
+
+    </form>
+    </mat-dialog-content>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <p>
+      <button mat-button (click)="sidenav.toggle()">Фільтр</button>
+    </p>
+    <div class="clothes-page">
+
+      <div class=ImgField>
+        <a *ngFor="let clothes of wardrobe"
+           routerLink="/detail/{{clothes.id}}">
+          <div>
+            <img class="image first" src="{{clothes.image[0].title}}" alt="photo">
+            <img class="image second" src="{{clothes.image[1].title}}" alt="photo">
+          </div>
+          {{clothes.title}}
+          <br>
+          {{clothes.price}}
+        </a>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
