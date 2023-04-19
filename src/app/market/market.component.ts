@@ -17,26 +17,27 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 export class MarketComponent implements OnInit {
   wardrobe: Clothes[];
   categories: string[] = [];
-  availability: string[] = ["true", "false"]
+  availability: boolean[] = [true, false];
   collection: string[] = [];
   sizes: string[] = [];
+  searchByCollection: string;
 
 
   reactiveForm: FormGroup;
 
 
-  constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes  },
+  constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes },
               private clothesService: ClothesService,
               private userService: UserService,
               private formBuilder: FormBuilder,
   ) {
     this.reactiveForm = this.formBuilder.group({
 
-      availability: [[]],
+      availability: [''],
       priceMin: [''],
-      priceMax:[''],
+      priceMax: [''],
       sizes: [[]],
-      collection: [[]],
+      collectionFilter: [[]],
       categories: [[]],
 
 
@@ -44,11 +45,13 @@ export class MarketComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.getPublicContent();
     this.getCollection();
     this.getCategories();
-    this.getSizes()
+    this.getSizes();
+    this.initForm()
   }
+
   getCollection(): void {
     this.userService.getCollection()
       .subscribe(collection => {
@@ -77,24 +80,45 @@ export class MarketComponent implements OnInit {
   }
 
 
+  getPublicContent(): void {
 
-  getHeroes(): void {
-    if (this.wardrobe == null) {
-      this.userService.getPublicContent()
-        .subscribe(clothes => this.wardrobe = clothes);/*определяет сколько фото на главной*/
-    } else {
-      this.wardrobe = this.clothesService.putClothes()
+    this.userService.getPublicContent()
+      .subscribe(clothes => this.wardrobe = clothes);/*определяет сколько фото на главной*/
+
+  }
+
+  initForm(): void {
+
+
+    const s1 = window.sessionStorage.getItem("collection");
+    if (s1 != null) {
+      this.searchByCollection = s1;
+    }
+
+    this.reactiveForm.patchValue({
+
+      collectionFilter: this.searchByCollection
+    });
+
+
+  }
+
+  searchProduct(s: string) {
+    const s1 = window.sessionStorage.getItem("collection");
+    if (s1 != null) {
+      this.searchByCollection = s1;
     }
   }
 
   onSubmit() {
+
 
     this.clothesService.findProduct(
       this.reactiveForm.value.availability,
       this.reactiveForm.value.priceMin,
       this.reactiveForm.value.priceMax,
       this.reactiveForm.value.sizes,
-      this.reactiveForm.value.collection,
+      this.reactiveForm.value.collectionFilter,
       this.reactiveForm.value.categories,
     ).subscribe((response: Clothes[]) => {
         this.wardrobe = response;

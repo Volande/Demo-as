@@ -4,7 +4,7 @@
     <form >
       <ul class="submenu">
         <li *ngFor="let choice of collection " [value]="choice">
-          <button  type="button" (click)="null">
+          <button  type="button" (click)="searchProduct(choice.title)">
            {{choice.title}}
           </button>
         </li>

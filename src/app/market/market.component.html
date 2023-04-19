@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container" style="padding-top: 10%;">
-  <mat-sidenav #sidenav [mode]=" 'side'" style="padding-top: 10%;width: 30%; ">
+  <mat-sidenav #sidenav [mode]=" 'side'" style="padding-top: 10%;width: 20%; ">
     <p>
       <button mat-button (click)="sidenav.toggle()"> Назад</button>
     </p>
@@ -62,9 +62,9 @@
           <mat-form-field class="input-short"  style="margin-right: 50px">
             <mat-label>Коллекція</mat-label>
 
-            <mat-select id="collection" formControlName="collection">
+            <mat-select id="collection" formControlName="collectionFilter" multiple [value]="collection">
               <mat-option id="No collection selected">None</mat-option>
-              <mat-option *ngFor="let choice of collection" [value]="choice"
+              <mat-option *ngFor="let choice of collection"  [value]="choice"
                           id="collection mat option">{{choice}}</mat-option>
 
             </mat-select>

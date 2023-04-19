@@ -12,12 +12,7 @@ import {Image} from "./entity/image";
 import {Categories} from "./entity/categories";
 
 
-interface GetResponse {
-  _embedded: {
-    clothes: Clothes[];
-    _links: { self: { href: string } };
-  };
-}
+
 
 @Injectable({providedIn: 'root'})
 export class ClothesService {
@@ -37,23 +32,21 @@ export class ClothesService {
   }
 
 
-  getHeroes(): Observable<Clothes[]> {
+  getClothe(): Observable<Clothes[]> {
     return this.http.get<Clothes[]>(`${this.heroesUrl}/products/findAll`)
       .pipe(
         catchError(this.handleError<Clothes[]>('getClothes', []))
       );
   }
 
-  putClothes() {
-    return this.clothes
-  }
+
 
   findProduct(
     availability: boolean,
     priceMin: number,
     priceMax:number,
-    sizes: string[],
-    collection: string,
+    size: string[],
+    collection: string[],
     categories: string[]) {
 
 
@@ -61,7 +54,7 @@ export class ClothesService {
       availability: availability,
       minPrice: priceMin,
       maxPrice:priceMax,
-      sizes: sizes,
+      size: size,
       collection: collection,
       categories: categories
     }

@@ -7,6 +7,7 @@ import {Clothes} from "../entity/clothes";
 import {Observable} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {ClothesPageComponent} from "../clothes-page/clothes-page.component";
+import {MarketComponent} from "../market/market.component";
 
 @Component({
   selector: 'app-collection-menu',
@@ -21,7 +22,8 @@ export class CollectionMenuComponent implements OnInit {
   constructor(private userService: UserService,
               public clothesService: ClothesService,
               private formBuilder: FormBuilder,
-              public dialog: MatDialog,) {
+              public dialog: MatDialog,
+              private market: MarketComponent) {
   }
 
 
@@ -34,9 +36,13 @@ export class CollectionMenuComponent implements OnInit {
       .subscribe(collection => this.collection = collection);
   }
 
+  replacePage(): void {
+    window.location.replace("/shop/market");
+  }
+  searchProduct(s: string) {
+    window.sessionStorage.setItem("collection",s);
+    this.replacePage();
 
 
-
-
-
+  }
 }
