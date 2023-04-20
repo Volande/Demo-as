@@ -78,7 +78,6 @@ export class PopupFormSingupComponent implements OnInit {
             this.isLoggedIn = true;
             this.role = this.tokenStorage.getUser()?.role;
             this.reloadPage();
-            this.replacePage();
           }, error: error => {
             this.errorMessage = "Incorrect login or password";
           }

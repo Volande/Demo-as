@@ -12,10 +12,12 @@ import {CollectionMenuComponent} from "../collection-menu/collection-menu.compon
 export class MainPageComponent implements OnInit {
   wardrobe : Clothes[] = [];
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService,
+              private clothesService:ClothesService) { }
 
   ngOnInit(): void {
     this.getPublicContent();
+    this.clothesService.removeCriterionsFilter();
   }
 
   getPublicContent(): void {

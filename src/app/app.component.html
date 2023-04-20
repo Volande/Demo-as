@@ -1,4 +1,5 @@
 <body xmlns="http://www.w3.org/1999/html">
+
 <header class="container">
   <div class="menuh">
     <div class="menu1">
@@ -52,79 +53,11 @@
   </div>
 
   <div class="mobile-header">
-    <div>
-      <input id="menu__toggle" type="checkbox"/>
-      <label class="menu__btn" for="menu__toggle">
-        <span></span>
-      </label>
-      <ul class="nav-menu">
 
-        <div class="menu1">
-          <li><a routerLink="/clothes" class="menu__item">Магазин</a></li>
-          <li>
-            <app-collection-menu></app-collection-menu>
-          </li>
+    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+    </button>
 
-          <li><a routerLink="/about" class="menu__item">Про нас</a></li>
-        </div>
-
-
-        <div class="menu3">
-
-          <li>
-            <app-clothes-search class="menu__item"></app-clothes-search>
-          </li>
-          <li>
-            <app-convertor class="menu__item"></app-convertor>
-          </li>
-
-          <li>
-            <div class="auth-mobile">
-              <div>
-                <button class="down"><img src="https://shklar-images.s3.eu-central-1.amazonaws.com/auth-icon.png">
-                </button>
-                <div class="menusub-mobile"></div>
-                <ul class="submenu-mobile" routerLinkActive="active">
-                  <li class="nav-item" *ngIf="showAdminBoard">
-                    <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-                  </li>
-
-                  <li>
-                    <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
-                  </li>
-                  <li>
-                    <div *ngIf="!isLoggedIn">
-                      <button (click)="openSingUpDialog()" style="border: none" value="Login"
-                              id="Sign up mobile button">
-                        Рєстрація
-                      </button>
-                    </div>
-
-                  </li>
-                  <div style="padding-left: 2%" *ngIf="!isLoggedIn">
-                    <button (click)="openLoginDialog()" style="border: none;" value="Login"
-                            id="Sign in mobile button">
-                      Вхід
-                    </button>
-                  </div>
-                </ul>
-              </div>
-            </div>
-          </li>
-        </div>
-        <br class="br">
-        <div class="downf">
-          <li><a class="footerpage1" href="https://www.instagram.com/alexandrashklyar_store/?igshid=YmMyMTA2M2Y%3D">Instagram</a>
-          </li>
-          <li><a class="footerpage1" href="https://www.instagram.com/">Обране</a></li>
-          <li><a class="footerpage1" href="https://www.instagram.com/">Контакти</a></li>
-          <br class="br">
-          <li>
-            <div class="footerpage1">© 2022</div>
-          </li>
-        </div>
-      </ul>
-    </div>
     <div class="head"><a routerLink="/main-page"><img src="./assets/logo.svg" width="210" height="30"
                                                       alt="image description" class="logo2"></a>
     </div>
@@ -135,16 +68,104 @@
       <app-basket-mobile></app-basket-mobile>
     </div>
   </div>
-</header>
-<div class="contat">
 
-  <router-outlet></router-outlet>
-  <button mat-button class="fabAddClothesStyle" (click)="openDialog()" *ngIf="showAdminBoard">Add clothes</button>
+
+</header>
+
+
+
+
+
+
+  <mat-sidenav-container fxFlexFill style="z-index: 9999">
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+        <ul >
+
+          <div class="menu1">
+            <li><a routerLink="/market" class="menu__item">Магазин</a></li>
+            <li>
+              <app-collection-menu></app-collection-menu>
+            </li>
+
+            <li><a routerLink="/about" class="menu__item">Про нас</a></li>
+          </div>
+
+
+          <div class="menu3">
+
+            <li>
+              <app-clothes-search class="menu__item"></app-clothes-search>
+            </li>
+            <li>
+              <app-convertor class="menu__item"></app-convertor>
+            </li>
+
+            <li>
+              <div class="auth-mobile">
+                <div>
+                  <button class="down"><img src="https://shklar-images.s3.eu-central-1.amazonaws.com/auth-icon.png">
+                  </button>
+                  <div class="menusub-mobile"></div>
+                  <ul class="submenu-mobile" routerLinkActive="active">
+                    <li class="nav-item" *ngIf="showAdminBoard">
+                      <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+                    </li>
+
+                    <li>
+                      <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
+                    </li>
+                    <li>
+                      <div *ngIf="!isLoggedIn">
+                        <button (click)="openSingUpDialog()" style="border: none" value="Login"
+                                id="Sign up mobile button">
+                          Рєстрація
+                        </button>
+                      </div>
+
+                    </li>
+                    <div style="padding-left: 2%" *ngIf="!isLoggedIn">
+                      <button (click)="openLoginDialog()" style="border: none;" value="Login"
+                              id="Sign in mobile button">
+                        Вхід
+                      </button>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </div>
+          <br class="br">
+          <div class="downf">
+            <li><a class="footerpage1" href="https://www.instagram.com/alexandrashklyar_store/?igshid=YmMyMTA2M2Y%3D">Instagram</a>
+            </li>
+            <li><a class="footerpage1" href="https://www.instagram.com/">Обране</a></li>
+            <li><a class="footerpage1" href="https://www.instagram.com/">Контакти</a></li>
+            <br class="br">
+            <li>
+              <div class="footerpage1">© 2022</div>
+            </li>
+          </div>
+        </ul>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>
+      <div class="contat">
+      <router-outlet></router-outlet>
+
+      <button mat-button class="fabAddClothesStyle" (click)="openDialog()" *ngIf="showAdminBoard">Add clothes</button>
+
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+
 
   <app-messages></app-messages>
 
 
-</div>
 
 
 </body>

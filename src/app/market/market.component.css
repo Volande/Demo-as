@@ -19,13 +19,13 @@
 
 
 .menu-clothes {
-  padding:5% 0;
+  padding: 5% 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
-.menu-clothes a{
+.menu-clothes a {
   color: #000000;
   font-weight: 300;
   font-family: 'FuturaPT';
@@ -60,7 +60,7 @@
   opacity: 0.00;
 }
 
-div.clothes-page  {
+div.clothes-page {
   display: inline-flex;
   background-position: center center;
   background-repeat: no-repeat;
@@ -97,39 +97,53 @@ a {
   flex: 0 1 auto;
 }
 
-.clothes-page  a img {
+.clothes-page a img {
   height: 500px;
   width: 100%;
   max-width: 380px;
   object-fit: cover;
 }
+
+.mat-sidenaw {
+  width: 30%;
+  padding-top: 10%;
+}
+
+
 @media screen and (max-width: 1024px) {
   .menu-clothes {
-   padding-top: 8%;
+    padding-top: 8%;
   }
-  a{
+
+  a {
     width: 100%;
     max-width: 300px;
     height: 500px;
   }
-  .clothes-page  a img {
+
+  .clothes-page a img {
     height: 400px;
     width: 100%;
     max-width: 280px;
   }
+
+  .example-container {
+    padding-top: 20%;
   }
+}
 
 @media screen and (max-width: 800px) {
-  .menu-clothes{
+  .menu-clothes {
     padding-top: 0;
   }
-  .clothes-page  {
+
+  .clothes-page {
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 0;
   }
 
-  .clothes-page  a img {
+  .clothes-page a img {
     object-fit: cover;
   }
 
@@ -142,6 +156,13 @@ a {
     justify-content: space-around;
     flex-wrap: wrap;
   }
+  .mat-sidenaw {
+    width: 40%;
+    padding-top: 10%;
+  }
+  form{
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 425px) {
@@ -151,30 +172,33 @@ a {
     justify-content: space-around;
     flex-wrap: wrap;
   }
-}
 
+  .mat-sidenaw {
+    width: 50%;
+    padding-top: 10%;
+  }
+}
 
 
 element.style {
   padding-top: 10%;
 }
 
- .mat-drawer-container {
-   position: relative;
-   z-index: 1;
-   box-sizing: border-box;
-   -webkit-overflow-scrolling: touch;
-   display: block;
-   overflow: hidden;
- }
-.mat-drawer-container{
+.mat-drawer-container {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  display: block;
+  overflow: hidden;
+}
+
+.mat-drawer-container {
   background-color: white !important;
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-underline{
+.mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: white;
 }
 
-.mat-form-field-ripple{
-  background-color: white;
-}
+

@@ -39,6 +39,10 @@ export class ClothesService {
       );
   }
 
+  removeCriterionsFilter(){
+    localStorage.removeItem("criterionsFilter");
+  }
+
 
 
   findProduct(

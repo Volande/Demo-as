@@ -118,7 +118,6 @@ button {
 }
 
 
-
 .contant {
   display: table-row;
 }
@@ -326,7 +325,6 @@ app-basket-mobile {
   }
 
 
-
   #menu__toggle:checked ~ .menu__btn > span {
     transform: rotate(45deg);
 
@@ -335,7 +333,7 @@ app-basket-mobile {
   #menu__toggle:checked ~ .menu__btn > span::before {
     top: 0;
     transform: rotate(0);
-    margin-bottom:0;
+    margin-bottom: 0;
 
   }
 
@@ -351,7 +349,7 @@ app-basket-mobile {
   }
 
 
-  .down img{
+  .down img {
     width: 80%;
     height: 80%;
   }
@@ -367,47 +365,51 @@ app-basket-mobile {
     align-content: center;
   }
 
-  .down img{
+  .down img {
     width: 60%;
     height: 60%;
   }
 }
 
 
-ul li::marker{
+ul li::marker {
   color: white;
 }
 
 
 /*блок який відповідає за authentication на смартфоні*/
-.down{
+.down {
   border: none;
 }
+
 .auth-mobile {
   display: flex;
 }
-.submenu-mobile{
+
+.submenu-mobile {
   visibility: hidden;
   opacity: 0;
   position: absolute;
   list-style: none;
   padding-bottom: 10px;
 }
-.auth-mobile> div:hover .submenu-mobile{
+
+.auth-mobile > div:hover .submenu-mobile {
   visibility: visible;
   opacity: 1;
   position: relative;
   transition-duration: 0.3s;
 }
 
-.menusub-mobile{
+.menusub-mobile {
   display: inline-block;
   vertical-align: middle;
   position: relative;
   width: 6px;
 
 }
-.menusub-mobile:after{
+
+.menusub-mobile:after {
   content: "";
   border-style: solid;
   border-width: 4px 3px 0 3px;
@@ -419,6 +421,7 @@ ul li::marker{
   border-color: transparent transparent transparent transparent;
   border-top-color: inherit;
 }
+
 .submenu-mobile:after {
   content: '';
   position: absolute;
@@ -447,4 +450,8 @@ ul li::marker{
   z-index: 1000;
 }
 
-
+@media screen and (max-width: 800px) {
+  .contat {
+    padding-top: 10%;
+  }
+}

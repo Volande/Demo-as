@@ -46,6 +46,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {DragDropModule} from "@angular/cdk/drag-drop";
 import { DndListModule } from 'ngx-drag-and-drop-lists';
 import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatListModule} from "@angular/material/list";
 
 
 
@@ -87,32 +88,33 @@ export class XhrInterceptor implements HttpInterceptor {
 
 
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatIconModule,
-    NgbModule,
-    NgbPaginationModule,
-    NgbAlertModule,
-    ImageSliderModule,
-    MatDialogModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatTabsModule,
-    MatTableModule,
-    MaterialFileInputModule,
-    DragDropModule,
-    DndListModule,
-    MatSidenavModule,
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatIconModule,
+        NgbModule,
+        NgbPaginationModule,
+        NgbAlertModule,
+        ImageSliderModule,
+        MatDialogModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTabsModule,
+        MatTableModule,
+        MaterialFileInputModule,
+        DragDropModule,
+        DndListModule,
+        MatSidenavModule,
+        MatListModule,
 
 
-  ],
+    ],
   providers: [ClothesService, {
     multi: true,
     provide: [HTTP_INTERCEPTORS ,MatDialogRef,{provide: MAT_DIALOG_DATA, useValue: {}}],

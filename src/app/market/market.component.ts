@@ -5,6 +5,7 @@ import {FilterPipeModule} from 'ngx-filter-pipe';
 import {FormBuilder, FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
 import {UserService} from "../_services/user.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class MarketComponent implements OnInit {
   sizes: string[] = [];
   searchByCollection: string;
 
-
+  collectionFilter: string[] = [];
   reactiveForm: FormGroup;
 
 
@@ -30,6 +31,7 @@ export class MarketComponent implements OnInit {
               private clothesService: ClothesService,
               private userService: UserService,
               private formBuilder: FormBuilder,
+
   ) {
     this.reactiveForm = this.formBuilder.group({
 
@@ -49,7 +51,10 @@ export class MarketComponent implements OnInit {
     this.getCollection();
     this.getCategories();
     this.getSizes();
-    this.initForm()
+    this.initForm();
+    this.initFormByCollection();
+    this.searchProductByCollection();
+    this.onSubmit();
   }
 
   getCollection(): void {
@@ -59,6 +64,7 @@ export class MarketComponent implements OnInit {
           this.collection.push(element.title)
         })
       });
+
   }
 
   getCategories(): void {
@@ -87,31 +93,78 @@ export class MarketComponent implements OnInit {
 
   }
 
-  initForm(): void {
+
+  initForm() {
+
+    if ( localStorage.getItem('criterionsFilter')) {
+      let criterionsFilter: any = JSON.parse(localStorage.getItem('criterionsFilter') || '{}');
+      if (criterionsFilter != '{}') {
+
+        this.reactiveForm.patchValue({
+          availability: criterionsFilter.availability,
+          priceMin: criterionsFilter.priceMin,
+          priceMax: criterionsFilter.priceMax,
+          sizes: criterionsFilter.sizes,
+          collectionFilter: criterionsFilter.collectionFilter,
+          categories: criterionsFilter.categories
+        });
+
+      }
+    }
+  }
+
+  initFormByCollection(): void {
 
 
     const s1 = window.sessionStorage.getItem("collection");
+
     if (s1 != null) {
       this.searchByCollection = s1;
+
+      this.reactiveForm.patchValue({
+        collectionFilter: s1.split(",")
+      });
+
+      window.sessionStorage.removeItem("collection")
     }
 
-    this.reactiveForm.patchValue({
-
-      collectionFilter: this.searchByCollection
-    });
 
 
   }
 
-  searchProduct(s: string) {
-    const s1 = window.sessionStorage.getItem("collection");
-    if (s1 != null) {
-      this.searchByCollection = s1;
+
+  searchProductByCollection() {
+    if (this.searchByCollection != undefined) {
+      this.clothesService.findProduct(
+        this.reactiveForm.value.availability,
+        this.reactiveForm.value.priceMin,
+        this.reactiveForm.value.priceMax,
+        this.reactiveForm.value.sizes,
+        this.reactiveForm.value.collectionFilter,
+        this.reactiveForm.value.categories,
+      ).subscribe((response: Clothes[]) => {
+          this.wardrobe = response;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
     }
+  }
+
+  saveCriterionsFilter() {
+    let criterionsFilter: any = JSON.stringify({
+      availability: this.reactiveForm.value.availability,
+      priceMin: this.reactiveForm.value.priceMin,
+      priceMax: this.reactiveForm.value.priceMax,
+      sizes: this.reactiveForm.value.sizes,
+      categories: this.reactiveForm.value.categories,
+      collectionFilter: this.reactiveForm.value.collectionFilter,
+    });
+    localStorage.setItem('criterionsFilter', criterionsFilter);
   }
 
   onSubmit() {
-
 
     this.clothesService.findProduct(
       this.reactiveForm.value.availability,
@@ -127,6 +180,8 @@ export class MarketComponent implements OnInit {
         console.log(error);
       }
     )
+    this.saveCriterionsFilter();
+
   }
 
 }

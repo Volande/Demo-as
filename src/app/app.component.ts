@@ -24,6 +24,7 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  public isMenuOpen: boolean = false;
 
   constructor(private tokenStorageService: TokenStorageService,
               public dialog: MatDialog,
@@ -80,6 +81,8 @@ export class AppComponent {
     });
 
   }
-
+  public onSidenavClick(): void {
+    this.isMenuOpen = false;
+  }
 
 }

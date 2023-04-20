@@ -39,8 +39,11 @@ export class CollectionMenuComponent implements OnInit {
   replacePage(): void {
     window.location.replace("/shop/market");
   }
+
   searchProduct(s: string) {
+
     window.sessionStorage.setItem("collection",s);
+
     this.replacePage();
 
 
