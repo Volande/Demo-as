@@ -33,7 +33,7 @@ a:hover, a:link {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 9;
   background-color: white;
   width: 100%;
   justify-content: space-around;
@@ -151,6 +151,21 @@ app-basket-mobile {
   display: none;
 }
 
+mat-sidenav {
+  padding-top: 10% !important;
+  position: fixed !important;
+  width: 20%;
+}
+
+.mat-drawer-inner-container.ng-tns-c101-0 {
+  overflow: hidden !important;
+}
+
+.mat-list-base {
+  height: 100% !important;
+  padding-top: 0 !important;
+}
+
 @media screen and (max-width: 800px) {
 
 
@@ -236,7 +251,6 @@ app-basket-mobile {
     flex-grow: 1;
     justify-content: flex-end;
     flex-direction: column;
-    padding-bottom: 90px;
   }
 
 
@@ -271,7 +285,6 @@ app-basket-mobile {
   .menu__item {
     transition-duration: .25s;
     padding-left: 20px;
-    padding-bottom: 5%;
 
   }
 
@@ -360,7 +373,32 @@ app-basket-mobile {
   display: flex;
 }
 
+@media screen and (max-width: 700px) {
+  mat-sidenav {
+    padding-top: 12% !important;
+    width: 25% !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  mat-sidenav {
+    padding-top: 14% !important;
+    width: 30% !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  mat-sidenav {
+    padding-top: 16% !important;
+    width: 35% !important;
+  }
+}
+
 @media screen and (max-width: 425px) {
+
+  mat-sidenav {
+    padding-top: 18% !important;
+    width: 40% !important;
+  }
   .padd {
     align-content: center;
   }
@@ -450,8 +488,20 @@ ul li::marker {
   z-index: 1000;
 }
 
-@media screen and (max-width: 800px) {
-  .contat {
-    padding-top: 10%;
-  }
+.contat {
+  padding: 0 2%;
+}
+
+
+
+.mat-drawer-content {
+  background-color: white;
+}
+
+.button-active:active .mobile-heade {
+  z-index: 6;
+}
+
+.mat-drawer{
+  overflow-y: unset !important;
 }

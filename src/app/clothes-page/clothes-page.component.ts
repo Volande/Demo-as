@@ -57,7 +57,7 @@ export class ClothesPageComponent implements OnInit {
 
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getHero(id)
+    this.userService.getClothe(id)
       .subscribe(clothes => this.clothes = clothes);
   }
 

@@ -31,7 +31,7 @@ export class UserService {
   }
 
 
-  getHero(id: number): Observable<Clothes> {
+  getClothe(id: number): Observable<Clothes> {
     const url = API_URL + "products/clothes/" + id;
     return this.http.get<Clothes>(url);
   }

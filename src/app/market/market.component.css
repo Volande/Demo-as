@@ -105,8 +105,10 @@ a {
 }
 
 .mat-sidenaw {
-  width: 30%;
+  width: 25%;
   padding-top: 10%;
+  margin-left: -2% !important;
+  padding-left: 2% !important;
 }
 
 
@@ -130,6 +132,8 @@ a {
   .example-container {
     padding-top: 20%;
   }
+  .mat-sidenaw {
+    width: 30%;}
 }
 
 @media screen and (max-width: 800px) {
@@ -176,6 +180,7 @@ a {
   .mat-sidenaw {
     width: 50%;
     padding-top: 10%;
+
   }
 }
 

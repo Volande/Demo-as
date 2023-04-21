@@ -27,7 +27,7 @@ export class ImageSliderComponent implements OnInit, OnDestroy {
   timeoutId?: number;
   getImage():void{
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getHero(id)
+    this.userService.getClothe(id)
       .subscribe(clothes => this.image = clothes.image);
   }
 
