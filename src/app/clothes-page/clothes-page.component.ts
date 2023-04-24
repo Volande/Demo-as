@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Clothes} from "../entity/clothes";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ClothesService} from "../clothes.service";
@@ -10,6 +10,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {Overlay} from "@angular/cdk/overlay";
 import {AddProductComponent} from "../add-product/add-product.component";
 import {ConfirmationDeleteProductComponent} from "../confirmation-delete-product/confirmation-delete-product.component";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 
 @Component({
@@ -18,8 +19,10 @@ import {ConfirmationDeleteProductComponent} from "../confirmation-delete-product
   styleUrls: ['./clothes-page.component.css']
 })
 export class ClothesPageComponent implements OnInit {
-  clothes: Clothes | undefined;
+  clothes: Clothes ;
   image: Image [] = [];
+
+  availabilityClothe: string;
 
   isLoggedIn = false;
   showAdminBoard = false;
@@ -28,14 +31,22 @@ export class ClothesPageComponent implements OnInit {
 
   private role: string = "UnAuthorized";
 
+  reactiveForm: FormGroup;
+
+  fontStyleControl = new FormControl('');
+  fontStyle?: string;
+  size:string;
+
   constructor(
     private tokenStorageService: TokenStorageService,
     private route: ActivatedRoute,
     private location: Location,
     private userService: UserService,
+    private clothesService: ClothesService,
     public dialog: MatDialog,
     public overlay: Overlay,
     private router: Router,
+    private formBuilder: FormBuilder,
   ) {
     const user = this.tokenStorageService.getUser();
     this.isLoggedIn = (user != null);
@@ -47,15 +58,34 @@ export class ClothesPageComponent implements OnInit {
       this.username = user.username;
 
     }
+
+
+    this.reactiveForm = this.formBuilder.group({
+
+      size: [''],
+
+
+    })
   }
 
 
+
+  addProductToCart(product: Clothes) {
+    if(this.fontStyleControl.value){
+      this.size = this.fontStyleControl.value
+    }
+    this.clothesService.event.emit(product)
+    this.clothesService.eventSize.emit(this.size)
+  }
   ngOnInit(): void {
-    this.getHero();
+    this.getClothe();
+
 
   }
 
-  getHero(): void {
+
+
+  getClothe(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.userService.getClothe(id)
       .subscribe(clothes => this.clothes = clothes);
@@ -65,15 +95,14 @@ export class ClothesPageComponent implements OnInit {
     const dialogRef = this.dialog.open(AddProductComponent, {
       data: {clothes: this.clothes},
       scrollStrategy: this.overlay.scrollStrategies.noop(),
-      width:'70%',
-      height:'72%'
+      width: '70%',
+      height: '72%'
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.getHero();
+      this.getClothe();
     });
   }
-
 
 
   deleteClothesBtn(clothes: Clothes): void {
@@ -83,8 +112,9 @@ export class ClothesPageComponent implements OnInit {
         scrollStrategy: this.overlay.scrollStrategies.noop(),
       });
 
-    dialogRef.afterClosed().subscribe(()=>this.router.navigateByUrl("", { skipLocationChange: true }))
+    dialogRef.afterClosed().subscribe(() => this.router.navigateByUrl("", {skipLocationChange: true}))
   }
+
 
 
 }

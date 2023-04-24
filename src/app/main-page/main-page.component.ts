@@ -10,7 +10,7 @@ import {CollectionMenuComponent} from "../collection-menu/collection-menu.compon
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  wardrobe : Clothes[] = [];
+  clothes : Clothes[] = [];
 
   constructor(private userService:UserService,
               private clothesService:ClothesService) { }
@@ -22,6 +22,6 @@ export class MainPageComponent implements OnInit {
 
   getPublicContent(): void {
       this.userService.getPublicContent()
-        .subscribe(clothes => this.wardrobe = clothes.slice(0, 9));/*определяет сколько фото на главной*/
+        .subscribe(clothes => this.clothes = clothes.slice(0, 9));/*определяет сколько фото на главной*/
   }
 }

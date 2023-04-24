@@ -11,5 +11,5 @@ export interface Clothes_dto {
   price: number;
   content: string;
   compound:string;
-  availability: boolean;
+  availability: string;
 }

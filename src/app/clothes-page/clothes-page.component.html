@@ -21,7 +21,7 @@
 <div *ngIf="clothes" class="padd" xmlns="">
 
   <div class="img-slider">
-<app-image-slider ></app-image-slider>
+    <app-image-slider></app-image-slider>
   </div>
 
   <div class="text">
@@ -31,14 +31,15 @@
     {{clothes.availability}}
     <br>
 
+    <section>
+      <mat-button-toggle-group  [formControl]="fontStyleControl" aria-label="Font Style"  >
+        <mat-button-toggle [value]="cloth" *ngFor="let cloth of clothes.size" >{{cloth.title}}</mat-button-toggle>
+      </mat-button-toggle-group>
 
-    <div class="choice">
-      <label *ngFor="let cloth of clothes.size"><input type="radio" name="r" checked><span>{{cloth.title}}</span></label>
-    </div>
+    </section>
+
     <div class="botton-buy">
-      <label>
-        <input type="radio" name="buy" checked><span>Купити</span>
-      </label>
+      <button mat-button class="mat-raised-button mat-primary" (click)="addProductToCart(clothes)" id="buyClothes button">Купити</button>
     </div>
     <br>
     {{clothes.content}}
@@ -71,4 +72,4 @@
 
 
 </div>
-<app-relevants ></app-relevants>
+<app-relevants></app-relevants>

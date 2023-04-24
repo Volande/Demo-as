@@ -47,6 +47,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
 import { DndListModule } from 'ngx-drag-and-drop-lists';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 
@@ -112,6 +113,7 @@ export class XhrInterceptor implements HttpInterceptor {
         DndListModule,
         MatSidenavModule,
         MatListModule,
+        MatButtonToggleModule,
 
 
     ],

@@ -6,6 +6,7 @@ import {AddProductComponent} from "./add-product/add-product.component";
 
 import {PopupFormLoginComponent} from "./popup-form-login/popup-form-login.component";
 import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.component";
+import {Clothes} from "./entity/clothes";
 
 
 @Component({
@@ -25,6 +26,8 @@ export class AppComponent {
   showModeratorBoard = false;
   username?: string;
   public isMenuOpen: boolean = false;
+
+  cartProductList : Clothes [];
 
   constructor(private tokenStorageService: TokenStorageService,
               public dialog: MatDialog,

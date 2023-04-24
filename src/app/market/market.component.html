@@ -84,15 +84,15 @@
     <div class="clothes-page">
 
       <div class=ImgField>
-        <a *ngFor="let clothes of wardrobe"
-           routerLink="/detail/{{clothes.id}}">
+        <a *ngFor="let clothe of clothes"
+           routerLink="/detail/{{clothe.id}}">
           <div>
-            <img class="image first" src="{{clothes.image[0].title}}" alt="photo">
-            <img class="image second" src="{{clothes.image[1].title}}" alt="photo">
+            <img class="image first" src="{{clothe.image[0].title}}" alt="photo">
+            <img class="image second" src="{{clothe.image[1].title}}" alt="photo">
           </div>
-          {{clothes.title}}
+          {{clothe.title}}
           <br>
-          {{clothes.price}}
+          {{clothe.price}}
         </a>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 import {Observable, of, throwError} from 'rxjs';
@@ -16,7 +16,8 @@ import {Categories} from "./entity/categories";
 
 @Injectable({providedIn: 'root'})
 export class ClothesService {
-
+  @Output() event = new EventEmitter();
+  @Output() eventSize = new EventEmitter();
   private heroesUrl = 'http://localhost:8082'  //URL to web api
 
 
@@ -46,7 +47,7 @@ export class ClothesService {
 
 
   findProduct(
-    availability: boolean,
+    availability: string,
     priceMin: number,
     priceMax:number,
     size: string[],
@@ -74,7 +75,7 @@ export class ClothesService {
     content: string,
     compound: string,
     price: number,
-    availability: boolean,
+    availability: string,
     sizes: Array<string>,
     categories: Array<string>,
     collection: string,
@@ -122,7 +123,7 @@ export class ClothesService {
     content: string,
     compound: string,
     price: number,
-    availability: boolean,
+    availability: string,
     sizes: Array<string>,
     categories: Array<string>,
     collection: string,

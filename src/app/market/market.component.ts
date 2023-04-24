@@ -16,9 +16,9 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./market.component.css']
 })
 export class MarketComponent implements OnInit {
-  wardrobe: Clothes[];
+  clothes: Clothes[];
   categories: string[] = [];
-  availability: boolean[] = [true, false];
+  availability: string[] = ["Є в наявності", "Немає"];
   collection: string[] = [];
   sizes: string[] = [];
   searchByCollection: string;
@@ -89,7 +89,7 @@ export class MarketComponent implements OnInit {
   getPublicContent(): void {
 
     this.userService.getPublicContent()
-      .subscribe(clothes => this.wardrobe = clothes);/*определяет сколько фото на главной*/
+      .subscribe(clothes => this.clothes = clothes);/*определяет сколько фото на главной*/
 
   }
 
@@ -143,7 +143,7 @@ export class MarketComponent implements OnInit {
         this.reactiveForm.value.collectionFilter,
         this.reactiveForm.value.categories,
       ).subscribe((response: Clothes[]) => {
-          this.wardrobe = response;
+          this.clothes = response;
         },
         (error) => {
           console.log(error);
@@ -174,7 +174,7 @@ export class MarketComponent implements OnInit {
       this.reactiveForm.value.collectionFilter,
       this.reactiveForm.value.categories,
     ).subscribe((response: Clothes[]) => {
-        this.wardrobe = response;
+        this.clothes = response;
       },
       (error) => {
         console.log(error);

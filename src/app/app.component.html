@@ -1,6 +1,8 @@
 <body xmlns="http://www.w3.org/1999/html">
-<mat-sidenav-container fxFlexFill [hasBackdrop]=true>
-  <mat-sidenav-content fxFlexFill>
+<mat-sidenav-container  [hasBackdrop]=true>
+  <mat-sidenav-content   >
+
+
     <header class="container">
       <div class="menuh">
         <div class="menu1">
@@ -48,14 +50,18 @@
 
           <app-convertor></app-convertor>
           <app-clothes-search class="menu__item"></app-clothes-search>
-          <app-basket></app-basket>
+
+          <button class="button-active" mat-icon-button (click)="sidenavBasket.toggle()" >
+            <mat-icon><mat-icon>shopping_basket</mat-icon></mat-icon>
+          </button>
+
 
         </div>
       </div>
 
       <div class="mobile-header">
 
-        <button class="button-active" mat-icon-button (click)="sidenav.toggle()" fxShow="false" fxHide.gt-sm>
+        <button class="button-active" mat-icon-button (click)="sidenavMenu.toggle()" >
           <mat-icon>menu</mat-icon>
         </button>
 
@@ -66,7 +72,9 @@
 
         <div>
 
-          <app-basket-mobile></app-basket-mobile>
+          <button class="button-active" mat-icon-button (click)="sidenavBasket.toggle()" >
+            <mat-icon><mat-icon>shopping_basket</mat-icon></mat-icon>
+          </button>
         </div>
       </div>
 
@@ -80,11 +88,27 @@
       <router-outlet></router-outlet>
 
       <button mat-button class="fabAddClothesStyle" (click)="openDialog()" *ngIf="showAdminBoard">Add clothes</button>
+      <footer style="padding: 0 2%;">
+        <br>
+        <a href="https://www.instagram.com/">Instagram</a>
+        <br>
+        <a href="https://www.instagram.com/">Обране</a>
+        <br>
+        <a href="https://www.instagram.com/">Контакти</a>
+        <br>
+        <br>
+        © 2022
+      </footer>
 
     </div>
+
   </mat-sidenav-content>
-  <mat-sidenav #sidenav>
+
+  <mat-sidenav #sidenavMenu>
     <mat-nav-list style="display: flex;flex-direction:column;">
+      <button class="button-active" mat-icon-button (click)="sidenavMenu.toggle()" >
+        <mat-icon>menu</mat-icon>
+      </button>
 
       <div style="display: flex; flex-direction: column;flex-wrap: nowrap;">
 
@@ -156,7 +180,17 @@
     </mat-nav-list>
   </mat-sidenav>
 
+  <mat-sidenav #sidenavBasket position="end">
+    <mat-nav-list style="display: flex;flex-direction:column;">
+      <app-basket></app-basket>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+
   <app-messages></app-messages>
+
+
 </mat-sidenav-container>
 
 </body>

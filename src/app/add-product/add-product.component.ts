@@ -54,7 +54,7 @@ export class AddProductComponent implements OnInit {
   compoundMaxLength = 300;
   readonly maxSize = 1_048_576;
 
-  availability: string[] = ["true", "false"]
+  availability: string[] = ["Є в наявності", "Немає"]
 
   categories: string[] = [];
   productCategories: string[] = [];
@@ -222,7 +222,7 @@ export class AddProductComponent implements OnInit {
         content: this.data.clothes.content,
         compound: this.data.clothes.compound,
         price: this.data.clothes.price,
-        availability: this.data.clothes.availability.toString(),
+        availability: this.data.clothes.availability,
         sizes: this.productSizes,
         collection: this.data.clothes.collection.title,
         categories: this.productCategories,

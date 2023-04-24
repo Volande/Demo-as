@@ -15,4 +15,5 @@ export interface Clothes {
   collection:Collection;
   categories:Categories[];
   productCategories: Categories[];
+  quantity:number;
 }
