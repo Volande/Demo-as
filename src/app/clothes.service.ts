@@ -18,6 +18,8 @@ import {Categories} from "./entity/categories";
 export class ClothesService {
   @Output() event = new EventEmitter();
   @Output() eventSize = new EventEmitter();
+
+
   private heroesUrl = 'http://localhost:8082'  //URL to web api
 
 

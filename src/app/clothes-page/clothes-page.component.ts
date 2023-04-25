@@ -11,6 +11,8 @@ import {Overlay} from "@angular/cdk/overlay";
 import {AddProductComponent} from "../add-product/add-product.component";
 import {ConfirmationDeleteProductComponent} from "../confirmation-delete-product/confirmation-delete-product.component";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Size} from "../entity/size";
+import {Clothes_dto} from "../entity/clothes_dto";
 
 
 @Component({
@@ -19,7 +21,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./clothes-page.component.css']
 })
 export class ClothesPageComponent implements OnInit {
-  clothes: Clothes ;
+  clothes: Clothes;
   image: Image [] = [];
 
   availabilityClothe: string;
@@ -32,11 +34,19 @@ export class ClothesPageComponent implements OnInit {
   private role: string = "UnAuthorized";
 
   reactiveForm: FormGroup;
+  size: Size = new class implements Size {
+    id: number;
+    title: string;
+  };
 
-  fontStyleControl = new FormControl('');
+  sizeClothe: Size[] = [];
+  fontStyleControl = new FormControl(this.size);
   fontStyle?: string;
-  size:string;
 
+  quantity: number;
+  private productNew: Clothes;
+
+  private kostil:Size[] = []
   constructor(
     private tokenStorageService: TokenStorageService,
     private route: ActivatedRoute,
@@ -47,42 +57,40 @@ export class ClothesPageComponent implements OnInit {
     public overlay: Overlay,
     private router: Router,
     private formBuilder: FormBuilder,
+
   ) {
     const user = this.tokenStorageService.getUser();
     this.isLoggedIn = (user != null);
-
     if (user) {
       this.role = user.role;
-
       this.showAdminBoard = this.role.includes('ADMIN');
       this.username = user.username;
+    }
+  }
 
+
+  addProductToCart(clothes:Clothes) {
+    if (this.fontStyleControl.value) {
+      this.sizeClothe.push(this.fontStyleControl.value)
+
+
+
+      let criterionsFilter: any = JSON.parse(JSON.stringify(clothes));
+      criterionsFilter.size = Object.assign({},this.sizeClothe)
+
+
+      this.sizeClothe = Object.assign([],this.kostil)
+      this.clothesService.event.emit( criterionsFilter)
     }
 
-
-    this.reactiveForm = this.formBuilder.group({
-
-      size: [''],
-
-
-    })
   }
 
 
 
-  addProductToCart(product: Clothes) {
-    if(this.fontStyleControl.value){
-      this.size = this.fontStyleControl.value
-    }
-    this.clothesService.event.emit(product)
-    this.clothesService.eventSize.emit(this.size)
-  }
+
   ngOnInit(): void {
     this.getClothe();
-
-
   }
-
 
 
   getClothe(): void {
@@ -114,7 +122,6 @@ export class ClothesPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => this.router.navigateByUrl("", {skipLocationChange: true}))
   }
-
 
 
 }

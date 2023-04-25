@@ -1,56 +1,24 @@
-<div>
-  <div class="table-responsive" >
-
-    <table class="table table-bordered table-hover">
-      <thead class='thead'>
-      <tr>
-        <th>S.No</th>
-        <th>Image</th>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quatity</th>
-        <th>Total Price</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let list of cartClothes;index as i">
-        <td>{{i+1}}</td>
-        <td>
-          <img
-            class="img-thumbnail .img-responsive"
-            src="{{list.image[0].title}}"
-            style="height:80px;width:80px;"
-          />
-        </td>
-
-        <td>{{list.id}}</td>
-        <td>{{list.title}}</td>
-        <td>{{list.price}}</td>
-        <td>{{size.title}}</td>
-        <td>{{list.quantity}}</td>
-        <td>{{list.price * list.quantity}}</td>
-        <td>
-          <button
-            class="btn btn-danger"
-            (click)="deleteProduct(list.id)"
-          >
-            Remove Item From Cart
-          </button>
-        </td>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="3"></td>
-        <td>Price {{price}}</td>
-        <td>Qty {{totalQuantity}}</td>
-        <td colspan="2">Sum {{totalPrice | currency: 'INR' }}</td>
-      </tr>
-      </tfoot>
-    </table>
+<div class="basket">
+  <div class="header-basket" >
+    <h1>Кошик</h1>
+    <hr>
   </div>
+  <div style="display: flex;height: 100%;overflow-y: auto;flex-direction: column;width: 100%">
+
+    <div *ngFor="let list of cartClothes;index as i" >
+      <div style="width: 100px;height: 150px;border-radius: 5%">
+        <img src="{{list.image[0].title}}" style="width: 100px;height: 150px">
+      </div>
+
+      <div>
+        {{list.title}}
+        {{list.price}}
+        {{list.size[0].title}}
+
+      </div>
+
+    </div>
+  </div>
+
+  <div>офрмити замовлення</div>
 </div>
-
-

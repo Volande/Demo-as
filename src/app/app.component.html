@@ -104,7 +104,7 @@
 
   </mat-sidenav-content>
 
-  <mat-sidenav #sidenavMenu>
+  <mat-sidenav #sidenavMenu >
     <mat-nav-list style="display: flex;flex-direction:column;">
       <button class="button-active" mat-icon-button (click)="sidenavMenu.toggle()" >
         <mat-icon>menu</mat-icon>
@@ -180,11 +180,11 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav #sidenavBasket position="end">
-    <mat-nav-list style="display: flex;flex-direction:column;">
+  <mat-sidenav #sidenavBasket position="end" style="width: 30%">
+
       <app-basket></app-basket>
 
-    </mat-nav-list>
+
   </mat-sidenav>
 
 

@@ -1,0 +1,17 @@
+.basket{
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.header-basket{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header-basket h1{
+  padding: 2%;
+}
+.header-basket hr{
+  width: 100%;
+}
