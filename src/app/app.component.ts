@@ -7,6 +7,7 @@ import {AddProductComponent} from "./add-product/add-product.component";
 import {PopupFormLoginComponent} from "./popup-form-login/popup-form-login.component";
 import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.component";
 import {Clothes} from "./entity/clothes";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -34,7 +35,7 @@ export class AppComponent {
 
               @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
               @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
-              public overlay: Overlay,
+              private router: Router
               ) { }
 
   ngOnInit(): void {
@@ -48,7 +49,9 @@ export class AppComponent {
       this.showModeratorBoard = this.role.includes('ROLE_MODERATOR');
 
       this.username = user.username;
-
+      this.router.routeReuseStrategy.shouldReuseRoute = function() {
+        return false;
+      };
     }
   }
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from "@angular/router";
+import {Router, RouterModule, Routes} from "@angular/router";
 import {MarketComponent} from "./market/market.component";
 import {AboutComponent} from "./about/about.component";
 import {BasketComponent} from "./basket/basket.component";
@@ -17,7 +17,7 @@ import {ImageSliderComponent} from "./image-slider/image-slider.component";
 const routers: Routes = [
   {path: 'main-page', component: MainPageComponent},
   {path:'', redirectTo: '/main-page', pathMatch: 'full'},
-  {path: 'detail/:id' , component: ClothesPageComponent},
+  {path:'detail/:id', component: ClothesPageComponent},
   {path: 'market' , component: MarketComponent},
   {path: 'about', component:AboutComponent},
   {path: 'basket', component:BasketComponent},
@@ -27,15 +27,19 @@ const routers: Routes = [
   {path:'convertor' , component:ConvertorComponent},
   {path: 'admin', component: BoardAdminComponent },
   {path:'image-slider', component:ImageSliderComponent},
-
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routers)],
-  exports: [RouterModule,],
+  imports: [RouterModule.forRoot(routers, {
+    onSameUrlNavigation: 'reload'
+  })],
+  exports: [RouterModule],
 
   declarations: [
 
+
   ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+
+}

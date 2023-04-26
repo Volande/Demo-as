@@ -1,24 +1,70 @@
 <div class="basket">
-  <div class="header-basket" >
+  <div class="header-basket">
     <h1>Кошик</h1>
     <hr>
   </div>
   <div style="display: flex;height: 100%;overflow-y: auto;flex-direction: column;width: 100%">
 
-    <div *ngFor="let list of cartClothes;index as i" >
+    <div *ngFor="let list of cartClothes;index as i" style="display: flex;
+    flex-direction: row;
+    align-items: center;
+padding: 5%">
       <div style="width: 100px;height: 150px;border-radius: 5%">
         <img src="{{list.image[0].title}}" style="width: 100px;height: 150px">
       </div>
 
-      <div>
-        {{list.title}}
-        {{list.price}}
-        {{list.size[0].title}}
+      <div style="display: flex;
+    flex-direction: column;
+    padding: 2%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* width: 99%; */
+    height: 100%">
+        <div>{{list.title}}</div>
+        <div style="display: flex">
+          <p>Розмір : </p>
+          <p style="padding-left: 2%">{{list.size[0].title}}</p>
+        </div>
 
+        <div style="    display: flex;align-items: center;">
+          <div>
+            <button style="border:none" (click)="increaseCartItem(list)">
+              <mat-icon>keyboard_arrow_up</mat-icon>
+            </button>
+          </div>
+
+
+          <div>{{list.quantity}}</div>
+          <div>
+            <button style="border:none" (click)="decreaseCartItem(list)">
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div> {{list.price | currency: '₴'}}</div>
+
+        <div>
+          <button mat-button color="accent" (click)="deleteProduct(list)"> Видалити товар</button>
+        </div>
       </div>
 
     </div>
   </div>
 
-  <div>офрмити замовлення</div>
+  <div style="display: flex;flex-direction: column;">
+    <hr style="width: 100%;">
+    <div style="display:flex;flex-direction: column;">
+      <div style="display:flex; justify-content: space-around;">
+        <div><p>Загальна кількість</p>
+          <p>{{this.totalQuantity}}</p></div>
+        <div><p>Загальна ціна</p>
+          <p>{{this.totalPrice}}</p></div>
+      </div>
+
+
+      офрмити замовлення
+
+
+    </div>
+  </div>
 </div>

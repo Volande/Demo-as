@@ -1,20 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, NgZone, OnInit} from '@angular/core';
 import {Clothes} from "../entity/clothes";
 import {ClothesService} from "../clothes.service";
 import {UserService} from "../_services/user.service";
+import {Router, RouterModule, Routes} from "@angular/router";
 
 @Component({
   selector: 'app-relevants',
   templateUrl: './relevants.component.html',
   styleUrls: ['./relevants.component.css']
+
+
 })
+
+
 export class RelevantsComponent implements OnInit {
   clothes:  Clothes[]=[];
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService,
+              private router: Router,
+              private ngZone:NgZone,) { }
 
   ngOnInit(): void {
     this.getPublicContent();
+  }
+  redirect(to:number) {
+    // call with ngZone, so that ngOnOnit of component is called
+    this.ngZone.run(()=>this.router.navigate([to]));
   }
 
   getPublicContent(): void {

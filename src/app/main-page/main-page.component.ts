@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Clothes} from "../entity/clothes";
 import {ClothesService} from "../clothes.service";
 import {UserService} from "../_services/user.service";
-import {CollectionMenuComponent} from "../collection-menu/collection-menu.component";
 
 @Component({
   selector: 'app-main-page',
@@ -19,6 +18,8 @@ export class MainPageComponent implements OnInit {
     this.getPublicContent();
     this.clothesService.removeCriterionsFilter();
   }
+
+
 
   getPublicContent(): void {
       this.userService.getPublicContent()

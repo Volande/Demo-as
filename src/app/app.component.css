@@ -506,3 +506,6 @@ ul li::marker {
 .mat-drawer{
   overflow-y: unset !important;
 }
+.mat-drawer-inner-container{
+  overflow: unset !important;
+}

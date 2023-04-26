@@ -4,6 +4,7 @@ import {ClothesService} from "../clothes.service";
 import {Clothes} from "../entity/clothes";
 import {Size} from "../entity/size";
 import {ClothesCart} from "../entity/clothesCart";
+import {ClothesPageComponent} from "../clothes-page/clothes-page.component";
 
 @Component({
   selector: 'app-basket',
@@ -12,39 +13,58 @@ import {ClothesCart} from "../entity/clothesCart";
 })
 export class BasketComponent implements OnInit {
   cartClothes: Clothes[] = [];
-  totalQuantity: number;
+  totalQuantity: number = 0;
   price: number;
-  totalPrice: number;
+  totalPrice: number = 0;
 
   size: Size[];
 
-  clothesNew:Clothes;
+  clothesNew: Clothes;
 
 
-  constructor(private clothesService: ClothesService) {
+  constructor(private clothesService: ClothesService,
+             ) {
   }
 
   ngOnInit(): void {
-    this.cartClothes
+
+
     this.clothesService.event.subscribe(clothes => {
-      let index = -1;
+      let index = -1
       index = this.cartClothes.findIndex(
-        c => c.id === clothes.id,
-      );
+        c => c.id === clothes.id && c.size[0].title == clothes.size[0].title
+      )
 
-
-      this.cartClothes.push(clothes)
-
+      if (index != -1) {
+        this.cartClothes[index].quantity += 1
+      } else if (index === -1) {
+        this.cartClothes.push(clothes)
+      }
 
       this.sum();
     })
 
   }
 
+  decreaseCartItem(clothe:Clothes) {
+    let index = this.cartClothes.findIndex(item => item.id === clothe.id && item.size[0].title == clothe.size[0].title);
+    this.cartClothes[index].quantity -=1
+    if(this.cartClothes[index].quantity == 0){
+      this.cartClothes.splice(index, 1);
+    }
+    this.sum()
+  }
 
-  deleteProduct(id: number) {
-    let index = this.cartClothes.findIndex(item => item.id === id);
+  increaseCartItem(clothe:Clothes) {
+    let criterionsFilter: any = JSON.parse(JSON.stringify(clothe));
+    this.clothesService.event.emit( criterionsFilter)
+  }
+
+
+  deleteProduct(clothe: Clothes) {
+    let index = this.cartClothes.findIndex(item => item.id === clothe.id && item.size[0].title == clothe.size[0].title);
     this.cartClothes.splice(index, 1);
+
     this.sum();
   }
 

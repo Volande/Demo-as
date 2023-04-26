@@ -46,7 +46,7 @@ export class ClothesPageComponent implements OnInit {
   quantity: number;
   private productNew: Clothes;
 
-  private kostil:Size[] = []
+  private nullArray:Size[] = []
   constructor(
     private tokenStorageService: TokenStorageService,
     private route: ActivatedRoute,
@@ -57,6 +57,7 @@ export class ClothesPageComponent implements OnInit {
     public overlay: Overlay,
     private router: Router,
     private formBuilder: FormBuilder,
+
 
   ) {
     const user = this.tokenStorageService.getUser();
@@ -79,7 +80,7 @@ export class ClothesPageComponent implements OnInit {
       criterionsFilter.size = Object.assign({},this.sizeClothe)
 
 
-      this.sizeClothe = Object.assign([],this.kostil)
+      this.sizeClothe = Object.assign([],this.nullArray)
       this.clothesService.event.emit( criterionsFilter)
     }
 
@@ -90,6 +91,7 @@ export class ClothesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClothe();
+    const params = +this.route.snapshot.params;
   }
 
 
