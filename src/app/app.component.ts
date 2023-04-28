@@ -8,6 +8,7 @@ import {PopupFormLoginComponent} from "./popup-form-login/popup-form-login.compo
 import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.component";
 import {Clothes} from "./entity/clothes";
 import {Router} from "@angular/router";
+import {CheckingAuthService} from "./_services/checking-auth.service";
 
 
 @Component({
@@ -17,7 +18,7 @@ import {Router} from "@angular/router";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  logo = './assets/photo-dress/logo.jpg';
+
   title: String = 'title_name';
 
   private role: string = "UnAuthorized";
@@ -26,33 +27,25 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
-  public isMenuOpen: boolean = false;
 
-  cartProductList : Clothes [];
+
+
 
   constructor(private tokenStorageService: TokenStorageService,
+              private checkinAuth: CheckingAuthService,
               public dialog: MatDialog,
-
               @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
               @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
-              private router: Router
-              ) { }
+
+  ) {
+  }
 
   ngOnInit(): void {
-    const user = this.tokenStorageService.getUser();
-    this.isLoggedIn = (user != null);
-
-    if (user) {
-      this.role = user.role;
-
-      this.showAdminBoard = this.role.includes('ADMIN');
-      this.showModeratorBoard = this.role.includes('ROLE_MODERATOR');
-
-      this.username = user.username;
-      this.router.routeReuseStrategy.shouldReuseRoute = function() {
-        return false;
-      };
-    }
+    this.isLoggedIn = this.checkinAuth.isLoggedIn;
+    this.showAdminBoard = this.checkinAuth.showAdminBoard;
+    this.showModeratorBoard = this.checkinAuth.showModeratorBoard;
+    this.username = this.checkinAuth.username
+    this.role = this.checkinAuth.role;
   }
 
   logout(): void {
@@ -60,35 +53,22 @@ export class AppComponent {
     window.location.reload();
   }
 
-  openLoginMobile():void{
-    window.location.assign("http://localhost:4200/shop/login");
+  openLoginDialog(): void {
+    this.dialogPopupLogin = this.dialog.open((PopupFormLoginComponent), {});
   }
 
-  openSingUpMobile():void{
-    window.location.assign("http://localhost:4200/shop/register");
-  }
-
-
-  openLoginDialog():void{
-    this.dialogPopupLogin=this.dialog.open((PopupFormLoginComponent),{
-    });
-  }
-
-  openSingUpDialog(){
-   this.dialogPopupSingUp = this.dialog.open((PopupFormSingupComponent),{
-
-    });
+  openSingUpDialog() {
+    this.dialogPopupSingUp = this.dialog.open((PopupFormSingupComponent), {});
   }
 
   openDialog() {
-     this.dialog.open((AddProductComponent),{
-       width:'70%',
-       height:'72%'
+    this.dialog.open((AddProductComponent), {
+      width: '70%',
+      height: '72%'
     });
 
   }
-  public onSidenavClick(): void {
-    this.isMenuOpen = false;
-  }
+
+
 
 }

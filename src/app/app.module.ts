@@ -48,6 +48,7 @@ import { DndListModule } from 'ngx-drag-and-drop-lists';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { OrderingComponent } from './ordering/ordering.component';
 
 
 
@@ -85,6 +86,7 @@ export class XhrInterceptor implements HttpInterceptor {
     ConfirmationDeleteProductComponent,
     PopupFormLoginComponent,
     PopupFormSingupComponent,
+    OrderingComponent,
 
 
 

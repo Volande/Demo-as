@@ -132,6 +132,8 @@ padding-top: 5%;
   }
 
 }
-
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+  background-color: #a7b5b491 !important;
+}
 
 

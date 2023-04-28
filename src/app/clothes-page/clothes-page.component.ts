@@ -91,7 +91,6 @@ export class ClothesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClothe();
-    const params = +this.route.snapshot.params;
   }
 
 

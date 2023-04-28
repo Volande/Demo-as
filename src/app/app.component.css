@@ -47,7 +47,11 @@ a:hover, a:link {
 .head {
   display: none;
 }
+footer {
+  flex: 0 0 auto;
 
+
+}
 h1 .menu__item1 {
 
   text-align: center;
@@ -491,6 +495,10 @@ ul li::marker {
 
 .contat {
   padding: 0 2%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 
@@ -508,4 +516,10 @@ ul li::marker {
 }
 .mat-drawer-inner-container{
   overflow: unset !important;
+}
+mat-sidenav-container {
+  height: 100% !important;
+}
+mat-sidenav-content{
+  height: 100% !important;
 }

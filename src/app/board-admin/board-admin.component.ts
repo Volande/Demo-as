@@ -6,6 +6,7 @@ import {Size} from "../entity/size";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ClothesService} from "../clothes.service";
 import {MatDialog} from "@angular/material/dialog";
+import {Order} from "../entity/order";
 
 @Component({
   selector: 'app-board-admin',
@@ -24,6 +25,8 @@ export class BoardAdminComponent implements OnInit {
   collection: Collection[] = [];
   sizes: Size[] = [];
   displayedColumnsNew: string[] = ['id', 'title'];
+
+  orders: Order[]=[];
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
@@ -49,6 +52,7 @@ export class BoardAdminComponent implements OnInit {
     this.getCategories();
     this.getCollection();
     this.getSizes();
+    this.getAllOrder();
   }
 
   getSizes()
@@ -72,6 +76,9 @@ export class BoardAdminComponent implements OnInit {
       .subscribe(categories => this.categories = categories);
   }
 
+  getAllOrder():void{
+    this.userService.getAllOrder().subscribe(order=>this.orders = order)
+  }
   onSubmitSizes() {
     this.clothesService.saveNewSize(
       this.reactiveFormSize.value.sizes

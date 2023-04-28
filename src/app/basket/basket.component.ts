@@ -22,12 +22,15 @@ export class BasketComponent implements OnInit {
   clothesNew: Clothes;
 
 
-  constructor(private clothesService: ClothesService,
-             ) {
+  constructor(private clothesService: ClothesService) {
   }
 
   ngOnInit(): void {
 
+    if (localStorage.getItem("selectedClothes")) {
+      this.cartClothes = JSON.parse(localStorage.getItem("selectedClothes") || '{}')
+      this.sum();
+    }
 
     this.clothesService.event.subscribe(clothes => {
       let index = -1
@@ -40,24 +43,25 @@ export class BasketComponent implements OnInit {
       } else if (index === -1) {
         this.cartClothes.push(clothes)
       }
-
+      let selectedClothes: any = JSON.stringify(this.cartClothes)
+      localStorage.setItem("selectedClothes", selectedClothes)
       this.sum();
     })
 
   }
 
-  decreaseCartItem(clothe:Clothes) {
+  decreaseCartItem(clothe: Clothes) {
     let index = this.cartClothes.findIndex(item => item.id === clothe.id && item.size[0].title == clothe.size[0].title);
-    this.cartClothes[index].quantity -=1
-    if(this.cartClothes[index].quantity == 0){
+    this.cartClothes[index].quantity -= 1
+    if (this.cartClothes[index].quantity == 0) {
       this.cartClothes.splice(index, 1);
     }
     this.sum()
   }
 
-  increaseCartItem(clothe:Clothes) {
+  increaseCartItem(clothe: Clothes) {
     let criterionsFilter: any = JSON.parse(JSON.stringify(clothe));
-    this.clothesService.event.emit( criterionsFilter)
+    this.clothesService.event.emit(criterionsFilter)
   }
 
 
@@ -80,6 +84,17 @@ export class BasketComponent implements OnInit {
 
       });
     }
+  }
+
+  replacePage(): void {
+    window.location.replace("/shop/ordering");
+  }
+
+
+  orderingClothes() {
+    let selectedClothes: any = JSON.stringify(this.cartClothes)
+    localStorage.setItem("selectedClothes", selectedClothes)
+    this.replacePage()
   }
 
 

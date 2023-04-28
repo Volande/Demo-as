@@ -11,6 +11,7 @@ import {CollectionMenuComponent} from "./collection-menu/collection-menu.compone
 import {ConvertorComponent} from "./convertor/convertor.component";
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import {ImageSliderComponent} from "./image-slider/image-slider.component";
+import {OrderingComponent} from "./ordering/ordering.component";
 
 
 
@@ -27,6 +28,7 @@ const routers: Routes = [
   {path:'convertor' , component:ConvertorComponent},
   {path: 'admin', component: BoardAdminComponent },
   {path:'image-slider', component:ImageSliderComponent},
+  {path:'ordering',component:OrderingComponent}
 ]
 
 @NgModule({

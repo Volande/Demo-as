@@ -15,3 +15,6 @@
 .header-basket hr{
   width: 100%;
 }
+button.mat-focus-indicator.mat-button.mat-button-base.mat-primary{
+  background-color: #a7b5b491 !important;
+}
