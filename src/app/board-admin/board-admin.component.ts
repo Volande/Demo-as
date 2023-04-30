@@ -6,7 +6,7 @@ import {Size} from "../entity/size";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ClothesService} from "../clothes.service";
 import {MatDialog} from "@angular/material/dialog";
-import {Order} from "../entity/order";
+import {Customer} from "../entity/customer";
 
 @Component({
   selector: 'app-board-admin',
@@ -26,7 +26,7 @@ export class BoardAdminComponent implements OnInit {
   sizes: Size[] = [];
   displayedColumnsNew: string[] = ['id', 'title'];
 
-  orders: Order[]=[];
+  orders: Customer[]=[];
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,

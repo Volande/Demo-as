@@ -5,12 +5,11 @@ import {Clothes} from "../entity/clothes";
 import {Categories} from "../entity/categories";
 import {Collection} from "../entity/collection";
 import {Size} from "../entity/size";
-import {User} from "../entity/user";
 import {catchError, tap} from "rxjs/operators";
 import {MessageService} from "../message.service";
-import {OrderDetails} from "../entity/order-details";
-import {TokenStorageService} from "./token-storage.service";
 import {Order} from "../entity/order";
+import {TokenStorageService} from "./token-storage.service";
+import {Customer} from "../entity/customer";
 
 
 @Injectable({
@@ -18,7 +17,7 @@ import {Order} from "../entity/order";
 })
 export class UserService {
   private API_URL = 'http://localhost:8082/';
-  private orderDetails: OrderDetails[]=[];
+  private orders: Order[]=[];
 
 
   constructor(private http: HttpClient,
@@ -41,8 +40,8 @@ export class UserService {
   getSizes(): Observable<Size[]> {
     return this.http.get<Size[]>(this.API_URL + 'products/sizes');
   }
-  getAllOrder():Observable<Order[]>{
-     return this.http.get<Order[]>(this.API_URL + 'api/v1/admin/orderAll');
+  getAllOrder():Observable<Customer[]>{
+     return this.http.get<Customer[]>(this.API_URL + 'api/v1/admin/orderAll');
   }
 
 
@@ -63,35 +62,40 @@ export class UserService {
 
     let userNew = this.tokenStorage.getUser()
 
-    let user = {
+let user = {
+      userId:userNew?.userId
+}
+
+    let customer ={
       firstName: firstName,
       lastName: lastName,
       postOffice: postOffice,
       departmentPostOffice: departmentPostOffice,
       numberPhone: numberPhone,
-      userId: userNew?.userId
-    } as User
-
+    } as Customer
 
     for (const orderClothe of orderClothes) {
 
-      let  orderDetail ={
+      let  order ={
         size:orderClothe.size[0],
         price:orderClothe.price,
-      } as OrderDetails
+      } as Order
       // @ts-ignore
-      orderClothe.size = null //backend принимает продукт ,где size массив,но у нас он объект,поэтому мы даем ему нулевое значение
-      orderDetail.product = orderClothe
+      orderClothe.size = null //backend принимает продукт ,где size массив объектов,но у нас он объект,поэтому мы даем ему нулевое значение
+      order.product = orderClothe
 
-      this.orderDetails.push(orderDetail)
+      this.orders.push(order)
     }
 
 
     const formData = new FormData;
+    formData.append("customer", new Blob([JSON.stringify(customer)], {
+      type: 'application/json'
+    }))
     formData.append("user", new Blob([JSON.stringify(user)], {
       type: 'application/json'
     }))
-    formData.append("orderDetails", new Blob([JSON.stringify(this.orderDetails)], {
+    formData.append("orderDetails", new Blob([JSON.stringify(this.orders)], {
       type: 'application/json'
     }))
 

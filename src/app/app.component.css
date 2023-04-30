@@ -185,9 +185,7 @@ mat-sidenav {
     justify-content: space-between;
   }
 
-  app-basket {
-    display: none;
-  }
+
 
   .contant {
     display: table-row;

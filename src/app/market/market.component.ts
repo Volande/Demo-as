@@ -184,4 +184,10 @@ export class MarketComponent implements OnInit {
 
   }
 
+
+  resetSettings(){
+    localStorage.removeItem("criterionsFilter")
+    window.location.reload()
+  }
+
 }
