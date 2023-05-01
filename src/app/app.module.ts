@@ -49,6 +49,9 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { OrderingComponent } from './ordering/ordering.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+
 
 
 
@@ -90,6 +93,7 @@ export class XhrInterceptor implements HttpInterceptor {
 
 
 
+
   ],
     imports: [
         BrowserModule,
@@ -116,6 +120,8 @@ export class XhrInterceptor implements HttpInterceptor {
         MatSidenavModule,
         MatListModule,
         MatButtonToggleModule,
+        MatProgressSpinnerModule,
+      MatSnackBarModule
 
 
     ],

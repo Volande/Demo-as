@@ -18,6 +18,7 @@ import {Collection} from "../entity/collection";
 import {FileValidator} from "ngx-material-file-input";
 import {Size} from "../entity/size";
 import {Observable} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 export function requiredExtension(expectedExtensions: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -142,6 +143,7 @@ export class AddProductComponent implements OnInit {
   message: string[] = [];
 
   previews: string[] = [];
+  spinnerFalse: boolean = false;
 
 
   selectFile(event: any) {
@@ -191,6 +193,7 @@ export class AddProductComponent implements OnInit {
     public clothesService: ClothesService,
     public dialog: MatDialog,
     private userService: UserService,
+    private _snackBar:MatSnackBar
   ) {
 
       this.reactiveForm = this.formBuilder.group({
@@ -253,8 +256,10 @@ export class AddProductComponent implements OnInit {
         this.images
       ).subscribe(() => {
         this.dialog.closeAll()
+          this.spinnerFalse = true
       });
     }else {
+
      this.clothesService.saveClothe(
        this.reactiveForm.value.title,
        this.reactiveForm.value.content,
@@ -267,8 +272,11 @@ export class AddProductComponent implements OnInit {
        this.images
      ).subscribe(() => {
        this.dialog.closeAll()
+       this._snackBar.open("Товар додано успішно", "Закрити");
      });
    }
 
+
   }
+
 }

@@ -2,7 +2,7 @@ import {Size} from "./size";
 import {Clothes} from "./clothes";
 import {Customer} from "./customer";
 
-export interface Order {
+export interface Ordered_product {
   id:number;
   customer:Customer;
   amount:number;

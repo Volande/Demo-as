@@ -3,7 +3,7 @@ import {Size} from "./size";
 import {Categories} from "./categories";
 import {Collection} from "./collection";
 
-export interface ClothesCart {
+export interface Clothes_cart {
   id: number;
   title: string;
   image: Image[];

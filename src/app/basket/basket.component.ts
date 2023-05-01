@@ -3,7 +3,7 @@ import {AppComponent} from "../app.component";
 import {ClothesService} from "../clothes.service";
 import {Clothes} from "../entity/clothes";
 import {Size} from "../entity/size";
-import {ClothesCart} from "../entity/clothesCart";
+import {Clothes_cart} from "../entity/clothes_cart";
 import {ClothesPageComponent} from "../clothes-page/clothes-page.component";
 
 @Component({

@@ -7,7 +7,7 @@ import {Collection} from "../entity/collection";
 import {Size} from "../entity/size";
 import {catchError, tap} from "rxjs/operators";
 import {MessageService} from "../message.service";
-import {Order} from "../entity/order";
+import {Ordered_product} from "../entity/ordered_product";
 import {TokenStorageService} from "./token-storage.service";
 import {Customer} from "../entity/customer";
 
@@ -17,7 +17,7 @@ import {Customer} from "../entity/customer";
 })
 export class UserService {
   private API_URL = 'http://localhost:8082/';
-  private orders: Order[]=[];
+  private orders: Ordered_product[]=[];
 
 
   constructor(private http: HttpClient,
@@ -57,13 +57,13 @@ export class UserService {
     postOffice: string,
     departmentPostOffice: string,
     numberPhone: string,
-    orderClothes: Clothes[]
+    ordersClothes: Clothes[]
   ) {
 
     let userNew = this.tokenStorage.getUser()
 
 let user = {
-      userId:userNew?.userId
+  userId: userNew?.userId
 }
 
     let customer ={
@@ -74,12 +74,12 @@ let user = {
       numberPhone: numberPhone,
     } as Customer
 
-    for (const orderClothe of orderClothes) {
+    for (const orderClothe of ordersClothes) {
 
       let  order ={
         size:orderClothe.size[0],
         price:orderClothe.price,
-      } as Order
+      } as Ordered_product
       // @ts-ignore
       orderClothe.size = null //backend принимает продукт ,где size массив объектов,но у нас он объект,поэтому мы даем ему нулевое значение
       order.product = orderClothe
