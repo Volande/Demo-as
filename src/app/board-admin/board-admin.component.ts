@@ -31,9 +31,9 @@ export class BoardAdminComponent implements OnInit {
 
   columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   bossColumns:string[]=["firstName","lastName"]
-  columnsToDisplayCustomers:string[]=["firstName","lastName","created",
-    "update","numberPhone","postOffice","departmentPostOffice",
-    "sum"]
+  columnsToDisplayCustomers:string[]=["firstName","lastName",
+    "created", "update","numberPhone","status","postOffice",
+    "departmentPostOffice", "sum"]
 
   displayedColumnsOrder:string[]=[
     "product","amount","size","price"

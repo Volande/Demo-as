@@ -1,8 +1,8 @@
-<div class="topmenu">
+<div class="top-menu">
   <div>
     <button class="down">Колекції</button>
     <form >
-      <ul class="submenu">
+      <ul class="sub-menu">
         <li *ngFor="let choice of collection " [value]="choice">
           <button  type="button" (click)="searchProduct(choice.title)">
            {{choice.title}}
@@ -18,15 +18,19 @@
   </div>
 
 </div>
-<div class="topmenu-mobile">
+
+
+<div class="top-menu__mobile">
   <div>
     <button class="down-mobile">Колекції</button>
-    <div class="menusub"></div>
+    <div class="menu-sub"></div>
     <ul class="submenu-mobile">
-      <li><a href="">Spring-Summer 22</a></li>
-      <li><a href="">FALL-WINTER 21/22</a></li>
-      <li><a href="">SPRING-SUMMER 2021</a></li>
-      <li><a href="">FALL-WINTER 20/21</a></li>
+      <li *ngFor="let choice of collection " [value]="choice">
+        <button  type="button" (click)="searchProduct(choice.title)">
+          {{choice.title}}
+        </button>
+      </li>
+
     </ul>
   </div>
 </div>

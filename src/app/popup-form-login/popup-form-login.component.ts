@@ -15,8 +15,8 @@ import {PopupFormSingupComponent} from "../popup-form-singup/popup-form-singup.c
 })
 export class PopupFormLoginComponent implements OnInit {
   reactiveForm: FormGroup = this.formBuilder.group({
-    login: ['', [Validators.required, Validators.maxLength(30)]],
-    password: ['', [Validators.required, Validators.maxLength(30)]]
+    login: ['', [Validators.required,Validators.minLength(5), Validators.maxLength(30)]],
+    password: ['', [Validators.required,Validators.minLength(5), Validators.maxLength(30)]]
   });
 
   hide = true;

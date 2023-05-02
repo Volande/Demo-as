@@ -9,6 +9,7 @@ import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.co
 import {Clothes} from "./entity/clothes";
 import {Router} from "@angular/router";
 import {CheckingAuthService} from "./_services/checking-auth.service";
+import {ClothesService} from "./clothes.service";
 
 
 @Component({
@@ -28,12 +29,14 @@ export class AppComponent {
   showModeratorBoard = false;
   username?: string;
 
+  quantitySelectedProduct:number;
 
 
 
   constructor(private tokenStorageService: TokenStorageService,
               private checkinAuth: CheckingAuthService,
               public dialog: MatDialog,
+              public  clothesService :ClothesService,
               @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
               @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
 
@@ -46,6 +49,7 @@ export class AppComponent {
     this.showModeratorBoard = this.checkinAuth.showModeratorBoard;
     this.username = this.checkinAuth.username
     this.role = this.checkinAuth.role;
+
   }
 
   logout(): void {

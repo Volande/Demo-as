@@ -1,13 +1,13 @@
 <div class="slider">
   <div>
-    <div (click)="goToPrevious()" class="leftArrow">❰</div>
-    <div (click)="goToNext()" class="rightArrow">❱</div>
+    <div (click)="goToPrevious()" class="left-arrow">❰</div>
+    <div (click)="goToNext()" class="right-arrow">❱</div>
   </div>
   <div
     class="slide"
     [ngStyle]="{ 'background-image': getCurrentSlideUrl() }"
   ></div>
-  <div class="dotsContainer">
+  <div class="dots-container">
     <div
       *ngFor="let slide of image; let slideIndex = index"
       class="dot"

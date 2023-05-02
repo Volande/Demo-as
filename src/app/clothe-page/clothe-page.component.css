@@ -1,20 +1,15 @@
-.none {
-  display: none;
-}
 
 body {
   margin: 0;
-
 }
 
-.padd {
+.clothe__information {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: flex-start;
-padding-top: 5%;
 }
 
 .text {
@@ -27,39 +22,16 @@ padding-top: 5%;
 
 }
 
-
-.choice {
-  display: flex;
-}
-
-.choice input[type=radio] {
-  position: absolute;
-  left: -99999px;
-
-}
-
-.choice span {
-  display: flex;
-  padding: 7px;
-  border: 1px solid #ddd;
-  margin-right: 7px;
-  cursor: pointer;
-  width: 13px;
-  height: 20px;
-  justify-content: center;
-}
-
-.choice input[type=radio]:checked + span {
-  border: 1px solid black;
-}
-.botton-buy{
+.button-buy {
   padding-top: 30px;
 }
-.botton-buy input[type=radio] {
+
+.button-buy input[type=radio] {
   position: absolute;
   left: -99999px;
 }
-.botton-buy span{
+
+.button-buy span {
   padding: 7px;
   border: 1px solid #000000;
   border-radius: 10px;
@@ -72,67 +44,95 @@ padding-top: 5%;
   align-items: center;
   font-size: 20px;
 }
-.botton-buy  input[type=radio]:hover + span {
+
+.button-buy input[type=radio]:hover + span {
   background-color: #000000;
   color: white;
 }
-.img-slider{
+
+.img-slider {
   width: 500px;
   height: 700px;
 }
+
 .buttons {
-  margin-top: 5%;
-  margin-bottom: -5%;
-  margin-left: 80%;
-  display: flex;
+  display: flex !important;
+  justify-content: flex-end
 }
+
+.clothe-page__body {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%
+}
+
 @media screen and (max-width: 800px) {
   .img-slider {
     width: 100%;
     max-width: 600px;
     height: 800px;
   }
-  .text{
-    padding:  3%;
+
+  .text {
+    padding: 3%;
     font-size: 15px;
   }
-  .padd {
+
+  .clothe__information {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-top: 0;
-  }
 
+  }
+  .clothe-page__body{
+    padding-top: 13.5%;
+  }
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 550px){
+  .clothe-page__body{
+    padding-top: 16.5%;
+  }
+}
+@media screen and (max-width: 425px) {
   .carousel {
     width: 100%;
     max-width: 425px;
     height: 625px;
   }
+
   .carousel-inner .carousel-item img {
     width: 100%;
     max-width: 425px;
     height: 625px;
   }
+  .clothe-page__body{
+    padding-top: 20%;
+  }
 }
-@media screen and (max-width: 375px){
+
+@media screen and (max-width: 375px) {
   .img-slider {
     width: 100%;
     max-width: 375px;
     height: 575px;
   }
-
+  .clothe-page__body{
+    padding-top: 23%;
+  }
 }
-@media screen and (max-width: 320px){
+
+@media screen and (max-width: 320px) {
   .img-slider {
     width: 100%;
     max-width: 320px;
     height: 520px;
   }
-
+  .clothe-page__body{
+    padding-top: 26%;
+  }
 }
-.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
   background-color: #a7b5b491 !important;
 }
 

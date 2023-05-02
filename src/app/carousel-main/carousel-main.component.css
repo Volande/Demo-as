@@ -5,7 +5,7 @@
   background-size: cover;
 }
 
-.rightArrow {
+.right-arrow {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-.leftArrow {
+.left-arrow {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -34,7 +34,7 @@
   padding-bottom: 5%;
 }
 
-.dotsContainer {
+.dots-container {
   display: flex;
   justify-content: center;
 }

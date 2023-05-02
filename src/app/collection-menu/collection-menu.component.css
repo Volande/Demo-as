@@ -4,7 +4,7 @@
   background-color: white;
 }
 
-.submenu a {
+.sub-menu a {
   font-size: 13px
 }
 
@@ -14,18 +14,20 @@ a {
   transition: .3s linear;
 }
 
+
+
 li button {
   color: #222;
-  padding: 3% 5%;
+  padding: 3% 0;
   border: none;
 }
 
-.topmenu > div {
+.top-menu > div {
   display: inline-block;
   position: relative;
 }
 
-.topmenu > div > .down:before {
+.top-menu > div > .down:before {
   content: "";
   position: absolute;
   z-index: 5;
@@ -40,12 +42,12 @@ li button {
   transition: .3s;
 }
 
-.topmenu div:hover .down:before {
+.top-menu div:hover .down:before {
   transform: translate(-50%, 0);
   opacity: 1;
 }
 
-.submenu {
+.sub-menu {
   list-style: none;
   padding: 15% 0;
   position: absolute;
@@ -64,38 +66,44 @@ li button {
   transition: .3s;
 }
 
-.topmenu > div:hover .submenu {
+.top-menu > div:hover .sub-menu {
   visibility: visible;
   opacity: 1;
   transform: translate(-50%, 0);
 }
 
-.submenu a:hover {
+.sub-menu a:hover {
   background: #e8e8e8;
 }
-.topmenu-mobile {
+
+.top-menu__mobile {
   display: none;
 }
-@media screen and (max-width: 800px){
-.topmenu  {
-  display: none;
-}
-  .topmenu-mobile {
+
+@media screen and (max-width: 800px) {
+  .top-menu {
+    display: none;
+  }
+
+  .top-menu__mobile {
     display: flex;
   }
-  .submenu-mobile{
+
+  .submenu-mobile {
     visibility: hidden;
     opacity: 0;
     position: absolute;
     list-style: none;
     padding-bottom: 10px;
   }
-  .topmenu-mobile> div:hover .submenu-mobile{
+
+  .top-menu__mobile > div:hover .submenu-mobile {
     visibility: visible;
     opacity: 1;
     position: relative;
     transition-duration: 0.3s;
   }
+
   .down-mobile {
     padding-left: 23px;
     padding-right: 5px;
@@ -103,14 +111,16 @@ li button {
     border: none;
     background-color: white;
   }
-  .menusub{
+
+  .menu-sub {
     display: inline-block;
     vertical-align: middle;
     position: relative;
     width: 6px;
 
   }
-  .menusub:after{
+
+  .menu-sub:after {
     content: "";
     border-style: solid;
     border-width: 4px 3px 0 3px;
@@ -122,6 +132,7 @@ li button {
     border-color: transparent transparent transparent transparent;
     border-top-color: inherit;
   }
+
   .submenu-mobile:after {
     content: '';
     position: absolute;

@@ -4,24 +4,19 @@ import {BrowserModule} from '@angular/platform-browser';
 import {Injectable, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // <-- NgModel lives here
 
-
-import {MessagesComponent} from './messages/messages.component';
 import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+
 import {CarouselMainComponent} from './carousel-main/carousel-main.component';
 import {MarketComponent} from './market/market.component';
 import {AboutComponent} from './about/about.component';
-
 import {BasketComponent} from './basket/basket.component';
-import {BasketMobileComponent} from './basket-mobile/basket-mobile.component';
 import {ClothesSearchComponent} from './clothes-search/clothes-search.component';
 import {MainPageComponent} from './main-page/main-page.component';
-import {ClothesPageComponent} from './clothes-page/clothes-page.component';
+import {ClothePageComponent} from './clothe-page/clothe-page.component';
 import {RelevantsComponent} from './relevants/relevants.component';
 import {CollectionMenuComponent} from './collection-menu/collection-menu.component';
 import {ConvertorComponent} from './convertor/convertor.component';
-
 import {ClothesService} from "./clothes.service";
-
 import {BoardAdminComponent} from './board-admin/board-admin.component';
 import { PopupFormLoginComponent } from './popup-form-login/popup-form-login.component';
 import { PopupFormSingupComponent } from './popup-form-singup/popup-form-singup.component';
@@ -51,6 +46,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { OrderingComponent } from './ordering/ordering.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatBadgeModule} from "@angular/material/badge";
 
 
 
@@ -72,15 +68,13 @@ export class XhrInterceptor implements HttpInterceptor {
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent,
     CarouselMainComponent,
     MarketComponent,
     AboutComponent,
     BasketComponent,
-    BasketMobileComponent,
     ClothesSearchComponent,
     MainPageComponent,
-    ClothesPageComponent,
+    ClothePageComponent,
     RelevantsComponent,
     CollectionMenuComponent,
     ConvertorComponent,
@@ -95,36 +89,37 @@ export class XhrInterceptor implements HttpInterceptor {
 
 
   ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatIconModule,
-        NgbModule,
-        NgbPaginationModule,
-        NgbAlertModule,
-        ImageSliderModule,
-        MatDialogModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatTabsModule,
-        MatTableModule,
-        MaterialFileInputModule,
-        DragDropModule,
-        DndListModule,
-        MatSidenavModule,
-        MatListModule,
-        MatButtonToggleModule,
-        MatProgressSpinnerModule,
-      MatSnackBarModule
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatIconModule,
+    NgbModule,
+    NgbPaginationModule,
+    NgbAlertModule,
+    ImageSliderModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTabsModule,
+    MatTableModule,
+    MaterialFileInputModule,
+    DragDropModule,
+    DndListModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonToggleModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatBadgeModule
 
 
-    ],
+  ],
   providers: [ClothesService, {
     multi: true,
     provide: [HTTP_INTERCEPTORS ,MatDialogRef,{provide: MAT_DIALOG_DATA, useValue: {}}],

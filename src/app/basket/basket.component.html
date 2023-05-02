@@ -1,34 +1,25 @@
 <div class="basket">
-  <div class="header-basket">
+  <div class="basket__header">
     <h1>Кошик</h1>
     <hr>
   </div>
-  <div style="display: flex;height: 100%;overflow-y: auto;flex-direction: column;width: 100%">
+  <div class="basket__body">
 
-    <div *ngFor="let list of cartClothes;index as i" style="display: flex;
-    flex-direction: row;
-    align-items: center;
-padding: 5%">
-      <div style="width: 100px;height: 150px;border-radius: 5%">
-        <img src="{{list.image[0].title}}" style="width: 100px;height: 150px">
+    <div *ngFor="let list of cartClothes;index as i" class="body__list">
+      <div class="img">
+        <img src="{{list.image[0].title}}" class="img">
       </div>
 
-      <div style="display: flex;
-    flex-direction: column;
-    padding: 2%;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    /* width: 99%; */
-    height: 100%">
+      <div class="info">
         <div>{{list.title}}</div>
-        <div style="display: flex">
-          <p>Розмір : </p>
-          <p style="padding-left: 2%">{{list.size[0].title}}</p>
+        <div class="info__size">
+          <h1>Розмір : </h1>
+          <p>{{list.size[0].title}}</p>
         </div>
 
-        <div style="    display: flex;align-items: center;">
+        <div class="info__quantity">
           <div>
-            <button style="border:none" (click)="increaseCartItem(list)">
+            <button (click)="increaseCartItem(list)">
               <mat-icon>keyboard_arrow_up</mat-icon>
             </button>
           </div>
@@ -36,7 +27,7 @@ padding: 5%">
 
           <div>{{list.quantity}}</div>
           <div>
-            <button style="border:none" (click)="decreaseCartItem(list)">
+            <button (click)="decreaseCartItem(list)">
               <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
           </div>
@@ -51,18 +42,22 @@ padding: 5%">
     </div>
   </div>
 
-  <div style="display: flex;flex-direction: column;">
-    <hr style="width: 100%;">
-    <div style="display:flex;flex-direction: column;">
-      <div style="display:flex; justify-content: space-around;">
-        <div><p>Загальна кількість</p>
-          <p>{{this.totalQuantity}}</p></div>
-        <div><p>Загальна ціна</p>
-          <p>{{this.totalPrice}}</p></div>
+  <div class="basket__footer">
+    <hr>
+    <div class="footer__info">
+      <div class="info__number">
+        <div>
+          <p>Загальна кількість</p>
+          <p>{{this.totalQuantity}}</p>
+        </div>
+        <div>
+          <p>Загальна ціна</p>
+          <p>{{this.totalPrice}}</p>
+        </div>
       </div>
 
-      <div style="display: flex;justify-content: center;">
-        <button style="width: 60%;" mat-button color="primary" (click)="orderingClothes()">Оформити замовлення</button>
+      <div class="info__btn">
+        <button  mat-button color="primary" (click)="orderingClothes()">Оформити замовлення</button>
       </div>
 
 

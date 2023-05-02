@@ -6,7 +6,7 @@ import {ClothesService} from "../clothes.service";
 import {Clothes} from "../entity/clothes";
 import {Observable} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
-import {ClothesPageComponent} from "../clothes-page/clothes-page.component";
+import {ClothePageComponent} from "../clothe-page/clothe-page.component";
 import {MarketComponent} from "../market/market.component";
 
 @Component({

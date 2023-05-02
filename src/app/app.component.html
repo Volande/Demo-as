@@ -1,10 +1,10 @@
 <body xmlns="http://www.w3.org/1999/html">
-<mat-sidenav-container  [hasBackdrop]=true>
-  <mat-sidenav-content   >
+<mat-sidenav-container [hasBackdrop]=true>
+  <mat-sidenav-content>
 
 
     <header class="container">
-      <div class="menuh">
+      <div class="menu-header">
         <div class="menu1">
           <a routerLink="/market" class="menu__item">Магазин</a>
           <app-collection-menu></app-collection-menu>
@@ -21,7 +21,7 @@
 
             <ul class="submenu-desktop">
               <li class="nav-item" *ngIf="showAdminBoard">
-                <a  class="nav-link" routerLink="/admin">Admin Board</a>
+                <a class="nav-link" routerLink="/admin">Admin Board</a>
               </li>
               <li>
                 <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
@@ -51,8 +51,8 @@
           <app-convertor></app-convertor>
           <app-clothes-search class="menu__item"></app-clothes-search>
 
-          <button class="button-active" mat-icon-button (click)="sidenavBasket.toggle()" >
-            <mat-icon><mat-icon>shopping_basket</mat-icon></mat-icon>
+          <button class="button-active" mat-icon-button (click)="sidenavBasket.toggle()">
+            <mat-icon>shopping_basket</mat-icon>
           </button>
 
 
@@ -61,7 +61,7 @@
 
       <div class="mobile-header">
 
-        <button class="button-active" mat-icon-button (click)="sidenavMenu.toggle()" >
+        <button class="button-active" mat-icon-button (click)="sidenavMenu.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
 
@@ -72,8 +72,8 @@
 
         <div>
 
-          <button class="button-active" mat-icon-button (click)="sidenavBasket.toggle()" >
-            <mat-icon><mat-icon>shopping_basket</mat-icon></mat-icon>
+          <button class="button-active" mat-icon-button (click)="sidenavBasket.toggle()">
+            <mat-icon>shopping_basket</mat-icon>
           </button>
         </div>
       </div>
@@ -82,12 +82,10 @@
     </header>
 
 
-
-
-    <div class="contat">
+    <div class="content ">
       <router-outlet></router-outlet>
 
-      <button mat-button class="fabAddClothesStyle" (click)="openDialog()" *ngIf="showAdminBoard">Add clothes</button>
+      <button mat-button class="fab-add-clothes-style" (click)="openDialog()" *ngIf="showAdminBoard">Add clothes</button>
       <footer style="padding: 0 2%;">
         <br>
         <a href="https://www.instagram.com/">Instagram</a>
@@ -104,13 +102,13 @@
 
   </mat-sidenav-content>
 
-  <mat-sidenav #sidenavMenu >
-    <mat-nav-list style="display: flex;flex-direction:column;">
-      <button class="button-active" mat-icon-button (click)="sidenavMenu.toggle()" >
+  <mat-sidenav #sidenavMenu>
+    <mat-nav-list>
+      <button class="button-active" mat-icon-button (click)="sidenavMenu.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
 
-      <div style="display: flex; flex-direction: column;flex-wrap: nowrap;">
+      <div class="sidenav-info">
 
         <div class="menu1">
           <a routerLink="/market" class="menu__item">Магазин</a>
@@ -135,7 +133,7 @@
             <div>
               <button class="down"><img src="https://shklar-images.s3.eu-central-1.amazonaws.com/auth-icon.png">
               </button>
-              <div class="menusub-mobile"></div>
+              <div class="menu-sub-mobile"></div>
               <ul class="submenu-mobile" routerLinkActive="active">
                 <li class="nav-item" *ngIf="showAdminBoard">
                   <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
@@ -146,15 +144,15 @@
                 </li>
                 <li>
                   <div *ngIf="!isLoggedIn">
-                    <button (click)="openSingUpDialog()" style="border: none" value="Login"
+                    <button (click)="openSingUpDialog()" class="none-border" value="Login"
                             id="Sign up mobile button">
                       Рєстрація
                     </button>
                   </div>
 
                 </li>
-                <div style="padding-left: 2%" *ngIf="!isLoggedIn">
-                  <button (click)="openLoginDialog()" style="border: none;" value="Login"
+                <div class="indent" *ngIf="!isLoggedIn">
+                  <button (click)="openLoginDialog()" class="none-border"  value="Login"
                           id="Sign in mobile button">
                     Вхід
                   </button>
@@ -165,30 +163,27 @@
         </div>
       </div>
       <br class="br">
-      <div class="downf">
-        <a class="footerpage1"
+      <div class="down-footer">
+        <a class="footer-page"
            href="https://www.instagram.com/alexandrashklyar_store/?igshid=YmMyMTA2M2Y%3D">Instagram</a>
 
-        <a class="footerpage1" href="https://www.instagram.com/">Обране</a>
-        <a class="footerpage1" href="https://www.instagram.com/">Контакти</a>
+        <a class="footer-page" href="https://www.instagram.com/">Обране</a>
+        <a class="footer-page" href="https://www.instagram.com/">Контакти</a>
         <br class="br">
 
-        <div class="footerpage1">© 2022</div>
+        <div class="footer-page">© 2022</div>
 
       </div>
 
     </mat-nav-list>
   </mat-sidenav>
 
-  <mat-sidenav #sidenavBasket position="end" style="width: 30%">
+  <mat-sidenav #sidenavBasket position="end" class="sidenav-basket">
 
-      <app-basket></app-basket>
+    <app-basket></app-basket>
 
 
   </mat-sidenav>
-
-
-  <app-messages></app-messages>
 
 
 </mat-sidenav-container>

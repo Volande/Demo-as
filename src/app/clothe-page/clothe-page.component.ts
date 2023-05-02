@@ -16,11 +16,11 @@ import {Clothes_dto} from "../entity/clothes_dto";
 
 
 @Component({
-  selector: 'app-clothes-page',
-  templateUrl: './clothes-page.component.html',
-  styleUrls: ['./clothes-page.component.css']
+  selector: 'app-clothe-page',
+  templateUrl: './clothe-page.component.html',
+  styleUrls: ['./clothe-page.component.css']
 })
-export class ClothesPageComponent implements OnInit {
+export class ClothePageComponent implements OnInit {
   clothes: Clothes;
   image: Image [] = [];
 

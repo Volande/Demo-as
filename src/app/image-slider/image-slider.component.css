@@ -6,7 +6,7 @@
   background-position: center;
 }
 
-.rightArrow {
+.right-arrow {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.leftArrow {
+.left-arrow {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
@@ -34,7 +34,7 @@
   height: 700px;
 }
 
-.dotsContainer {
+.dots-container {
   display: flex;
   justify-content: center;
 

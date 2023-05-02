@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {AppComponent} from "../app.component";
 import {ClothesService} from "../clothes.service";
 import {Clothes} from "../entity/clothes";
 import {Size} from "../entity/size";
 import {Clothes_cart} from "../entity/clothes_cart";
-import {ClothesPageComponent} from "../clothes-page/clothes-page.component";
+import {ClothePageComponent} from "../clothe-page/clothe-page.component";
 
 @Component({
   selector: 'app-basket',
@@ -29,6 +29,7 @@ export class BasketComponent implements OnInit {
 
     if (localStorage.getItem("selectedClothes")) {
       this.cartClothes = JSON.parse(localStorage.getItem("selectedClothes") || '{}')
+
       this.sum();
     }
 
