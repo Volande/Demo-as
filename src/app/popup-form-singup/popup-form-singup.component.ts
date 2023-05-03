@@ -1,5 +1,5 @@
 import {Component, OnInit, Optional} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../_services/auth.service";
 import {TokenStorageService} from "../_services/token-storage.service";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
@@ -13,9 +13,9 @@ import {PopupFormLoginComponent} from "../popup-form-login/popup-form-login.comp
 export class PopupFormSingupComponent implements OnInit {
 
   reactiveForm: FormGroup = this.formBuilder.group({
-    login: ['', [Validators.required, Validators.maxLength(30)]],
-    password: ['', [Validators.required, Validators.maxLength(30)]],
-    email:['',[Validators.required, Validators.maxLength(30)]]
+    login: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]],
+    password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]],
+    email: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]]
   });
 
   hide = true;
@@ -36,7 +36,21 @@ export class PopupFormSingupComponent implements OnInit {
   isLoginFailed = false;
   role: string | undefined = "UnAuthorized";
 
+
   ngOnInit(): void {
+
+  }
+
+  get login() {
+    return this.reactiveForm.get('login');
+  }
+
+  get email() {
+    return this.reactiveForm.get('email');
+  }
+
+  get password() {
+    return this.reactiveForm.get('password');
   }
 
   reloadPage(): void {
@@ -47,10 +61,12 @@ export class PopupFormSingupComponent implements OnInit {
     window.location.replace("/shop/main-page");
   }
 
-  openLoginDialog(){
+  openLoginDialog() {
     this.dialogPopupLogin = this.dialog.open(PopupFormLoginComponent);
     this.dialogPopupSingUp.close()
   }
+
+
 
   onSubmit() {
     const controls = this.reactiveForm.controls;
@@ -70,7 +86,7 @@ export class PopupFormSingupComponent implements OnInit {
         this.reactiveForm.value.login,
         this.reactiveForm.value.email,
         this.reactiveForm.value.password,
-        ).subscribe(
+      ).subscribe(
         {
           next: userInfo => {
             this.tokenStorage.saveUser(userInfo);

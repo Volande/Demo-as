@@ -4,7 +4,7 @@ import {Categories} from "../entity/categories";
 import {Collection} from "../entity/collection";
 import {Size} from "../entity/size";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {ClothesService} from "../clothes.service";
+import {ProductsService} from "../products.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Customer} from "../entity/customer";
 import {animate, state, style, transition, trigger} from "@angular/animations";
@@ -54,7 +54,7 @@ export class BoardAdminComponent implements OnInit {
 
   constructor(private userService: UserService,
               private formBuilder: FormBuilder,
-              public clothesService: ClothesService,
+              public productsService: ProductsService,
               public dialog: MatDialog,) {
     this.reactiveFormSize = this.formBuilder.group({
       sizes: ['']
@@ -114,14 +114,14 @@ export class BoardAdminComponent implements OnInit {
 
   }
   onSubmitSizes() {
-    this.clothesService.saveNewSize(
+    this.productsService.saveNewSize(
       this.reactiveFormSize.value.sizes
     ).subscribe(()=> {
       this.reloadPage()
     })}
 
   onSubmitCategory(){
-    this.clothesService.saveNewCategory(
+    this.productsService.saveNewCategory(
       this.reactiveFormCategory.value.category
     ).subscribe(()=> {
       this.reloadPage();
@@ -129,7 +129,7 @@ export class BoardAdminComponent implements OnInit {
   }
 
   onSubmitCollection(){
-    this.clothesService.saveNewCollection(
+    this.productsService.saveNewCollection(
       this.reactiveFormCollection.value.collection
     ).subscribe(()=> {
       this.reloadPage();

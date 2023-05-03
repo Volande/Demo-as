@@ -1,15 +1,11 @@
 import {Component, Optional, ViewEncapsulation} from '@angular/core';
 import {TokenStorageService} from "./_services/token-storage.service";
-import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
-import {Overlay} from "@angular/cdk/overlay";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {AddProductComponent} from "./add-product/add-product.component";
-
 import {PopupFormLoginComponent} from "./popup-form-login/popup-form-login.component";
 import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.component";
-import {Clothes} from "./entity/clothes";
-import {Router} from "@angular/router";
 import {CheckingAuthService} from "./_services/checking-auth.service";
-import {ClothesService} from "./clothes.service";
+
 
 
 @Component({
@@ -36,7 +32,6 @@ export class AppComponent {
   constructor(private tokenStorageService: TokenStorageService,
               private checkinAuth: CheckingAuthService,
               public dialog: MatDialog,
-              public  clothesService :ClothesService,
               @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
               @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
 

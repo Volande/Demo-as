@@ -1,6 +1,6 @@
 import {Component, NgModule, NgZone, OnInit} from '@angular/core';
-import {Clothes} from "../entity/clothes";
-import {ClothesService} from "../clothes.service";
+import {Product} from "../entity/product";
+import {ProductsService} from "../products.service";
 import {UserService} from "../_services/user.service";
 import {Router, RouterModule, Routes} from "@angular/router";
 
@@ -14,7 +14,7 @@ import {Router, RouterModule, Routes} from "@angular/router";
 
 
 export class RelevantsComponent implements OnInit {
-  clothes:  Clothes[]=[];
+  clothes:  Product[]=[];
 
   constructor(private userService:UserService,
               private router: Router,

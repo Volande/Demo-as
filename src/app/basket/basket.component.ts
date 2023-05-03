@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {AppComponent} from "../app.component";
-import {ClothesService} from "../clothes.service";
-import {Clothes} from "../entity/clothes";
+import {ProductsService} from "../products.service";
+import {Product} from "../entity/product";
 import {Size} from "../entity/size";
-import {Clothes_cart} from "../entity/clothes_cart";
+import {Products_cart} from "../entity/products_cart";
 import {ClothePageComponent} from "../clothe-page/clothe-page.component";
 
 @Component({
@@ -12,17 +12,17 @@ import {ClothePageComponent} from "../clothe-page/clothe-page.component";
   styleUrls: ['./basket.component.css']
 })
 export class BasketComponent implements OnInit {
-  cartClothes: Clothes[] = [];
+  cartClothes: Product[] = [];
   totalQuantity: number = 0;
   price: number;
   totalPrice: number = 0;
 
   size: Size[];
 
-  clothesNew: Clothes;
+  clothesNew: Product;
 
 
-  constructor(private clothesService: ClothesService) {
+  constructor(private productsService: ProductsService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class BasketComponent implements OnInit {
       this.sum();
     }
 
-    this.clothesService.event.subscribe(clothes => {
+    this.productsService.event.subscribe(clothes => {
       let index = -1
       index = this.cartClothes.findIndex(
         c => c.id === clothes.id && c.size[0].title == clothes.size[0].title
@@ -51,7 +51,7 @@ export class BasketComponent implements OnInit {
 
   }
 
-  decreaseCartItem(clothe: Clothes) {
+  decreaseCartItem(clothe: Product) {
     let index = this.cartClothes.findIndex(item => item.id === clothe.id && item.size[0].title == clothe.size[0].title);
     this.cartClothes[index].quantity -= 1
     if (this.cartClothes[index].quantity == 0) {
@@ -60,13 +60,13 @@ export class BasketComponent implements OnInit {
     this.sum()
   }
 
-  increaseCartItem(clothe: Clothes) {
+  increaseCartItem(clothe: Product) {
     let criterionsFilter: any = JSON.parse(JSON.stringify(clothe));
-    this.clothesService.event.emit(criterionsFilter)
+    this.productsService.event.emit(criterionsFilter)
   }
 
 
-  deleteProduct(clothe: Clothes) {
+  deleteProduct(clothe: Product) {
     let index = this.cartClothes.findIndex(item => item.id === clothe.id && item.size[0].title == clothe.size[0].title);
     this.cartClothes.splice(index, 1);
 

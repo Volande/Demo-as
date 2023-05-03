@@ -1,13 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../_services/user.service";
 import {Collection} from "../entity/collection";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ClothesService} from "../clothes.service";
-import {Clothes} from "../entity/clothes";
-import {Observable} from "rxjs";
+import {Product} from "../entity/product";
 import {MatDialog} from "@angular/material/dialog";
-import {ClothePageComponent} from "../clothe-page/clothe-page.component";
-import {MarketComponent} from "../market/market.component";
+
 
 @Component({
   selector: 'app-collection-menu',
@@ -17,13 +13,11 @@ import {MarketComponent} from "../market/market.component";
 export class CollectionMenuComponent implements OnInit {
   collection: Collection[] = [];
 
-  clothes: Clothes[];
+  clothes: Product[];
 
   constructor(private userService: UserService,
-              public clothesService: ClothesService,
-              private formBuilder: FormBuilder,
               public dialog: MatDialog,
-              private market: MarketComponent) {
+             ) {
   }
 
 

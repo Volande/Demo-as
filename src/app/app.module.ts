@@ -16,7 +16,7 @@ import {ClothePageComponent} from './clothe-page/clothe-page.component';
 import {RelevantsComponent} from './relevants/relevants.component';
 import {CollectionMenuComponent} from './collection-menu/collection-menu.component';
 import {ConvertorComponent} from './convertor/convertor.component';
-import {ClothesService} from "./clothes.service";
+import {ProductsService} from "./products.service";
 import {BoardAdminComponent} from './board-admin/board-admin.component';
 import { PopupFormLoginComponent } from './popup-form-login/popup-form-login.component';
 import { PopupFormSingupComponent } from './popup-form-singup/popup-form-singup.component';
@@ -120,7 +120,7 @@ export class XhrInterceptor implements HttpInterceptor {
 
 
   ],
-  providers: [ClothesService, {
+  providers: [ProductsService, {
     multi: true,
     provide: [HTTP_INTERCEPTORS ,MatDialogRef,{provide: MAT_DIALOG_DATA, useValue: {}}],
     useValue: {},

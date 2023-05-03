@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Inject, Injectable, OnInit, Optional} from '@angular/core';
-import {Clothes} from "../entity/clothes";
-import {ClothesService} from "../clothes.service";
+import {Product} from "../entity/product";
+import {ProductsService} from "../products.service";
 import {FilterPipeModule} from 'ngx-filter-pipe';
 import {FormBuilder, FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
 import {UserService} from "../_services/user.service";
@@ -16,7 +16,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./market.component.css']
 })
 export class MarketComponent implements OnInit {
-  clothes: Clothes[];
+  clothes: Product[];
   categories: string[] = [];
   availability: string[] = ["Є в наявності", "Немає"];
   collection: string[] = [];
@@ -27,8 +27,8 @@ export class MarketComponent implements OnInit {
   reactiveForm: FormGroup;
 
 
-  constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes },
-              private clothesService: ClothesService,
+  constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: { clothes: Product },
+              private productsService: ProductsService,
               private userService: UserService,
               private formBuilder: FormBuilder,
 
@@ -135,14 +135,14 @@ export class MarketComponent implements OnInit {
 
   searchProductByCollection() {
     if (this.searchByCollection != undefined) {
-      this.clothesService.findProduct(
+      this.productsService.findProduct(
         this.reactiveForm.value.availability,
         this.reactiveForm.value.priceMin,
         this.reactiveForm.value.priceMax,
         this.reactiveForm.value.sizes,
         this.reactiveForm.value.collectionFilter,
         this.reactiveForm.value.categories,
-      ).subscribe((response: Clothes[]) => {
+      ).subscribe((response: Product[]) => {
           this.clothes = response;
         },
         (error) => {
@@ -166,14 +166,14 @@ export class MarketComponent implements OnInit {
 
   onSubmit() {
 
-    this.clothesService.findProduct(
+    this.productsService.findProduct(
       this.reactiveForm.value.availability,
       this.reactiveForm.value.priceMin,
       this.reactiveForm.value.priceMax,
       this.reactiveForm.value.sizes,
       this.reactiveForm.value.collectionFilter,
       this.reactiveForm.value.categories,
-    ).subscribe((response: Clothes[]) => {
+    ).subscribe((response: Product[]) => {
         this.clothes = response;
       },
       (error) => {

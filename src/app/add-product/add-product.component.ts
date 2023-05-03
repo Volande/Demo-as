@@ -10,14 +10,10 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import {ClothesService} from "../clothes.service";
-import {Clothes} from "../entity/clothes";
+import {ProductsService} from "../products.service";
+import {Product} from "../entity/product";
 import {UserService} from "../_services/user.service";
-import {Categories} from "../entity/categories";
-import {Collection} from "../entity/collection";
 import {FileValidator} from "ngx-material-file-input";
-import {Size} from "../entity/size";
-import {Observable} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 export function requiredExtension(expectedExtensions: string[]): ValidatorFn {
@@ -188,9 +184,9 @@ export class AddProductComponent implements OnInit {
 
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes  },
+    @Inject(MAT_DIALOG_DATA) public data: { clothes: Product  },
     private formBuilder: FormBuilder,
-    public clothesService: ClothesService,
+    public productsService: ProductsService,
     public dialog: MatDialog,
     private userService: UserService,
     private _snackBar:MatSnackBar
@@ -242,7 +238,7 @@ export class AddProductComponent implements OnInit {
 
 
    if(this.data) {
-      this.clothesService.updateClothe(
+      this.productsService.updateClothe(
         this.data.clothes.id,
         this.reactiveForm.value.title,
         this.reactiveForm.value.content,
@@ -256,11 +252,11 @@ export class AddProductComponent implements OnInit {
         this.images
       ).subscribe(() => {
         this.dialog.closeAll()
-          this.spinnerFalse = true
+        this._snackBar.open("Товар змінено успішно", "Закрити");
       });
     }else {
 
-     this.clothesService.saveClothe(
+     this.productsService.saveClothe(
        this.reactiveForm.value.title,
        this.reactiveForm.value.content,
        this.reactiveForm.value.compound,

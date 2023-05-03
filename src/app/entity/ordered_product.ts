@@ -1,5 +1,5 @@
 import {Size} from "./size";
-import {Clothes} from "./clothes";
+import {Product} from "./product";
 import {Customer} from "./customer";
 
 export interface Ordered_product {
@@ -8,6 +8,6 @@ export interface Ordered_product {
   amount:number;
   price:number;
   size:Size;
-  product:Clothes;
+  product:Product;
 
 }

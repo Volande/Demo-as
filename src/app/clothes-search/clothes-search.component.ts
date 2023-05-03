@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable, Subject} from "rxjs";
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from "rxjs";
-import {Clothes} from "../entity/clothes";
-import {ClothesService} from "../clothes.service";
+import {Product} from "../entity/product";
+
 
 
 @Component({
@@ -13,11 +10,11 @@ import {ClothesService} from "../clothes.service";
   styleUrls: ['./clothes-search.component.css']
 })
 export class ClothesSearchComponent implements OnInit {
-  wardrobe$!: Observable<Clothes[]>;
+  wardrobe$!: Observable<Product[]>;
   value = 'Clear me';
   private searchTerms = new Subject<string>();
 
-  constructor(private clothesService: ClothesService) { }
+  constructor() { }
 
   search(term: string): void{
     this.searchTerms.next(term);

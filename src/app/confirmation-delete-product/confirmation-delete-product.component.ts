@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {Clothes} from "../entity/clothes";
-import {ClothesService} from "../clothes.service";
+import {Product} from "../entity/product";
+import {ProductsService} from "../products.service";
 
 @Component({
   selector: 'app-confirmation',
@@ -10,10 +10,10 @@ import {ClothesService} from "../clothes.service";
 })
 export class ConfirmationDeleteProductComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { clothes: Clothes | null },
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { clothes: Product | null },
               @Optional() public dialogConfirmationDelete: MatDialogRef<ConfirmationDeleteProductComponent>,
               public dialog: MatDialog,
-              public clothesService: ClothesService,) { }
+              public productsService: ProductsService,) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +31,7 @@ export class ConfirmationDeleteProductComponent implements OnInit {
 
   onSubmit() {
     if (this.data.clothes) {
-      this.clothesService.deleteClothe(this.data.clothes.id).subscribe(() => {
+      this.productsService.deleteClothe(this.data.clothes.id).subscribe(() => {
         this.dialog.closeAll();
       })
     } else {

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {Clothes} from "../entity/clothes";
+import {Product} from "../entity/product";
 import {Categories} from "../entity/categories";
 import {Collection} from "../entity/collection";
 import {Size} from "../entity/size";
@@ -25,8 +25,8 @@ export class UserService {
               private tokenStorage: TokenStorageService) {
   }
 
-  getPublicContent(): Observable<Clothes[]> {
-    return this.http.get<Clothes[]>(this.API_URL + 'products/');
+  getPublicContent(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.API_URL + 'products/');
   }
 
   getCategories(): Observable<Categories[]> {
@@ -45,9 +45,9 @@ export class UserService {
   }
 
 
-  getClothe(id: number): Observable<Clothes> {
+  getClothe(id: number): Observable<Product> {
     const url = this.API_URL + "products/clothes/" + id;
-    return this.http.get<Clothes>(url);
+    return this.http.get<Product>(url);
   }
 
 
@@ -57,7 +57,7 @@ export class UserService {
     postOffice: string,
     departmentPostOffice: string,
     numberPhone: string,
-    ordersClothes: Clothes[]
+    ordersClothes: Product[]
   ) {
 
     let userNew = this.tokenStorage.getUser()

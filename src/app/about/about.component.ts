@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ClothesService} from "../clothes.service";
+import {ProductsService} from "../products.service";
 
 @Component({
   selector: 'app-about',
@@ -8,8 +8,8 @@ import {ClothesService} from "../clothes.service";
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private clothesService:ClothesService) {
-    this.clothesService.removeCriterionsFilter();
+  constructor(private productsService:ProductsService) {
+    this.productsService.removeCriterionsFilter();
   }
 
   ngOnInit(): void {

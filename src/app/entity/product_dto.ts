@@ -1,7 +1,7 @@
 import {Image} from "./image";
 import {Size} from "./size";
 
-export interface Clothes_dto {
+export interface Product_dto {
   id: number;
   title: string;
   image: Image[];

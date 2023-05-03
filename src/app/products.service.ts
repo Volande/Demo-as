@@ -4,9 +4,9 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
-import {Clothes} from './entity/clothes';
+import {Product} from './entity/product';
 import {MessageService} from './message.service';
-import {Clothes_dto} from "./entity/clothes_dto";
+import {Product_dto} from "./entity/product_dto";
 import {Size} from "./entity/size";
 import {Image} from "./entity/image";
 import {Categories} from "./entity/categories";
@@ -15,7 +15,7 @@ import {Categories} from "./entity/categories";
 
 
 @Injectable({providedIn: 'root'})
-export class ClothesService {
+export class ProductsService {
   @Output() event = new EventEmitter();
 
 
@@ -27,7 +27,7 @@ export class ClothesService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
   authenticated = false;
-  clothes: Clothes[];
+  clothes: Product[];
 
   constructor(
     private http: HttpClient,
@@ -35,10 +35,10 @@ export class ClothesService {
   }
 
 
-  getClothe(): Observable<Clothes[]> {
-    return this.http.get<Clothes[]>(`${this.heroesUrl}/products/findAll`)
+  getClothe(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.heroesUrl}/products/findAll`)
       .pipe(
-        catchError(this.handleError<Clothes[]>('getClothes', []))
+        catchError(this.handleError<Product[]>('getClothes', []))
       );
   }
 
@@ -67,7 +67,7 @@ export class ClothesService {
     }
 
 
-    return this.http.post<Clothes[]>(this.heroesUrl + "/products/filter",
+    return this.http.post<Product[]>(this.heroesUrl + "/products/filter",
       JSON.stringify(collectionFind))
   }
 
@@ -85,7 +85,7 @@ export class ClothesService {
     images: File[],
   ) {
     // @ts-ignore
-    let clothes = {
+    let productDto = {
       id: id,
       title: title,
       content: content,
@@ -97,7 +97,7 @@ export class ClothesService {
       collection: collection,
       image: productImages
 
-    } as Clothes_dto
+    } as Product_dto
 
     const formData = new FormData;
     if (images.length > 0) {
@@ -105,7 +105,7 @@ export class ClothesService {
         formData.append('image', row);
       }
     }
-    formData.append('clothes', new Blob([JSON.stringify(clothes)], {
+    formData.append('clothes', new Blob([JSON.stringify(productDto)], {
       type: 'application/json'
     }))
 
@@ -132,7 +132,7 @@ export class ClothesService {
     images: File[]
   ) {
     // @ts-ignore
-    let clothes = {
+    let productDto = {
       title: title,
       content: content,
       compound: compound,
@@ -142,7 +142,7 @@ export class ClothesService {
       categories: categories,
       collection: collection,
 
-    } as Clothes_dto
+    } as Product_dto
 
     const formData = new FormData;
     if (images.length > 0) {
@@ -150,7 +150,7 @@ export class ClothesService {
         formData.append('image', row);
       }
     }
-    formData.append('clothes', new Blob([JSON.stringify(clothes)], {
+    formData.append('clothes', new Blob([JSON.stringify(productDto)], {
       type: 'application/json'
     }))
 
@@ -184,11 +184,11 @@ export class ClothesService {
   }
 
 
-  getHero(id: number): Observable<Clothes> {
+  getHero(id: number): Observable<Product> {
     const url = `${this.heroesUrl}/products/clothes/${id}`;
-    return this.http.get<Clothes>(url).pipe(
+    return this.http.get<Product>(url).pipe(
       tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Clothes>(`getHero id=${id}`))
+      catchError(this.handleError<Product>(`getProduct id=${id}`))
     );
   }
 
@@ -205,7 +205,7 @@ export class ClothesService {
 
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`ProductService: ${message}`);
   }
 
 

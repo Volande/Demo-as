@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
-import {Clothes} from '../entity/clothes';
-import {ClothesService} from '../clothes.service';
+import {Product} from '../entity/product';
 import {UserService} from "../_services/user.service";
-import {Image} from "../entity/image";
 
 @Component({
   selector: 'app-carousel-main',
@@ -24,7 +22,7 @@ export class CarouselMainComponent implements OnInit {
     "https://shklar-images.s3.eu-central-1.amazonaws.com/carousel-main/panoramic-photo-of-strange-misty-forest-in-autumn-wide-format-of-dramatic-scene-landscape-in-the-autumn-forest_87555-18476.avif",
     "https://shklar-images.s3.eu-central-1.amazonaws.com/carousel-main/depositphotos_6729512-stock-photo-digital-printing-wide-format-printer.jpg"];
 
-  clothes: Clothes[] = [];
+  clothes: Product[] = [];
   currentIndex: number = 0;
   timeoutId?: number;
 

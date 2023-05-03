@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Clothes} from "../entity/clothes";
+import {Product} from "../entity/product";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ClothesService} from "../clothes.service";
+import {ProductsService} from "../products.service";
 import {Location} from "@angular/common";
 import {UserService} from "../_services/user.service";
 import {Image} from "../entity/image";
@@ -12,7 +12,7 @@ import {AddProductComponent} from "../add-product/add-product.component";
 import {ConfirmationDeleteProductComponent} from "../confirmation-delete-product/confirmation-delete-product.component";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Size} from "../entity/size";
-import {Clothes_dto} from "../entity/clothes_dto";
+import {Product_dto} from "../entity/product_dto";
 
 
 @Component({
@@ -21,7 +21,7 @@ import {Clothes_dto} from "../entity/clothes_dto";
   styleUrls: ['./clothe-page.component.css']
 })
 export class ClothePageComponent implements OnInit {
-  clothes: Clothes;
+  clothes: Product;
   image: Image [] = [];
 
   availabilityClothe: string;
@@ -44,7 +44,7 @@ export class ClothePageComponent implements OnInit {
   fontStyle?: string;
 
   quantity: number;
-  private productNew: Clothes;
+  private productNew: Product;
 
   private nullArray:Size[] = []
   constructor(
@@ -52,7 +52,7 @@ export class ClothePageComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private userService: UserService,
-    private clothesService: ClothesService,
+    private productsService: ProductsService,
     public dialog: MatDialog,
     public overlay: Overlay,
     private router: Router,
@@ -70,7 +70,7 @@ export class ClothePageComponent implements OnInit {
   }
 
 
-  addProductToCart(clothes:Clothes) {
+  addProductToCart(clothes:Product) {
     if (this.fontStyleControl.value) {
       this.sizeClothe.push(this.fontStyleControl.value)
 
@@ -81,7 +81,7 @@ export class ClothePageComponent implements OnInit {
 
 
       this.sizeClothe = Object.assign([],this.nullArray)
-      this.clothesService.event.emit( criterionsFilter)
+      this.productsService.event.emit( criterionsFilter)
     }
 
   }
@@ -114,7 +114,7 @@ export class ClothePageComponent implements OnInit {
   }
 
 
-  deleteClothesBtn(clothes: Clothes): void {
+  deleteClothesBtn(clothes: Product): void {
     const dialogRef = this.dialog.open(ConfirmationDeleteProductComponent,
       {
         data: {clothes: clothes},

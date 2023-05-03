@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Clothes} from "../entity/clothes";
-import {ClothesService} from "../clothes.service";
+import {Product} from "../entity/product";
+import {ProductsService} from "../products.service";
 import {UserService} from "../_services/user.service";
 
 @Component({
@@ -9,14 +9,14 @@ import {UserService} from "../_services/user.service";
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  clothes : Clothes[] = [];
+  clothes : Product[] = [];
 
   constructor(private userService:UserService,
-              private clothesService:ClothesService) { }
+              private productsService:ProductsService) { }
 
   ngOnInit(): void {
     this.getPublicContent();
-    this.clothesService.removeCriterionsFilter();
+    this.productsService.removeCriterionsFilter();
   }
 
 

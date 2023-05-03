@@ -1,30 +1,55 @@
-<div class="wrapper fadeInDown">
+<div class="wrapper fade-in-down">
   <div id="formContent">
 
 
-
     <h2 class="active"> Вхід </h2>
-    <button style="border: none" (click)="openSingUpDialog()" value="Login"  id="Sign up mobile button">
+    <button class="btn-login" (click)="openSingUpDialog()" value="Login" id="Sign up mobile button">
       <h2 class="inactive"> Рєстрація</h2>
     </button>
 
 
-    <form [formGroup]="reactiveForm" id="Login form" style="display:flex;flex-direction: column;align-items: center  ">
+    <form [formGroup]="reactiveForm" id="Login form" >
+
+      <div class="box-input">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Логін</mat-label>
+          <input matInput type="text" id="login" formControlName="login" minlength="4" maxlength="30">
+        </mat-form-field>
+        <div *ngIf="login?.invalid && (login?.dirty || login?.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="login?.errors?.['required']">
+            Поле не повинно бути пустим
+          </div>
+          <div *ngIf="login?.errors?.['minlength']">
+            Логін занадто короткий.
+            Повинно бути 4 або більше символів
+          </div>
+        </div>
+
+      </div>
+      <div class="box-input">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Пароль</mat-label>
+          <input matInput style="width: 90%" [type]="hide ? 'password' : 'text'" type="text" id="password" minlength="4"
+                 formControlName="password" maxlength="30" placeholder="Пароль">
+
+        </mat-form-field>
+
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="password?.errors?.['required']">
+            Поле не повинно бути пустим
+          </div>
 
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Логін</mat-label>
-        <input matInput type="text" id="login" formControlName="login" minlength="5" maxlength="30">
-      </mat-form-field>
-
-
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Пароль</mat-label>
-        <input matInput style="width: 90%" [type]="hide ? 'password' : 'text'" type="text" id="password" minlength="5"
-               formControlName="password" maxlength="30" placeholder="Пароль">
-
-      </mat-form-field>
-
+          <div *ngIf="password?.errors?.['minlength']">
+            Пароль занадто короткий.
+            Повинно бути 4 або більше символів
+          </div>
+        </div>
+      </div>
 
       <h4 *ngIf="errorMessage.localeCompare('')" class="errorColour" id="Incorrect login or password warning">
         Incorrect login or password</h4>

@@ -1,33 +1,78 @@
-
-
-<div class="wrapper fadeInDown">
+<div class="wrapper fade-in-down">
   <div id="formContent">
 
-    <button style="border: none" (click)="openLoginDialog()" value="Login" id="Sign up mobile button">
+    <button class="btn-login" (click)="openLoginDialog()" value="Login" id="Sign up mobile button">
       <h2 class="inactive"> Вхід</h2>
     </button>
     <h2 class="active">Реєстрація </h2>
 
 
-    <form [formGroup]="reactiveForm" id="Login form" style="display:flex;flex-direction: column;align-items: center  ">
+    <form [formGroup]="reactiveForm" id="Login form" >
+
+      <div class="box-input">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Логін</mat-label>
+          <input matInput type="text" id="login" formControlName="login" minlength="4" maxlength="30">
+        </mat-form-field>
+        <div *ngIf="login?.invalid && (login?.dirty || login?.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="login?.errors?.['required']">
+            Поле не повинно бути пустим
+          </div>
+          <div *ngIf="login?.errors?.['minlength']">
+            Логін занадто короткий.
+            Повинно бути 4 або більше символів
+          </div>
+        </div>
 
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Логін</mat-label>
-        <input matInput type="text" id="login" formControlName="login" maxlength="30">
-      </mat-form-field>
+      </div>
 
-      <mat-form-field class="example-full-width" appearance="fill"  >
-        <mat-label>Пошта</mat-label>
-        <input matInput type="text" id="email" formControlName="email" maxlength="30" placeholder="pat@example.com">
+      <div class="box-input">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Пошта</mat-label>
+          <input matInput type="text" id="email" formControlName="email" maxlength="30" minlength="4"
+                 placeholder="pat@example.com">
 
-      </mat-form-field>
+        </mat-form-field>
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+             class="alert alert-danger">
 
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Пароль</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" type="text" id="password" formControlName="password" maxlength="30" placeholder="Пароль">
-      </mat-form-field>
+          <div *ngIf="email?.errors?.['required']">
+            Поле не повинно бути пустим
+          </div>
 
+
+          <div *ngIf="email?.errors?.['minlength']">
+            Пошта занадто коротка.
+            Повинно бути 4 або більше символів
+          </div>
+        </div>
+      </div>
+
+      <div class="box-input">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Пароль</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" type="text" id="password" formControlName="password"
+                 minlength="4" maxlength="30" placeholder="Пароль">
+        </mat-form-field>
+        <div *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="password?.errors?.['required']">
+            Поле не повинно бути пустим
+          </div>
+
+
+          <div *ngIf="password?.errors?.['minlength']">
+            Пароль занадто короткий.
+            Повинно бути 4 або більше символів
+          </div>
+        </div>
+
+
+      </div>
 
       <h4 *ngIf="errorMessage.localeCompare('')" class="errorColour" id="Incorrect login or password warning">
         Incorrect login or password</h4>
@@ -36,7 +81,6 @@
       <button class="btn" (click)="onSubmit()" id="Submit button">
         Зареєструватися
       </button>
-
 
 
     </form>

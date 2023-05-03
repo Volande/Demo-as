@@ -3,13 +3,11 @@ import {Size} from "./size";
 import {Categories} from "./categories";
 import {Collection} from "./collection";
 
-export interface Clothes_cart {
+export interface Product {
   id: number;
   title: string;
   image: Image[];
-
-
-
+  size: Size[] ;
   price: number;
   content: string;
   compound:string;
@@ -18,6 +16,4 @@ export interface Clothes_cart {
   categories:Categories[];
   productCategories: Categories[];
   quantity:number;
-
-  sizeNew:Size[];
 }
