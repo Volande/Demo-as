@@ -3,10 +3,9 @@
     <div (click)="goToPrevious()" class="left-arrow">❰</div>
     <div (click)="goToNext()" class="right-arrow">❱</div>
   </div>
-  <div
-    class="slide"
-    [ngStyle]="{ 'background-image': getCurrentSlideUrl() }"
-  ></div>
+  <pinch-zoom [double-tap]='true' class="slide">
+    <img class="img-slider" src="{{getCurrentSlideUrl()}}" alt="image">
+  </pinch-zoom>
   <div class="dots-container">
     <div
       *ngFor="let slide of image; let slideIndex = index"

@@ -1,14 +1,16 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, NgModule, OnDestroy, OnInit} from '@angular/core';
 import {Image} from "../entity/image";
 import {ActivatedRoute} from "@angular/router";
 import {Location} from "@angular/common";
 import {UserService} from "../_services/user.service";
+import {NgxImageZoomModule} from "ngx-image-zoom";
 
 @Component({
   selector: 'app-image-slider',
   templateUrl: './image-slider.component.html',
   styleUrls: ['./image-slider.component.css']
 })
+
 export class ImageSliderComponent implements OnInit, OnDestroy {
 
   constructor (
@@ -32,18 +34,12 @@ export class ImageSliderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.resetTimer();
     this.getImage();
   }
   ngOnDestroy() {
     window.clearTimeout(this.timeoutId);
   }
-  resetTimer() {
-    if (this.timeoutId) {
-      window.clearTimeout(this.timeoutId);
-    }
-    this.timeoutId = window.setTimeout(() => this.goToNext(), 5000);
-  }
+
 
   goToPrevious(): void {
     const isFirstSlide = this.currentIndex === 0;
@@ -51,7 +47,7 @@ export class ImageSliderComponent implements OnInit, OnDestroy {
       ? this.image.length - 1
       : this.currentIndex - 1;
 
-    this.resetTimer();
+
     this.currentIndex = newIndex;
   }
 
@@ -59,16 +55,16 @@ export class ImageSliderComponent implements OnInit, OnDestroy {
     const isLastSlide = this.currentIndex === this.image.length - 1;
     const newIndex = isLastSlide ? 0 : this.currentIndex + 1;
 
-    this.resetTimer();
+
     this.currentIndex = newIndex;
   }
 
   goToSlide(slideIndex: number): void {
-    this.resetTimer();
+
     this.currentIndex = slideIndex;
   }
 
   getCurrentSlideUrl() {
-    return `url('${this.image[this.currentIndex].title}')`;
+    return  this.image[this.currentIndex].title;
   }
 }

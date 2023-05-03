@@ -47,6 +47,7 @@ import { OrderingComponent } from './ordering/ordering.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatBadgeModule} from "@angular/material/badge";
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 
 
 
@@ -65,6 +66,7 @@ export class XhrInterceptor implements HttpInterceptor {
   }
 }
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -116,7 +118,8 @@ export class XhrInterceptor implements HttpInterceptor {
     MatButtonToggleModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatBadgeModule
+    MatBadgeModule,
+    PinchZoomModule
 
 
   ],

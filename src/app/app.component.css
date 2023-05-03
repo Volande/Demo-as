@@ -137,6 +137,10 @@ mat-sidenav {
   padding-top: 0 !important;
 }
 
+.sidenav-basket{
+  width: 30%
+}
+
 @media screen and (max-width: 800px) {
 
   .mobile-header {
@@ -258,6 +262,10 @@ mat-sidenav {
     width: 80%;
     height: 80%;
   }
+
+  .sidenav-basket{
+    width: 40%
+  }
 }
 
 
@@ -276,6 +284,9 @@ mat-sidenav {
   mat-sidenav {
 
     width: 30% !important;
+  }
+  .sidenav-basket{
+    width: 50% !important
   }
 }
 
@@ -300,6 +311,9 @@ mat-sidenav {
   .down img {
     width: 60%;
     height: 60%;
+  }
+  .sidenav-basket{
+    width: 70% !important
   }
 }
 
@@ -436,6 +450,4 @@ mat-nav-list {
 border: none
 }
 
-.sidenav-basket{
-  width: 30%
-}
+
