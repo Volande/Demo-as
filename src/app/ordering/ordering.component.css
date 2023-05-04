@@ -1,0 +1,90 @@
+input[type=text]:focus {
+  border: none !important;
+}
+
+input {
+  width: 100%;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid #86918f;
+}
+
+.ordering__body {
+  padding-top: 5%;
+  display: flex;
+  flex-direction: column
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.info-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.indent {
+  padding: 2%
+}
+
+.body__list-products {
+  display: flex;
+  height: 400px;
+  overflow-y: auto;
+  flex-direction: column;
+  width: 100%;
+}
+
+.list-products {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5%;
+}
+
+.box-img {
+  width: 100px;
+  height: 150px;
+  border-radius: 5%
+}
+
+.box-img img {
+  width: 100px;
+  height: 150px
+}
+
+.box-info {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 100%
+}
+
+.box-info-size {
+  display: flex
+}
+
+.box-btn {
+  display: flex;
+  justify-content: center;
+  padding: 3%
+}
+
+.box-btn button{
+  width: 20%;
+}

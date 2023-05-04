@@ -1,0 +1,59 @@
+<div class="ordering__body">
+  <h1>Оформлення замовлененя</h1>
+  <form [formGroup]="reactiveForm" >
+      <div class="info-user">
+        <div class="indent">
+          <h2 class="indent">Ім'я</h2>
+          <input type="text" name="login" class="indent" formControlName="firstName">
+        </div>
+        <div class="indent">
+          <h2 class="indent">Прізвище</h2>
+          <input type="text" class="indent" formControlName="lastName">
+        </div>
+        <div class="indent">
+          <h2 class="indent">Пошта</h2>
+          <input type="text" class="indent" formControlName="postOffice">
+        </div>
+        <div class="indent">
+          <h2 class="indent">Відділення пошти</h2>
+          <input type="text" class="indent" formControlName="departmentPostOffice">
+        </div>
+        <div class="indent">
+          <h2 class="indent">Номер телефону</h2>
+          <input type="text" class="indent" formControlName="numberPhone">
+        </div>
+      </div>
+
+    <div>
+      <div class="body__list-products">
+        <div *ngFor="let clothe of cartClothes" class="list-products">
+          <div class="box-img">
+            <img src="{{clothe.image[0].title}}" >
+          </div>
+
+          <div class="box-info">
+            <div>{{clothe.title}}</div>
+            <div class="box-info-size">
+              <p>Розмір : </p>
+              <p class="indent">{{clothe.size[0].title}}</p>
+            </div>
+
+
+            <div> {{clothe.price | currency: '₴'}}</div>
+
+          </div>
+        </div>
+
+      </div>
+      </div>
+
+
+
+  </form>
+
+
+  <div  class="box-btn">
+    <button  (click)="orderClothes()">Замовити</button>
+  </div>
+
+</div>
