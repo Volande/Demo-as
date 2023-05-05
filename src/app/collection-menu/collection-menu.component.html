@@ -1,6 +1,6 @@
 <div class="top-menu">
   <div>
-    <button class="down">Колекції</button>
+    <button class="down">{{"collection" | transloco}}</button>
     <form >
       <ul class="sub-menu">
         <li *ngFor="let choice of collection " [value]="choice">
@@ -22,7 +22,7 @@
 
 <div class="top-menu__mobile">
   <div>
-    <button class="down-mobile">Колекції</button>
+    <button class="down-mobile">{{"collection" | transloco}}</button>
     <div class="menu-sub"></div>
     <ul class="submenu-mobile">
       <li *ngFor="let choice of collection " [value]="choice">

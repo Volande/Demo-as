@@ -6,10 +6,10 @@
     <header class="container">
       <div class="menu-header">
         <div class="menu1">
-          <a routerLink="/market" class="menu__item">Магазин</a>
+          <a routerLink="/market" class="menu__item" >{{"market" | translate}}</a>
           <app-collection-menu></app-collection-menu>
 
-          <a routerLink="/about" class="menu__item">Про нас</a>
+          <a routerLink="/about" class="menu__item">{{"about"|transloco}}</a>
         </div>
         <div class="menu2">
           <div class="box1"><a routerLink="/main-page">
@@ -35,7 +35,7 @@
           <div *ngIf="!isLoggedIn">
             <button (click)="openSingUpDialog()" style="border: none" value="Login"
                     id="Sign up button">
-              Рєстрація
+              {{"sing-up"|transloco}}
             </button>
           </div>
 
@@ -43,12 +43,12 @@
           <div style="padding-left: 2%;padding-right: 2%" *ngIf="!isLoggedIn">
             <button (click)="openLoginDialog()" style="border: none;" value="Login"
                     id="Sign in button">
-              Вхід
+              {{"login"|transloco}}
             </button>
           </div>
 
 
-          <app-convertor></app-convertor>
+          <app-language-selector></app-language-selector>
           <app-clothes-search class="menu__item"></app-clothes-search>
 
           <button class="button-active" mat-icon-button (click)="sidenavBasket.toggle()">

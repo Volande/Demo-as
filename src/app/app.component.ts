@@ -5,7 +5,8 @@ import {AddProductComponent} from "./add-product/add-product.component";
 import {PopupFormLoginComponent} from "./popup-form-login/popup-form-login.component";
 import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.component";
 import {CheckingAuthService} from "./_services/checking-auth.service";
-
+import {TranslateService} from "@ngx-translate/core";
+import {environment} from "../environments/environment";
 
 
 @Component({
@@ -25,8 +26,7 @@ export class AppComponent {
   showModeratorBoard = false;
   username?: string;
 
-  quantitySelectedProduct:number;
-
+  quantitySelectedProduct: number;
 
 
   constructor(private tokenStorageService: TokenStorageService,
@@ -34,7 +34,7 @@ export class AppComponent {
               public dialog: MatDialog,
               @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
               @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
-
+              private translateService: TranslateService
   ) {
   }
 
@@ -44,7 +44,7 @@ export class AppComponent {
     this.showModeratorBoard = this.checkinAuth.showModeratorBoard;
     this.username = this.checkinAuth.username
     this.role = this.checkinAuth.role;
-
+    this.translateService.use(environment.defaultLocale);
   }
 
   logout(): void {
@@ -67,7 +67,6 @@ export class AppComponent {
     });
 
   }
-
 
 
 }

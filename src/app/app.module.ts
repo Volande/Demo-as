@@ -4,7 +4,14 @@ import {BrowserModule} from '@angular/platform-browser';
 import {Injectable, NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // <-- NgModel lives here
 
-import {HTTP_INTERCEPTORS, HttpClientModule, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
 
 import {CarouselMainComponent} from './carousel-main/carousel-main.component';
 import {MarketComponent} from './market/market.component';
@@ -48,6 +55,11 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatBadgeModule} from "@angular/material/badge";
 import { PinchZoomModule } from 'ngx-pinch-zoom';
+import { TranslocoRootModule } from './transloco-root.module';
+import {LanguageSelectorModule} from "./language-selector/language-selector.module";
+import {MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { MissingTranslationService } from './missing-translation.service';
 
 
 
@@ -66,6 +78,9 @@ export class XhrInterceptor implements HttpInterceptor {
   }
 }
 
+export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -119,7 +134,18 @@ export class XhrInterceptor implements HttpInterceptor {
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatBadgeModule,
-    PinchZoomModule
+    PinchZoomModule,
+    TranslocoRootModule,
+    LanguageSelectorModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
+      useDefaultLang: false,
+    })
 
 
   ],
