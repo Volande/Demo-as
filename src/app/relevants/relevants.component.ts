@@ -2,7 +2,8 @@ import {Component, NgModule, NgZone, OnInit} from '@angular/core';
 import {Product} from "../entity/product";
 import {ProductsService} from "../products.service";
 import {UserService} from "../_services/user.service";
-import {Router, RouterModule, Routes} from "@angular/router";
+import {ActivatedRoute, Router, RouterModule, Routes} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-relevants',
@@ -11,22 +12,20 @@ import {Router, RouterModule, Routes} from "@angular/router";
 
 
 })
-
-
 export class RelevantsComponent implements OnInit {
   clothes:  Product[]=[];
+  paramsSub: Subscription;
 
   constructor(private userService:UserService,
               private router: Router,
-              private ngZone:NgZone,) { }
+              private ngZone:NgZone,
+              private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getPublicContent();
+    const params = +this.activeRoute.snapshot.params;
   }
-  redirect(to:number) {
-    // call with ngZone, so that ngOnOnit of component is called
-    this.ngZone.run(()=>this.router.navigate([to]));
-  }
+
 
   getPublicContent(): void {
     this.userService.getPublicContent()

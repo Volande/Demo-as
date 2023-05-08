@@ -1,8 +1,11 @@
 {
   "market": "Market",
-  "collection": "collection",
-  "about": "about",
-  "sing-up":"sing-up",
-  "login":"login",
-  "search": "search"
+  "collection": "Collection",
+  "about": "About",
+  "sing-up":"Sing-up",
+  "login":"Login",
+  "search": "Search",
+  "recent_receipts": "Recent receipts",
+  "defense": "Defense",
+  "contacts": "Contacts"
 }

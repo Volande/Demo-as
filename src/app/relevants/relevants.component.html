@@ -1,8 +1,8 @@
 <div class="computer-relevants">
   <div style="padding: 5% 0">Вам також може сподобатись</div>
-  <div class="choice">
+  <div class="choice" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
     <a *ngFor="let cloth of clothes"
-       href="/shop/detail/{{cloth.id}}"
+       routerLink="/detail/{{cloth.id}}"
        >
       <div class="carousel-relevants" >
         <img class="image first" src="{{cloth.image[0].title}}" alt="photo">

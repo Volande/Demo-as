@@ -1,6 +1,6 @@
 <app-carousel-main></app-carousel-main>
 <div class="main-page__body">
-  <h2>Останні надходження</h2>
+  <h2>{{"recent_receipts"| transloco}}</h2>
   <div class="main-menu">
       <a *ngFor="let clothe of clothes "
          routerLink="/detail/{{clothe.id}}">

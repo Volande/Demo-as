@@ -3,6 +3,7 @@ import {UserService} from "../_services/user.service";
 import {Collection} from "../entity/collection";
 import {Product} from "../entity/product";
 import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -17,6 +18,7 @@ export class CollectionMenuComponent implements OnInit {
 
   constructor(private userService: UserService,
               public dialog: MatDialog,
+              private router: Router,
              ) {
   }
 
@@ -31,7 +33,7 @@ export class CollectionMenuComponent implements OnInit {
   }
 
   replacePage(): void {
-    window.location.replace("/shop/market");
+    this.router.navigateByUrl('/market')
   }
 
   searchProduct(s: string) {

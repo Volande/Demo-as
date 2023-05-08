@@ -6,8 +6,8 @@ export const environment = {
   baseUrl: 'http://localhost:4200',
   production: false,
   apiBaseUrl: "http://localhost:8082",
-  locales: ['en', 'ua'],
-  defaultLocale: 'uaua',
+  locales: ['en', 'uk'],
+  defaultLocale: 'uk',
 };
 
 /*

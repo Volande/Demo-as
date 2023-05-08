@@ -56,11 +56,31 @@ import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatBadgeModule} from "@angular/material/badge";
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 import { TranslocoRootModule } from './transloco-root.module';
-import {LanguageSelectorModule} from "./language-selector/language-selector.module";
 import {MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import { MissingTranslationService } from './missing-translation.service';
+import { APP_INITIALIZER } from '@angular/core';
+import {UserService} from "./_services/user.service";
+import { TranslocoService } from '@ngneat/transloco';
+import {TokenStorageService} from "./_services/token-storage.service";
+import { getBrowserLang } from '@ngneat/transloco';
+import {LanguageSelectorComponent} from "./language-selector/language-selector.component";
 
+export function preloadUser(userService: UserService, transloco: TranslocoService) {
+  return function() {
+    const currentLang = (window.navigator as Navigator).language.split('-')[0];
+      return transloco.load(currentLang).toPromise();
+
+
+    }
+
+}
+
+export const preLoad = {
+  provide: APP_INITIALIZER,
+  multi: true,
+  useFactory: preloadUser,
+  deps: [UserService, TranslocoService]
+};
 
 
 
@@ -79,8 +99,9 @@ export class XhrInterceptor implements HttpInterceptor {
 }
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http);
 }
+
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -136,22 +157,20 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     MatBadgeModule,
     PinchZoomModule,
     TranslocoRootModule,
-    LanguageSelectorModule,
+
+    LanguageSelectorComponent,
     TranslateModule.forRoot({
+      defaultLanguage: 'ua',
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      missingTranslationHandler: { provide: MissingTranslationHandler, useClass: MissingTranslationService },
-      useDefaultLang: false,
+        deps: [HttpClient]
+      }
     })
-
-
   ],
   providers: [ProductsService, {
     multi: true,
-    provide: [HTTP_INTERCEPTORS ,MatDialogRef,{provide: MAT_DIALOG_DATA, useValue: {}}],
+    provide: [HTTP_INTERCEPTORS ,MatDialogRef,{provide: MAT_DIALOG_DATA, useValue: {}},preLoad],
     useValue: {},
     useClass: XhrInterceptor
   }, authInterceptorProviders,],

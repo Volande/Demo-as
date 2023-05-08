@@ -5,6 +5,7 @@ import {Product} from "../entity/product";
 import {Size} from "../entity/size";
 import {Products_cart} from "../entity/products_cart";
 import {ClothePageComponent} from "../clothe-page/clothe-page.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-basket',
@@ -22,7 +23,8 @@ export class BasketComponent implements OnInit {
   clothesNew: Product;
 
 
-  constructor(private productsService: ProductsService) {
+  constructor(private productsService: ProductsService,
+              private router: Router,) {
   }
 
   ngOnInit(): void {
@@ -88,7 +90,7 @@ export class BasketComponent implements OnInit {
   }
 
   replacePage(): void {
-    window.location.replace("/shop/ordering");
+    this.router.navigateByUrl('/ordering')
   }
 
 

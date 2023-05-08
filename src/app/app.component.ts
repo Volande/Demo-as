@@ -7,7 +7,8 @@ import {PopupFormSingupComponent} from "./popup-form-singup/popup-form-singup.co
 import {CheckingAuthService} from "./_services/checking-auth.service";
 import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../environments/environment";
-
+import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -27,6 +28,7 @@ export class AppComponent {
   username?: string;
 
   quantitySelectedProduct: number;
+  paramsSub: Subscription;
 
 
   constructor(private tokenStorageService: TokenStorageService,
@@ -34,7 +36,8 @@ export class AppComponent {
               public dialog: MatDialog,
               @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
               @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
-              private translateService: TranslateService
+              private translateService: TranslateService,
+              private router: Router
   ) {
   }
 
@@ -45,6 +48,10 @@ export class AppComponent {
     this.username = this.checkinAuth.username
     this.role = this.checkinAuth.role;
     this.translateService.use(environment.defaultLocale);
+
+    this.router.routeReuseStrategy.shouldReuseRoute = function() {
+      return false;
+    };
   }
 
   logout(): void {

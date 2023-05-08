@@ -10,6 +10,7 @@ import {MessageService} from "../message.service";
 import {Ordered_product} from "../entity/ordered_product";
 import {TokenStorageService} from "./token-storage.service";
 import {Customer} from "../entity/customer";
+import {User} from "../entity/user";
 
 
 @Injectable({
@@ -109,8 +110,9 @@ let user = {
   }
 
   private log(message: string) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.messageService.add(`ClothesService: ${message}`);
   }
+
 
 }
 
