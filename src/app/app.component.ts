@@ -36,7 +36,7 @@ export class AppComponent {
               public dialog: MatDialog,
               @Optional() public dialogPopupLogin: MatDialogRef<PopupFormLoginComponent>,
               @Optional() public dialogPopupSingUp: MatDialogRef<PopupFormSingupComponent>,
-              private translateService: TranslateService,
+
               private router: Router
   ) {
   }
@@ -47,7 +47,6 @@ export class AppComponent {
     this.showModeratorBoard = this.checkinAuth.showModeratorBoard;
     this.username = this.checkinAuth.username
     this.role = this.checkinAuth.role;
-    this.translateService.use(environment.defaultLocale);
 
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;

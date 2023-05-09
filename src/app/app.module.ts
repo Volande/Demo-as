@@ -122,7 +122,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     PopupFormLoginComponent,
     PopupFormSingupComponent,
     OrderingComponent,
-
+    LanguageSelectorComponent,
 
 
 
@@ -158,7 +158,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     PinchZoomModule,
     TranslocoRootModule,
 
-    LanguageSelectorComponent,
     TranslateModule.forRoot({
       defaultLanguage: 'ua',
       loader: {

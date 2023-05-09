@@ -25,6 +25,7 @@
     "@coreui/angular": "^4.3.11",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@ngneat/transloco": "^4.2.6",
+    "@ngneat/transloco-locale": "^4.0.1",
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@popperjs/core": "^2.10.2",
