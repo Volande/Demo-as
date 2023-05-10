@@ -19,7 +19,7 @@ export class ConfirmationDeleteProductComponent implements OnInit {
   }
   getClotheFullName(): string {
     if (this.data.clothes) {
-      return this.data.clothes.title
+      return this.data.clothes.productInformation[0].title
     } else {
       return "this car";
     }

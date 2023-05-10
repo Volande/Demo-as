@@ -8,7 +8,7 @@
   <ul class="search-result">
     <li *ngFor="let clothes of wardrobe$ | async" >
       <a routerLink="/detail/{{clothes.id}}">
-        {{clothes.title}}
+        {{clothes.productInformation[0].title}}
       </a>
     </li>
   </ul>

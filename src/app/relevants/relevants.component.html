@@ -1,5 +1,5 @@
 <div class="computer-relevants">
-  <div style="padding: 5% 0">Вам також може сподобатись</div>
+  <div style="padding: 5% 0">{{"may-like"| transloco}}</div>
   <div class="choice" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
     <a *ngFor="let cloth of clothes"
        routerLink="/detail/{{cloth.id}}"
@@ -9,7 +9,7 @@
         <img class="image second" src="{{cloth.image[1].title}}" alt="photo">
       </div>
       <div class="text">
-        {{cloth.title}}
+        {{cloth.productInformation[0].title}}
         <br>
         <br>
         {{cloth.price}}
@@ -18,12 +18,12 @@
   </div>
 </div>
 <div class="mobile-relevants">
-  <div style="padding: 5% 0"><p>Вам також може сподобатись</p></div>
+  <div style="padding: 5% 0"><p>{{"may-like"| transloco}}</p></div>
   <div class="parent">
     <div class='child' *ngFor="let cloth of clothes"><a href="/shop/detail/{{cloth.id}}"><img src='{{cloth.image[0].title}}'
                                                                           class="photo-relevants-slider">
       <div class="text">
-        {{cloth.title}}
+        {{cloth.productInformation[0].title}}
         <br>
         <br>
         {{cloth.price}}

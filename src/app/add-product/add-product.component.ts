@@ -217,11 +217,7 @@ export class AddProductComponent implements OnInit {
     if (this.data.clothes) {
       this.reactiveForm.patchValue({
 
-        title: this.data.clothes.title,
-        content: this.data.clothes.content,
-        compound: this.data.clothes.compound,
-        price: this.data.clothes.price,
-        availability: this.data.clothes.availability,
+
         sizes: this.productSizes,
         collection: this.data.clothes.collection.title,
         categories: this.productCategories,

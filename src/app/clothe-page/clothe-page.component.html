@@ -7,16 +7,16 @@
             class="fabButton"
             id="change clothe button"
             style="max-height: 40px">
-      Змінити одяг
+      {{"change-product"|transloco}}
     </button>
 
     <button *ngIf="clothes != undefined" mat-button color="primary"
             (click)="deleteClothesBtn(clothes)"
             class="fabButton"
 
-            id="{{'delete '+clothes.title}}"
+            id="{{'delete '+clothes.productInformation[0].title}}"
             style="max-height: 40px">
-      Видалити одяг
+      {{"delete-product"|transloco}}
     </button>
 
   </div>
@@ -27,10 +27,10 @@
     </div>
 
     <div class="text">
-      <p>{{clothes.title }}</p>
+      <p>{{clothes.productInformation[0].title}}</p>
       {{clothes.price}}
       <br>
-      {{clothes.availability}}
+      {{clothes.productInformation[0].availability}}
       <br>
 
       <section>
@@ -41,15 +41,15 @@
       </section>
 
       <div class="button-buy">
-        <button mat-button class="mat-raised-button mat-primary" (click)="addProductToCart(clothes)" id="buyClothes button">Купити</button>
+        <button mat-button class="mat-raised-button mat-primary" (click)="addProductToCart(clothes)" id="buyClothes button">{{"buy"|transloco}}</button>
       </div>
       <br>
-      {{clothes.content}}
+      {{clothes.productInformation[0].content}}
       <br>
       <br>
       Склад:
       <br>
-      {{clothes.compound}}
+      {{clothes.productInformation[0].compound}}
       <br>
       <br>
       РОЗМІРНА СІТКА:

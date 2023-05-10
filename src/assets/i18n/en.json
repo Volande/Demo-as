@@ -7,5 +7,12 @@
   "search": "Search",
   "recent_receipts": "Recent receipts",
   "defense": "Defense",
-  "contacts": "Contacts"
+  "contacts": "Contacts",
+  "may-like": "You may also like it",
+  "admin-board": "Admin Board",
+  "add-clothes": "Add clothes",
+  "log-out":"Log Out",
+  "change-product": "Change product",
+  "delete-product": "Delete product",
+  "buy": "Buy"
 }

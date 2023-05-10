@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   apiBaseUrl: "http://localhost:8082",
   locales: ['en', 'uk'],
-  defaultLocale: 'uk',
+  defaultLocale: localStorage.getItem('Locale') || 'uk',
 };
 
 /*

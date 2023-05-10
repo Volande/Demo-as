@@ -20,6 +20,12 @@ export class AuthInterceptor implements HttpInterceptor {
       authReq = req.clone({ headers: req.headers.append(TOKEN_HEADER_KEY, 'Bearer ' + token ) });
     }
 
+    if (localStorage.getItem('Locale') != null && localStorage.getItem('Locale') != 'undefined') {
+     const language = localStorage.getItem('Locale')
+      // @ts-ignore
+      authReq = req.clone({ headers: req.headers.append('Accept-language',language  ) });
+    }
+
     return next.handle(authReq);
   }
 }

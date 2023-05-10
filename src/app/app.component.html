@@ -21,10 +21,10 @@
 
             <ul class="submenu-desktop">
               <li class="nav-item" *ngIf="showAdminBoard">
-                <a class="nav-link" routerLink="/admin">Admin Board</a>
+                <a class="nav-link" routerLink="/admin">{{"admin-board"|transloco}}</a>
               </li>
               <li>
-                <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
+                <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">{{"log-out"|transloco}}</label>
               </li>
             </ul>
 
@@ -85,7 +85,7 @@
     <div class="content ">
       <router-outlet></router-outlet>
 
-      <button mat-button class="fab-add-clothes-style" (click)="openDialog()" *ngIf="showAdminBoard">Add clothes</button>
+      <button mat-button class="fab-add-clothes-style" (click)="openDialog()" *ngIf="showAdminBoard">{{"add-clothes"|transloco}}</button>
       <footer style="padding: 0 2%;">
         <br>
         <a href="https://www.instagram.com/">Instagram</a>
@@ -111,12 +111,12 @@
       <div class="sidenav-info">
 
         <div class="menu1">
-          <a routerLink="/market" class="menu__item">Магазин</a>
+          <a routerLink="/market" class="menu__item">{{"market"|transloco}}</a>
 
           <app-collection-menu></app-collection-menu>
 
 
-          <a routerLink="/about" class="menu__item">Про нас</a>
+          <a routerLink="/about" class="menu__item">{{"about"|transloco}}</a>
         </div>
 
 
@@ -126,7 +126,7 @@
           <app-clothes-search></app-clothes-search>
 
 
-          <app-convertor></app-convertor>
+          <app-language-selector></app-language-selector>
 
 
           <div class="auth-mobile">
@@ -136,17 +136,17 @@
               <div class="menu-sub-mobile"></div>
               <ul class="submenu-mobile" routerLinkActive="active">
                 <li class="nav-item" *ngIf="showAdminBoard">
-                  <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+                  <a href="/admin" class="nav-link" routerLink="admin">{{"admin-board"|transloco}}</a>
                 </li>
 
                 <li>
-                  <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</label>
+                  <label class="nav-link" (click)="logout()" *ngIf="isLoggedIn">{{"log-out"|transloco}}</label>
                 </li>
                 <li>
                   <div *ngIf="!isLoggedIn">
                     <button (click)="openSingUpDialog()" class="none-border" value="Login"
                             id="Sign up mobile button">
-                      Рєстрація
+                      {{"sing-up"|transloco}}
                     </button>
                   </div>
 
@@ -154,7 +154,7 @@
                 <div class="indent" *ngIf="!isLoggedIn">
                   <button (click)="openLoginDialog()" class="none-border"  value="Login"
                           id="Sign in mobile button">
-                    Вхід
+                    {{"login"|transloco}}
                   </button>
                 </div>
               </ul>
@@ -167,8 +167,8 @@
         <a class="footer-page"
            href="https://www.instagram.com/alexandrashklyar_store/?igshid=YmMyMTA2M2Y%3D">Instagram</a>
 
-        <a class="footer-page" href="https://www.instagram.com/">Обране</a>
-        <a class="footer-page" href="https://www.instagram.com/">Контакти</a>
+        <a class="footer-page" href="https://www.instagram.com/">{{"defense"|transloco}}</a>
+        <a class="footer-page" href="https://www.instagram.com/">{{"contacts"|transloco}}</a>
         <br class="br">
 
         <div class="footer-page">© 2022</div>
