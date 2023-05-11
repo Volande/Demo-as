@@ -46,9 +46,12 @@ export class AddProductComponent implements OnInit {
 
   reactiveForm: FormGroup;
 
-  titleMaxLength = 30;
-  contentMaxLength = 400;
-  compoundMaxLength = 300;
+  title_UA_MaxLength = 30;
+  content_UA_MaxLength = 400;
+  compound_UA_MaxLength = 300;
+  title_EN_MaxLength = 30;
+  content_EN_MaxLength = 400;
+  compound_EN_MaxLength = 300;
   readonly maxSize = 1_048_576;
 
   availability: string[] = ["Є в наявності", "Немає"]
@@ -193,9 +196,12 @@ export class AddProductComponent implements OnInit {
   ) {
 
       this.reactiveForm = this.formBuilder.group({
-        title: ['', [Validators.required, Validators.maxLength(this.titleMaxLength)]],
-        content: ['', [Validators.required, Validators.maxLength(this.contentMaxLength)]],
-        compound: ['', [Validators.required, Validators.maxLength(this.compoundMaxLength)]],
+        title_UA: ['', [Validators.required, Validators.maxLength(this.title_UA_MaxLength)]],
+        content_UA: ['', [Validators.required, Validators.maxLength(this.content_UA_MaxLength)]],
+        compound_UA: ['', [Validators.required, Validators.maxLength(this.compound_UA_MaxLength)]],
+        title_EN: ['', [Validators.required, Validators.maxLength(this.title_EN_MaxLength)]],
+        content_EN: ['', [Validators.required, Validators.maxLength(this.content_EN_MaxLength)]],
+        compound_EN: ['', [Validators.required, Validators.maxLength(this.compound_EN_MaxLength)]],
         availability: [[]],
         price: [''],
         sizes: [[]],
@@ -216,8 +222,14 @@ export class AddProductComponent implements OnInit {
   initForm(): void {
     if (this.data.clothes) {
       this.reactiveForm.patchValue({
+        title_UA: this.data.clothes.productInformation[0].title,
+        content_UA: this.data.clothes.productInformation[0].content,
+        compound_UA: this.data.clothes.productInformation[0].compound,
+        title_EN: this.data.clothes.productInformation[0].title,
+        content_EN: this.data.clothes.productInformation[0].content,
+        compound_EN: this.data.clothes.productInformation[0].compound,
 
-
+        price:this.data.clothes.price,
         sizes: this.productSizes,
         collection: this.data.clothes.collection.title,
         categories: this.productCategories,
@@ -236,9 +248,12 @@ export class AddProductComponent implements OnInit {
    if(this.data) {
       this.productsService.updateClothe(
         this.data.clothes.id,
-        this.reactiveForm.value.title,
-        this.reactiveForm.value.content,
-        this.reactiveForm.value.compound,
+        this.reactiveForm.value.title_UA,
+        this.reactiveForm.value.content_UA,
+        this.reactiveForm.value.compound_UA,
+        this.reactiveForm.value.title_EN,
+        this.reactiveForm.value.content_EN,
+        this.reactiveForm.value.compound_EN,
         this.reactiveForm.value.price,
         this.reactiveForm.value.availability,
         this.reactiveForm.value.sizes,
@@ -253,9 +268,12 @@ export class AddProductComponent implements OnInit {
     }else {
 
      this.productsService.saveClothe(
-       this.reactiveForm.value.title,
-       this.reactiveForm.value.content,
-       this.reactiveForm.value.compound,
+       this.reactiveForm.value.title_UA,
+       this.reactiveForm.value.content_UA,
+       this.reactiveForm.value.compound_UA,
+       this.reactiveForm.value.title_EN,
+       this.reactiveForm.value.content_EN,
+       this.reactiveForm.value.compound_EN,
        this.reactiveForm.value.price,
        this.reactiveForm.value.availability,
        this.reactiveForm.value.sizes,

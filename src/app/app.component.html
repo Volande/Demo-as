@@ -43,7 +43,7 @@
           <div style="padding-left: 2%;padding-right: 2%" *ngIf="!isLoggedIn">
             <button (click)="openLoginDialog()" style="border: none;" value="Login"
                     id="Sign in button">
-              {{"login"|transloco}}
+              {{"sing-in"|transloco}}
             </button>
           </div>
 
@@ -131,7 +131,8 @@
 
           <div class="auth-mobile">
             <div>
-              <button class="down"><img src="https://shklar-images.s3.eu-central-1.amazonaws.com/auth-icon.png">
+              <button class="down">
+                <mat-icon class="login-icon">person</mat-icon>
               </button>
               <div class="menu-sub-mobile"></div>
               <ul class="submenu-mobile" routerLinkActive="active">
@@ -154,7 +155,7 @@
                 <div class="indent" *ngIf="!isLoggedIn">
                   <button (click)="openLoginDialog()" class="none-border"  value="Login"
                           id="Sign in mobile button">
-                    {{"login"|transloco}}
+                    {{"sing-in"|transloco}}
                   </button>
                 </div>
               </ul>

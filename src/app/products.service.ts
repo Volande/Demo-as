@@ -10,6 +10,7 @@ import {Product_dto} from "./entity/product_dto";
 import {Size} from "./entity/size";
 import {Image} from "./entity/image";
 import {Categories} from "./entity/categories";
+import {ProductInformation} from "./entity/product-information";
 
 
 
@@ -73,9 +74,12 @@ export class ProductsService {
 
   updateClothe(
     id: number,
-    title: string,
-    content: string,
-    compound: string,
+    title_UA: string,
+    content_UA: string,
+    compound_UA: string,
+    title_EN: string,
+    content_EN: string,
+    compound_EN: string,
     price: number,
     availability: string,
     sizes: Array<string>,
@@ -84,20 +88,37 @@ export class ProductsService {
     productImages: Image[],
     images: File[],
   ) {
+    let productInfoUA={
+      language: 'uk',
+      title:title_UA,
+      compound:compound_UA,
+      content:content_UA
+
+    } as ProductInformation
+
+    let productInfoEN={
+      language: 'en',
+      title:title_EN,
+      compound:compound_EN,
+      content:content_EN
+
+    } as ProductInformation
+
     // @ts-ignore
     let productDto = {
       id: id,
-      title: title,
-      content: content,
-      compound: compound,
       price: price,
       availability: availability,
       size: sizes,
       categories: categories,
       collection: collection,
-      image: productImages
+      image: productImages,
+      productInformation:[productInfoUA,productInfoEN],
 
     } as Product_dto
+
+
+
 
     const formData = new FormData;
     if (images.length > 0) {
@@ -121,9 +142,12 @@ export class ProductsService {
   }
 
   saveClothe(
-    title: string,
-    content: string,
-    compound: string,
+    title_UA: string,
+    content_UA: string,
+    compound_UA: string,
+    title_EN: string,
+    content_EN: string,
+    compound_EN: string,
     price: number,
     availability: string,
     sizes: Array<string>,
@@ -132,17 +156,35 @@ export class ProductsService {
     images: File[]
   ) {
     // @ts-ignore
+
+
+    let productInfoUA={
+      language: 'uk',
+      title:title_UA,
+      compound:compound_UA,
+      content:content_UA
+
+    } as ProductInformation
+
+    let productInfoEN={
+      language: 'en',
+      title:title_EN,
+      compound:compound_EN,
+      content:content_EN
+
+    } as ProductInformation
+
+    // @ts-ignore
     let productDto = {
-      title: title,
-      content: content,
-      compound: compound,
       price: price,
       availability: availability,
       size: sizes,
       categories: categories,
       collection: collection,
+      productInformation:[productInfoUA,productInfoEN],
 
     } as Product_dto
+
 
     const formData = new FormData;
     if (images.length > 0) {

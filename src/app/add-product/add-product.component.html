@@ -3,23 +3,71 @@
 
 
     <div *ngIf="this.data; else elseBack">
-      <H2>Змінити одяг</H2>
+      <H2>{{"change-product" | transloco}} </H2>
     </div>
     <ng-template #elseBack>
-      <H2>Додати одяг</H2>
+      <H2>{{"add-clothes" | transloco}}</H2>
     </ng-template>
 
     <mat-tab-group>
-      <mat-tab label="Одяг">
-        <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="title mat form field">
-          <mat-label>Назва</mat-label>
-          <input matInput type="text" id="title input" formControlName="title" maxlength="{{this.titleMaxLength}}">
-          <mat-hint align="end">{{this.reactiveForm.value.title.length}}
-            / {{this.titleMaxLength}}</mat-hint>
-        </mat-form-field>
+      <mat-tab label="{{'clothe'|transloco}}">
+
+        <mat-tab-group>
+          <mat-tab label="UA">
+            <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="title_UA mat form field">
+              <mat-label>{{'name'|transloco}}</mat-label>
+              <input matInput type="text" id="title_UA input" formControlName="title_UA" maxlength="{{this.title_UA_MaxLength}}">
+              <mat-hint align="end">{{this.reactiveForm.value.title_UA.length}}
+                / {{this.title_UA_MaxLength}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="input-long" appearance="fill" style="margin-right: 50px" id="compound_UA mat form field">
+              <mat-label>{{'compound'|transloco}}</mat-label>
+              <textarea matInput id="compound_UA input" formControlName="compound_UA"
+                        maxlength="{{this.compound_UA_MaxLength}}"></textarea>
+              <mat-hint align="end">{{this.reactiveForm.value.compound_UA.length}}
+                / {{this.compound_UA_MaxLength}}</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="input-long" appearance="fill">
+              <mat-label>{{'content'|transloco}}</mat-label>
+              <textarea matInput id="content_UA" formControlName="content_UA"
+                        maxlength="{{this.content_UA_MaxLength}}"></textarea>
+              <mat-hint align="end">{{this.reactiveForm.value.content_UA.length}}
+                / {{this.content_UA_MaxLength}}</mat-hint>
+            </mat-form-field>
+          </mat-tab>
+
+
+          <mat-tab label="EN">
+            <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="title_EN mat form field">
+              <mat-label>{{'name'|transloco}}</mat-label>
+              <input matInput type="text" id="title_EN input" formControlName="title_EN" maxlength="{{this.title_EN_MaxLength}}">
+              <mat-hint align="end">{{this.reactiveForm.value.title_EN.length}}
+                / {{this.title_EN_MaxLength}}</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="input-long" appearance="fill" style="margin-right: 50px" id="compound_EN mat form field">
+              <mat-label>{{'compound'|transloco}}</mat-label>
+              <textarea matInput id="compound_EN input" formControlName="compound_EN"
+                        maxlength="{{this.compound_EN_MaxLength}}"></textarea>
+              <mat-hint align="end">{{this.reactiveForm.value.compound_EN.length}}
+                / {{this.compound_EN_MaxLength}}</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="input-long" appearance="fill">
+              <mat-label>{{'content'|transloco}}</mat-label>
+              <textarea matInput id="content_EN" formControlName="content_EN"
+                        maxlength="{{this.content_EN_MaxLength}}"></textarea>
+              <mat-hint align="end">{{this.reactiveForm.value.content_EN.length}}
+                / {{this.content_EN_MaxLength}}</mat-hint>
+            </mat-form-field>
+          </mat-tab>
+        </mat-tab-group>
+
+        <hr style="background-color:red;">
 
         <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-          <mat-label>Наявність</mat-label>
+          <mat-label>{{'availability'|transloco}}</mat-label>
           <mat-select id="availability" formControlName="availability">
             <mat-option id="No availability selected">None</mat-option>
             <mat-option *ngFor="let choice of availability" [value]="choice"
@@ -28,14 +76,14 @@
         </mat-form-field>
 
         <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px" id="price mat form field">
-          <mat-label>Ціна</mat-label>
+          <mat-label>{{'price'|transloco}}</mat-label>
           <input matInput type="text" id="price input" formControlName="price">
 
         </mat-form-field>
 
 
         <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-          <mat-label>Розмір</mat-label>
+          <mat-label>{{'size'|transloco}}</mat-label>
           <mat-select id="sizes" formControlName="sizes" multiple [value]="productSizes">
 
             <mat-option *ngFor="let choice of sizes" [value]="choice"
@@ -47,7 +95,7 @@
 
 
         <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-          <mat-label>Категорія</mat-label>
+          <mat-label>{{'category'|transloco}}</mat-label>
 
           <mat-select id="categories" formControlName="categories" multiple [value]="productCategories">
 
@@ -61,7 +109,7 @@
 
 
         <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
-          <mat-label>Коллекція</mat-label>
+          <mat-label>{{'collection'|transloco}}</mat-label>
 
           <mat-select id="collection" formControlName="collection">
             <mat-option id="No collection selected">None</mat-option>
@@ -86,26 +134,14 @@
         </div>
 
 
-        <mat-form-field class="input-long" appearance="fill" style="margin-right: 50px" id="compound mat form field">
-          <mat-label>Компоненти</mat-label>
-          <textarea matInput id="compound input" formControlName="compound"
-                    maxlength="{{this.compoundMaxLength}}"></textarea>
-          <mat-hint align="end">{{this.reactiveForm.value.compound.length}}
-            / {{this.compoundMaxLength}}</mat-hint>
-        </mat-form-field>
 
 
-        <mat-form-field class="input-long" appearance="fill">
-          <mat-label>Опис</mat-label>
-          <textarea matInput id="content" formControlName="content"
-                    maxlength="{{this.contentMaxLength}}"></textarea>
-          <mat-hint align="end">{{this.reactiveForm.value.content.length}}
-            / {{this.contentMaxLength}}</mat-hint>
-        </mat-form-field>
+
+
       </mat-tab>
 
 
-      <mat-tab label="Змінити порядок фото чи видалити фото" *ngIf="this.data">
+      <mat-tab label="{{'change-order-delete-images'|transloco}}" *ngIf="this.data">
         <div cdkDropList (cdkDropListDropped)="onDrop($event)">
           <div style="display: flex;align-items: flex-end;" class="box"
                *ngFor="let item of data.clothes.image, index as i" cdkDrag>
@@ -127,8 +163,9 @@
 
 
     <mat-dialog-actions>
-      <button mat-button class="mat-raised-button" (click)="dialog.closeAll()" id="Cancel button">Close</button>
-      <button mat-button class="mat-raised-button mat-primary" (click)="onSubmit()" id="Submit button">Save</button>
+      <button mat-button class="mat-raised-button" (click)="dialog.closeAll()" id="Cancel button">{{"close"|transloco}}</button>
+
+      <button mat-button class="mat-raised-button mat-primary" (click)="onSubmit()" id="Submit button">{{"save"|transloco}}</button>
 
     </mat-dialog-actions>
 

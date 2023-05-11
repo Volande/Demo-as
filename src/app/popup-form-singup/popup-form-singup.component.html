@@ -2,27 +2,26 @@
   <div id="formContent">
 
     <button class="btn-login" (click)="openLoginDialog()" value="Login" id="Sign up mobile button">
-      <h2 class="inactive"> Вхід</h2>
+      <h2 class="inactive"> {{"sing-in"|transloco}}</h2>
     </button>
-    <h2 class="active">Реєстрація </h2>
+    <h2 class="active">{{"sing-up"|transloco}} </h2>
 
 
     <form [formGroup]="reactiveForm" id="Login form" >
 
       <div class="box-input">
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Логін</mat-label>
+          <mat-label>{{"login"|transloco}}</mat-label>
           <input matInput type="text" id="login" formControlName="login" minlength="4" maxlength="30">
         </mat-form-field>
         <div *ngIf="login?.invalid && (login?.dirty || login?.touched)"
              class="alert alert-danger">
 
           <div *ngIf="login?.errors?.['required']">
-            Поле не повинно бути пустим
+            {{"empty"|transloco}}
           </div>
           <div *ngIf="login?.errors?.['minlength']">
-            Логін занадто короткий.
-            Повинно бути 4 або більше символів
+            {{"login"|transloco}}{{"symbols"|transloco}}
           </div>
         </div>
 
@@ -31,7 +30,7 @@
 
       <div class="box-input">
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Пошта</mat-label>
+          <mat-label>{{"email"|transloco}}</mat-label>
           <input matInput type="text" id="email" formControlName="email" maxlength="30" minlength="4"
                  placeholder="pat@example.com">
 
@@ -40,20 +39,19 @@
              class="alert alert-danger">
 
           <div *ngIf="email?.errors?.['required']">
-            Поле не повинно бути пустим
+            {{"empty"|transloco}}
           </div>
 
 
           <div *ngIf="email?.errors?.['minlength']">
-            Пошта занадто коротка.
-            Повинно бути 4 або більше символів
+            {{"email"|transloco}}{{"symbols"|transloco}}
           </div>
         </div>
       </div>
 
       <div class="box-input">
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Пароль</mat-label>
+          <mat-label>{{"password"|transloco}}</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" type="text" id="password" formControlName="password"
                  minlength="4" maxlength="30" placeholder="Пароль">
         </mat-form-field>
@@ -61,13 +59,12 @@
              class="alert alert-danger">
 
           <div *ngIf="password?.errors?.['required']">
-            Поле не повинно бути пустим
+            {{"empty"|transloco}}
           </div>
 
 
           <div *ngIf="password?.errors?.['minlength']">
-            Пароль занадто короткий.
-            Повинно бути 4 або більше символів
+            {{"password"|transloco}}{{"symbols"|transloco}}
           </div>
         </div>
 
@@ -75,11 +72,11 @@
       </div>
 
       <h4 *ngIf="errorMessage.localeCompare('')" class="errorColour" id="Incorrect login or password warning">
-        Incorrect login or password</h4>
+        {{"incorrect"|transloco}}</h4>
 
 
       <button class="btn" (click)="onSubmit()" id="Submit button">
-        Зареєструватися
+        {{"sing-up"|transloco}}
       </button>
 
 

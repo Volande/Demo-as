@@ -2,17 +2,47 @@
   "market": "Market",
   "collection": "Collection",
   "about": "About",
-  "sing-up":"Sing-up",
-  "login":"Login",
+  "admin-board": "Admin Board",
+  "log-out":"Log Out",
   "search": "Search",
+
   "recent_receipts": "Recent receipts",
+
   "defense": "Defense",
   "contacts": "Contacts",
+
   "may-like": "You may also like it",
-  "admin-board": "Admin Board",
+
   "add-clothes": "Add clothes",
-  "log-out":"Log Out",
+
   "change-product": "Change product",
   "delete-product": "Delete product",
-  "buy": "Buy"
+  "buy": "Buy",
+
+  "sing-up":"Sing-up",
+  "sing-in":"Login",
+  "login": "Login",
+  "password": "Password",
+  "email": "Email",
+  "empty": "The field must not be empty",
+  "symbols": " is too short. Must be 4 or more characters",
+  "incorrect": "Incorrect login or password",
+
+  "basket": "Basket",
+  "size": "Size",
+  "general-quantity": "General quantity",
+  "general-price": "General price",
+  "to-order": "To order",
+
+  "clothe": "Clothe",
+  "name": "Name",
+  "compound": "Compound",
+  "content": "Content",
+  "availability": "Availability",
+  "price": "Price",
+  "category": "Category",
+  "change-order-delete-images": "Rearrange photos or delete photos",
+  "close": "Close",
+  "save": "Save"
+
 }
