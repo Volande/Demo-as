@@ -4,8 +4,8 @@
     <form >
       <ul class="sub-menu">
         <li *ngFor="let choice of collection " [value]="choice">
-          <button  type="button" (click)="searchProduct(choice.title)">
-           {{choice.title}}
+          <button  type="button" (click)="searchProduct(choice.collectionNames[0].title)">
+           {{choice.collectionNames[0].title}}
           </button>
         </li>
 
@@ -26,8 +26,8 @@
     <div class="menu-sub"></div>
     <ul class="submenu-mobile">
       <li *ngFor="let choice of collection " [value]="choice">
-        <button  type="button" (click)="searchProduct(choice.title)">
-          {{choice.title}}
+        <button  type="button" (click)="searchProduct(choice.collectionNames[0].title)">
+          {{choice.collectionNames[0].title}}
         </button>
       </li>
 

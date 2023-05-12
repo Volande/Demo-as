@@ -81,7 +81,7 @@ export class AddProductComponent implements OnInit {
     if (this.data) {
       if (this.data.clothes) {
         this.data.clothes.categories.forEach((element) => {
-          this.productCategories.push(element.title)
+          this.productCategories.push(element.categoryNames[0]?.title)
         })
       }
     }
@@ -109,7 +109,7 @@ export class AddProductComponent implements OnInit {
     this.userService.getCollection()
       .subscribe(collection => {
         collection.forEach((element) => {
-          this.collection.push(element.title)
+          this.collection.push(element.collectionNames[0].title)
         })
       });
   }
@@ -118,7 +118,7 @@ export class AddProductComponent implements OnInit {
     this.userService.getCategories()
       .subscribe(categories => {
         categories.forEach((element) => {
-          this.categories.push(element.title)
+          this.categories.push(element.categoryNames[0].title)
         })
       });
   }
@@ -231,7 +231,7 @@ export class AddProductComponent implements OnInit {
 
         price:this.data.clothes.price,
         sizes: this.productSizes,
-        collection: this.data.clothes.collection.title,
+
         categories: this.productCategories,
         previews: this.productImages
 

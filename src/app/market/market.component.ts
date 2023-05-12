@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, FormGroup, FormsModule, Validators} from '@ang
 import {UserService} from "../_services/user.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Categories} from "../entity/categories";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class MarketComponent implements OnInit {
   clothes: Product[];
   categories: string[] = [];
+  categoryNames:string[]=[];
+
   availability: string[] = ["Є в наявності", "Немає"];
   collection: string[] = [];
   sizes: string[] = [];
@@ -61,7 +64,7 @@ export class MarketComponent implements OnInit {
     this.userService.getCollection()
       .subscribe(collection => {
         collection.forEach((element) => {
-          this.collection.push(element.title)
+          this.collection.push(element.collectionNames[0].title)
         })
       });
 
@@ -71,7 +74,9 @@ export class MarketComponent implements OnInit {
     this.userService.getCategories()
       .subscribe(categories => {
         categories.forEach((element) => {
-          this.categories.push(element.title)
+          element.categoryNames?.forEach((element1)=>{
+            this.categoryNames.push(element1.title)
+          })
         })
       });
   }

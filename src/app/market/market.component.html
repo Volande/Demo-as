@@ -45,7 +45,7 @@
 
           <mat-select id="categories" formControlName="categories" multiple [value]="categories">
 
-            <mat-option *ngFor="let choice of categories" [value]="choice"
+            <mat-option *ngFor="let choice of categoryNames" [value]="choice"
             >{{choice}}</mat-option>
 
           </mat-select>
