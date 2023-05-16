@@ -1,16 +1,18 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {Product} from "../entity/product";
-import {Categories} from "../entity/categories";
-import {Collection} from "../entity/collection";
-import {Size} from "../entity/size";
+import {Product} from "../entities/product";
+import {Categories} from "../entities/categories";
+import {Collection} from "../entities/collection";
+import {Size} from "../entities/size";
 import {catchError, tap} from "rxjs/operators";
 import {MessageService} from "../message.service";
-import {Ordered_product} from "../entity/ordered_product";
+import {Ordered_product} from "../entities/ordered_product";
 import {TokenStorageService} from "./token-storage.service";
-import {Customer} from "../entity/customer";
-import {User} from "../entity/user";
+import {Customer} from "../entities/customer";
+import {User} from "../entities/user";
+import {Availability_name} from "../entities/availability_name";
+import {Availability} from "../entities/availability";
 
 
 @Injectable({
@@ -36,6 +38,9 @@ export class UserService {
 
   getCollection(): Observable<Collection[]> {
     return this.http.get<Collection[]>(this.API_URL + 'products/collection');
+  }
+  getAvailability(): Observable<Availability[]> {
+    return this.http.get<Availability[]>(this.API_URL + 'products/availability');
   }
 
   getSizes(): Observable<Size[]> {

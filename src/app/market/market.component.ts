@@ -1,12 +1,13 @@
 import {ChangeDetectorRef, Component, Inject, Injectable, OnInit, Optional} from '@angular/core';
-import {Product} from "../entity/product";
+import {Product} from "../entities/product";
 import {ProductsService} from "../products.service";
 import {FilterPipeModule} from 'ngx-filter-pipe';
 import {FormBuilder, FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
 import {UserService} from "../_services/user.service";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Categories} from "../entity/categories";
+import {Categories} from "../entities/categories";
+import {Availability} from "../entities/availability";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class MarketComponent implements OnInit {
   categories: string[] = [];
   categoryNames:string[]=[];
 
-  availability: string[] = ["Є в наявності", "Немає"];
+  availabilities: string[] = [];
   collection: string[] = [];
   sizes: string[] = [];
   searchByCollection: string;
@@ -53,6 +54,7 @@ export class MarketComponent implements OnInit {
     this.getPublicContent();
     this.getCollection();
     this.getCategories();
+    this.getAvailability();
     this.getSizes();
     this.initForm();
     this.initFormByCollection();
@@ -79,6 +81,13 @@ export class MarketComponent implements OnInit {
           })
         })
       });
+  }
+  getAvailability():void{
+    this.userService.getAvailability().subscribe(availability=>{
+      availability.forEach((element)=>{
+        this.availabilities.push(element.availabilityNames[0].title)
+      })
+    })
   }
 
   getSizes(): void {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../_services/user.service";
-import {Collection} from "../entity/collection";
-import {Product} from "../entity/product";
+import {Collection} from "../entities/collection";
+import {Product} from "../entities/product";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 

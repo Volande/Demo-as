@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from "../entity/product";
+import {Product} from "../entities/product";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FileValidator} from "ngx-material-file-input";
 import {requiredExtension} from "../add-product/add-product.component";

@@ -238,5 +238,7 @@ element.style {
 .mat-form-field-appearance-legacy .mat-form-field-underline {
   background-color: white;
 }
-
+mat-dialog-content.mat-dialog-content.mat-typography.ng-tns-c16-2{
+  overflow: unset;
+}
 

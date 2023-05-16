@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {AppComponent} from "../app.component";
 import {ProductsService} from "../products.service";
-import {Product} from "../entity/product";
-import {Size} from "../entity/size";
-import {Products_cart} from "../entity/products_cart";
+import {Product} from "../entities/product";
+import {Size} from "../entities/size";
+import {Products_cart} from "../entities/products_cart";
 import {ClothePageComponent} from "../clothe-page/clothe-page.component";
 import {Router} from "@angular/router";
 

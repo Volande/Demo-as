@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable, Subject} from "rxjs";
-import {Product} from "../entity/product";
+import {Product} from "../entities/product";
 
 
 

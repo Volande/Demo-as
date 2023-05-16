@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
-import {Categories} from "../entity/categories";
-import {Collection} from "../entity/collection";
-import {Size} from "../entity/size";
+import {Categories} from "../entities/categories";
+import {Collection} from "../entities/collection";
+import {Size} from "../entities/size";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ProductsService} from "../products.service";
 import {MatDialog} from "@angular/material/dialog";
-import {Customer} from "../entity/customer";
+import {Customer} from "../entities/customer";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MatTableDataSource} from "@angular/material/table";
 

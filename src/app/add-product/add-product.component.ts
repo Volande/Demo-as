@@ -11,7 +11,7 @@ import {
   Validators
 } from "@angular/forms";
 import {ProductsService} from "../products.service";
-import {Product} from "../entity/product";
+import {Product} from "../entities/product";
 import {UserService} from "../_services/user.service";
 import {FileValidator} from "ngx-material-file-input";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -60,11 +60,13 @@ export class AddProductComponent implements OnInit {
   productCategories: string[] = [];
   productCollection: string[] = [];
   collection: string[] = [];
+  availabilities: string[] = [];
   sizes: string[] = [];
   productSizes: string[] = [];
   images: File[] = [];
 
   productImages: string[]=[];
+  productAvailability:string;
 
 
   ngOnInit(): void {
@@ -87,6 +89,7 @@ export class AddProductComponent implements OnInit {
     }
 
     this.getCollection();
+    this.getAvailability();
 
 
     this.getSizes();
@@ -98,6 +101,13 @@ export class AddProductComponent implements OnInit {
         })
       }
     }
+
+    if (this.data) {
+      if (this.data.clothes) {
+       this.productAvailability = this.data.clothes.availability.availabilityNames[0].title;
+      }
+    }
+
 
 
     this.initForm();
@@ -121,6 +131,13 @@ export class AddProductComponent implements OnInit {
           this.categories.push(element.categoryNames[0].title)
         })
       });
+  }
+  getAvailability():void{
+    this.userService.getAvailability().subscribe(availability=>{
+      availability.forEach((element)=>{
+        this.availabilities.push(element.availabilityNames[0].title)
+      })
+    })
   }
 
   getSizes(): void {
@@ -228,9 +245,10 @@ export class AddProductComponent implements OnInit {
         title_EN: this.data.clothes.productInformation[0].title,
         content_EN: this.data.clothes.productInformation[0].content,
         compound_EN: this.data.clothes.productInformation[0].compound,
-
         price:this.data.clothes.price,
         sizes: this.productSizes,
+        availability:this.data.clothes.availability.availabilityNames[0].title,
+        collection:this.data.clothes.collection.collectionNames[0].title,
 
         categories: this.productCategories,
         previews: this.productImages

@@ -68,9 +68,9 @@
 
         <mat-form-field class="input-short" appearance="fill" style="margin-right: 50px">
           <mat-label>{{'availability'|transloco}}</mat-label>
-          <mat-select id="availability" formControlName="availability">
+          <mat-select id="availability" formControlName="availability" [value]="productAvailability">
             <mat-option id="No availability selected">None</mat-option>
-            <mat-option *ngFor="let choice of availability" [value]="choice"
+            <mat-option *ngFor="let choice of availabilities" [value]="choice"
                         id="availability mat option">{{choice}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -112,7 +112,6 @@
           <mat-label>{{'collection'|transloco}}</mat-label>
 
           <mat-select id="collection" formControlName="collection">
-            <mat-option id="No collection selected">None</mat-option>
             <mat-option *ngFor="let choice of collection" [value]="choice"
                         id="collection mat option">{{choice}}</mat-option>
 

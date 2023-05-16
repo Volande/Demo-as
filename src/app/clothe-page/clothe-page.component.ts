@@ -1,18 +1,18 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {Product} from "../entity/product";
+import {Product} from "../entities/product";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../products.service";
 import {Location} from "@angular/common";
 import {UserService} from "../_services/user.service";
-import {Image} from "../entity/image";
+import {Image} from "../entities/image";
 import {TokenStorageService} from "../_services/token-storage.service";
 import {MatDialog} from "@angular/material/dialog";
 import {Overlay} from "@angular/cdk/overlay";
 import {AddProductComponent} from "../add-product/add-product.component";
 import {ConfirmationDeleteProductComponent} from "../confirmation-delete-product/confirmation-delete-product.component";
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {Size} from "../entity/size";
-import {Product_dto} from "../entity/product_dto";
+import {Size} from "../entities/size";
+import {Product_dto} from "../entities/product_dto";
 
 
 @Component({

@@ -43,6 +43,13 @@
   "category": "Category",
   "change-order-delete-images": "Rearrange photos or delete photos",
   "close": "Close",
-  "save": "Save"
+  "save": "Save",
+
+  "filter": "Filter",
+  "back": "Back",
+  "min-price": "Min price",
+  "max-price": "Max price",
+  "show": "Show",
+  "reset settings": "Reset Settings"
 
 }

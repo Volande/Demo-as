@@ -4,13 +4,14 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
-import {Product} from './entity/product';
+import {Product} from './entities/product';
 import {MessageService} from './message.service';
-import {Product_dto} from "./entity/product_dto";
-import {Size} from "./entity/size";
-import {Image} from "./entity/image";
-import {Categories} from "./entity/categories";
-import {ProductInformation} from "./entity/product-information";
+import {Product_dto} from "./entities/product_dto";
+import {Size} from "./entities/size";
+import {Image} from "./entities/image";
+import {Categories} from "./entities/categories";
+import {ProductInformation} from "./entities/product-information";
+import {B} from "@angular/cdk/keycodes";
 
 
 
@@ -108,10 +109,10 @@ export class ProductsService {
     let productDto = {
       id: id,
       price: price,
-      availability: availability,
+      availabilityName: availability,
       size: sizes,
-      categories: categories,
-      collection: collection,
+      categoryName: categories,
+      collectionName: collection,
       image: productImages,
       productInformation:[productInfoUA,productInfoEN],
 
@@ -126,6 +127,13 @@ export class ProductsService {
         formData.append('image', row);
       }
     }
+
+    formData.append('availabilityName',availability);
+    formData.append('categoryName',new Blob([JSON.stringify(categories)], {
+      type: 'application/json'
+    }));
+    formData.append('collectionName',collection);
+
     formData.append('clothes', new Blob([JSON.stringify(productDto)], {
       type: 'application/json'
     }))
@@ -177,10 +185,7 @@ export class ProductsService {
     // @ts-ignore
     let productDto = {
       price: price,
-      availability: availability,
       size: sizes,
-      categories: categories,
-      collection: collection,
       productInformation:[productInfoUA,productInfoEN],
 
     } as Product_dto
@@ -192,6 +197,12 @@ export class ProductsService {
         formData.append('image', row);
       }
     }
+    formData.append('availabilityName',availability);
+    formData.append('categoryName',new Blob([JSON.stringify(categories)], {
+      type: 'application/json'
+    }));
+    formData.append('collectionName',collection);
+
     formData.append('clothes', new Blob([JSON.stringify(productDto)], {
       type: 'application/json'
     }))

@@ -1,35 +1,34 @@
 <mat-sidenav-container class="example-container" >
   <mat-sidenav #sidenav [mode]=" 'over'" class="mat-sidenav">
     <p>
-      <button mat-button (click)="sidenav.toggle()"> Назад</button>
+      <button mat-button (click)="sidenav.toggle()"> {{'back'|transloco}}</button>
     </p>
     <mat-dialog-content class="mat-typography">
       <form [formGroup]="reactiveForm">
 
 
         <mat-form-field class="input-short" style="margin-right: 50px">
-          <mat-label>Наявність</mat-label>
-          <mat-select id="availability" formControlName="availability">
-            <mat-option id="No availability selected">None</mat-option>
-            <mat-option *ngFor="let choice of availability" [value]="choice"
+          <mat-label>{{"availability"|transloco}}</mat-label>
+          <mat-select id="availability" formControlName="availability" [value]="">
+            <mat-option *ngFor="let choice of availabilities" [value]="choice"
                         id="availability mat option">{{choice}}</mat-option>
           </mat-select>
         </mat-form-field>
 
         <mat-form-field class="input-short" style="margin-right: 50px" id="price min mat form field">
-          <mat-label>Мінімальна ціна</mat-label>
+          <mat-label>{{"min-price"|transloco}}</mat-label>
           <input matInput type="text" id="price min input" formControlName="priceMin">
 
         </mat-form-field>
         <mat-form-field class="input-short" style="margin-right: 50px" id="price max mat form field">
-          <mat-label>Максимальна ціна</mat-label>
+          <mat-label>{{"max-price"|transloco}}</mat-label>
           <input matInput type="text" id="price max input" formControlName="priceMax">
 
         </mat-form-field>
 
 
         <mat-form-field class="input-short" style="margin-right: 50px">
-          <mat-label>Розмір</mat-label>
+          <mat-label>{{"size"|transloco}}</mat-label>
           <mat-select id="sizes" formControlName="sizes" multiple [value]="sizes">
 
             <mat-option *ngFor="let choice of sizes" [value]="choice"
@@ -41,7 +40,7 @@
 
 
         <mat-form-field class="input-short" style="margin-right: 50px">
-          <mat-label>Категорія</mat-label>
+          <mat-label>{{"category"|transloco}}</mat-label>
 
           <mat-select id="categories" formControlName="categories" multiple [value]="categories">
 
@@ -55,7 +54,7 @@
 
 
         <mat-form-field class="input-short" style="margin-right: 50px">
-          <mat-label>Коллекція</mat-label>
+          <mat-label>{{"collection"|transloco}}</mat-label>
 
           <mat-select id="collectionFilter" formControlName="collectionFilter" multiple [value]="collectionFilter">
             <mat-option *ngFor="let choice of collection" [value]="choice"
@@ -69,10 +68,10 @@
 
         <mat-dialog-actions>
 
-          <button mat-button class="mat-raised-button mat-primary" (click)="onSubmit()" id="Submit button">Відобразити
+          <button mat-button class="mat-raised-button mat-primary" (click)="onSubmit()" id="Submit button">{{"show"|transloco}}
           </button>
 
-          <button style="width: 60%;" mat-button color="primary" (click)="resetSettings()">Скинути параметри</button>
+          <button style="width: 60%;" mat-button color="primary" (click)="resetSettings()">{{"reset settings"|transloco}}</button>
         </mat-dialog-actions>
 
       </form>
@@ -81,7 +80,7 @@
 
   <mat-sidenav-content>
     <p>
-      <button mat-button (click)="sidenav.toggle()">Фільтр</button>
+      <button mat-button (click)="sidenav.toggle()">{{"filter"|transloco}}</button>
     </p>
     <div class="clothes-page">
 
