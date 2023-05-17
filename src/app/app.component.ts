@@ -9,6 +9,8 @@ import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../environments/environment";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {Translate2Service} from "./translate2.service";
+import {Product} from "./entities/product";
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,7 @@ export class AppComponent {
   title: String = 'title_name';
 
   private role: string = "UnAuthorized";
+
 
   isLoggedIn = false;
   showAdminBoard = false;
@@ -51,6 +54,8 @@ export class AppComponent {
     this.router.routeReuseStrategy.shouldReuseRoute = function() {
       return false;
     };
+
+
   }
 
   logout(): void {
