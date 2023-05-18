@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Renderer2} from '@angular/core';
 import {Product} from "../entities/product";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../products.service";
@@ -13,6 +13,7 @@ import {ConfirmationDeleteProductComponent} from "../confirmation-delete-product
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Size} from "../entities/size";
 import {Product_dto} from "../entities/product_dto";
+import {TranslocoService} from "@ngneat/transloco";
 
 
 @Component({
@@ -45,6 +46,8 @@ export class ClothePageComponent implements OnInit {
 
   quantity: number;
   private productNew: Product;
+  index:number;
+  language: string ;
 
   private nullArray:Size[] = []
   constructor(
@@ -57,6 +60,9 @@ export class ClothePageComponent implements OnInit {
     public overlay: Overlay,
     private router: Router,
     private formBuilder: FormBuilder,
+
+    private translocoService: TranslocoService,
+    private _renderer: Renderer2
 
 
   ) {
@@ -91,6 +97,12 @@ export class ClothePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClothe();
+    this.language = this.translocoService.getDefaultLang();
+    if(this.language == "uk"){
+      this.index = 0;
+    }else {
+      this.index = 1
+    }
   }
 
 
@@ -98,6 +110,17 @@ export class ClothePageComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.userService.getClothe(id)
       .subscribe(clothes => this.clothes = clothes);
+  }
+  changeLanguage(languageCode:string):void{
+    const messageDom = this._renderer.selectRootElement('#message');
+    this.language = languageCode;
+    if(this.language == "uk"){
+      this.index = 0;
+      messageDom.innerHTML = '<h2> <i class="fa fa-heart text-danger fa-3x"></i> hola berita mosa</h2>';
+    }else {
+      this.index = 1;
+      messageDom.innerHTML = '<i class="fa fa-check-circle text-success p-1" aria-hidden="true"></i> good';
+    }
   }
 
   changeClothesBtn(): void {
@@ -121,7 +144,7 @@ export class ClothePageComponent implements OnInit {
         scrollStrategy: this.overlay.scrollStrategies.noop(),
       });
 
-    dialogRef.afterClosed().subscribe(() => this.router.navigateByUrl("", {skipLocationChange: true}))
+
   }
 
 

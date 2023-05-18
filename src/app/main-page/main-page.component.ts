@@ -15,9 +15,9 @@ export class MainPageComponent implements OnInit {
   clothes : Product[] = [];
   clothesLanguage:Product[] = [];
   language: string ;
+  index:number;
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data: { clothes: Product  },
-               private userService:UserService,
+  constructor(private userService:UserService,
               private productsService:ProductsService,
               private translocoService: TranslocoService) { }
 
@@ -26,19 +26,13 @@ export class MainPageComponent implements OnInit {
     this.productsService.removeCriterionsFilter();
 
     this.language = this.translocoService.getDefaultLang();
-    this.userService.getPublicContent()
-      .subscribe(clothes => this.clothes = clothes.slice(0, 9));
-    if (this.clothes){
-      for (const clothe of this.clothes){
-        for (const productInfo of clothe.productInformation){
-          if(productInfo.language == this.language){}
-          // @ts-ignore
-          clothe.productInformation = productInfo
-        }
-        this.clothesLanguage.push(clothe)
-      }
-    }
+    this.getPublicContent()
 
+    if(this.language == "uk"){
+      this.index = 0;
+    }else {
+      this.index = 1
+    }
 
   }
 
@@ -47,5 +41,6 @@ export class MainPageComponent implements OnInit {
   getPublicContent(): void {
       this.userService.getPublicContent()
         .subscribe(clothes => this.clothes = clothes.slice(0, 9));/*определяет сколько фото на главной*/
+
   }
 }

@@ -1,4 +1,4 @@
-
+<h2>{{ index}}</h2>
 <div class="clothe-page__body">
   <div *ngIf="showAdminBoard" class="buttons">
 
@@ -14,7 +14,7 @@
             (click)="deleteClothesBtn(clothes)"
             class="fabButton"
 
-            id="{{'delete '+clothes.productInformation[0].title}}"
+            id="{{'delete '+clothes.productInformation[index].title}}"
             style="max-height: 40px">
       {{"delete-product"|transloco}}
     </button>
@@ -27,10 +27,10 @@
     </div>
 
     <div class="text">
-      <p>{{clothes.productInformation[0].title}}</p>
+      <p>{{clothes.productInformation[index].title}}</p>
       {{clothes.price}}
       <br>
-      {{clothes.productInformation[0].availability}}
+      {{clothes.productInformation[index].availability}}
       <br>
 
       <section>
@@ -44,13 +44,15 @@
         <button mat-button class="mat-raised-button mat-primary" (click)="addProductToCart(clothes)" id="buyClothes button">{{"buy"|transloco}}</button>
       </div>
       <br>
-      {{clothes.productInformation[0].content}}
+      {{clothes.productInformation[index].content }}
       <br>
       <br>
       Склад:
       <br>
-      {{clothes.productInformation[0].compound}}
+      {{clothes.productInformation[index].compound}}
       <br>
+      <div id="message"> </div>
+      <h2>{{ index}}</h2>
       <br>
       РОЗМІРНА СІТКА:
       <br>

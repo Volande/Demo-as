@@ -172,7 +172,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     provide: [HTTP_INTERCEPTORS ,MatDialogRef,{provide: MAT_DIALOG_DATA, useValue: {}},preLoad],
     useValue: {},
     useClass: XhrInterceptor
-  }, authInterceptorProviders,],
+  }, authInterceptorProviders,
+    ClothePageComponent],
   bootstrap: [AppComponent],
 
 })

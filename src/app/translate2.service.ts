@@ -4,22 +4,23 @@ import {TranslocoService} from "@ngneat/transloco";
 import {Injectable} from "@angular/core";
 @Injectable({providedIn: 'root'})
 export class Translate2Service {
-  clothes : Product[] = [];
-  clothesLanguage:Product[] = [];
-  language: string ;
+  language:string;
+  index:number;
+
   constructor(private userService: UserService,
               private translocoService: TranslocoService) {
 
   }
   ngOnInit(): void {
-    this.getPublicContent();
-    this.language = this.translocoService.getDefaultLang();
-    this.clothes.forEach((clothe)=>clothe.productInformation.filter((productInfo)=>
-    productInfo.language == this.language))}
+    this.language = this.translocoService.getDefaultLang()
+
+    if(this.language == "uk"){
+      this.index = 0;
+    }else {
+      this.index = 1
+    }
+   }
 
 
-  getPublicContent(): void {
-    this.userService.getPublicContent()
-      .subscribe(clothes => this.clothes = clothes);
-  }
+
 }
