@@ -4,6 +4,7 @@ import {Collection} from "../entities/collection";
 import {Product} from "../entities/product";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
+import {LangChangedEvent, TranslocoService} from "@ngneat/transloco";
 
 
 @Component({
@@ -14,17 +15,26 @@ import {Router} from "@angular/router";
 export class CollectionMenuComponent implements OnInit {
   collection: Collection[] = [];
 
-  clothes: Product[];
+
+  index :number;
 
   constructor(private userService: UserService,
               public dialog: MatDialog,
               private router: Router,
+              private translocoService: TranslocoService,
              ) {
   }
 
 
   ngOnInit(): void {
-    this.getCollection()
+    this.getCollection();
+    // @ts-ignore
+    this.translocoService.langChanges$.subscribe((event: LangChangedEvent) =>
+
+    {
+      // @ts-ignore
+      this.index = ['uk', 'en'].indexOf(event);
+    });
   }
 
   getCollection(): void {
@@ -36,9 +46,11 @@ export class CollectionMenuComponent implements OnInit {
     this.router.navigateByUrl('/market')
   }
 
-  searchProduct(s: string) {
+  searchProduct(s: Collection) {
+    let collection : any = JSON.stringify(s);
 
-    window.sessionStorage.setItem("collection",s);
+
+    window.sessionStorage.setItem("collection",collection);
 
     this.replacePage();
 

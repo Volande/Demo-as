@@ -9,7 +9,7 @@
         <img class="image second" src="{{cloth.image[1].title}}" alt="photo">
       </div>
       <div class="text">
-        {{cloth.productInformation[0].title}}
+        {{cloth.productInformation[index].title}}
         <br>
         <br>
         {{cloth.price}}
@@ -23,7 +23,7 @@
     <div class='child' *ngFor="let cloth of clothes"><a href="/shop/detail/{{cloth.id}}"><img src='{{cloth.image[0].title}}'
                                                                           class="photo-relevants-slider">
       <div class="text">
-        {{cloth.productInformation[0].title}}
+        {{cloth.productInformation[index].title}}
         <br>
         <br>
         {{cloth.price}}

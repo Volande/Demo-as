@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {Product} from "../entities/product";
 import {ProductsService} from "../products.service";
 import {UserService} from "../_services/user.service";
-import {TranslocoService} from "@ngneat/transloco";
+import {LangChangedEvent, TranslocoService} from "@ngneat/transloco";
 import {ProductInformation} from "../entities/product-information";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 
@@ -25,14 +25,15 @@ export class MainPageComponent implements OnInit {
 
     this.productsService.removeCriterionsFilter();
 
-    this.language = this.translocoService.getDefaultLang();
+
     this.getPublicContent()
 
-    if(this.language == "uk"){
-      this.index = 0;
-    }else {
-      this.index = 1
-    }
+    // @ts-ignore
+    this.translocoService.langChanges$.subscribe((event: LangChangedEvent) =>
+    {
+      // @ts-ignore
+      this.index = ['uk', 'en'].indexOf(event);
+    });
 
   }
 

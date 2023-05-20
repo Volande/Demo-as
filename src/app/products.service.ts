@@ -23,13 +23,14 @@ export class ProductsService {
 
   eventSelectedProductQuantity: number
   private heroesUrl = 'http://localhost:8082'  //URL to web api
-
+  private nullArray:number[] = []
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
   authenticated = false;
   clothes: Product[];
+  categoriesId : number[] =[];
 
   constructor(
     private http: HttpClient,
@@ -56,7 +57,9 @@ export class ProductsService {
     priceMax:number,
     size: string[],
     collection: string[],
-    categories: string[]) {
+    categories: Categories[]) {
+
+
 
 
     let collectionFind = {
@@ -71,13 +74,16 @@ export class ProductsService {
 
     return this.http.post<Product[]>(this.heroesUrl + "/products/filter",
       JSON.stringify(collectionFind))
+
   }
 
   updateClothe(
     id: number,
+    id_UA_productInfo:number,
     title_UA: string,
     content_UA: string,
     compound_UA: string,
+    id_EN_productInfo:number,
     title_EN: string,
     content_EN: string,
     compound_EN: string,
@@ -90,6 +96,7 @@ export class ProductsService {
     images: File[],
   ) {
     let productInfoUA={
+      id:id_UA_productInfo,
       language: 'uk',
       title:title_UA,
       compound:compound_UA,
@@ -98,6 +105,7 @@ export class ProductsService {
     } as ProductInformation
 
     let productInfoEN={
+      id:id_EN_productInfo,
       language: 'en',
       title:title_EN,
       compound:compound_EN,

@@ -15,6 +15,10 @@ import {Product} from "../entities/product";
 import {UserService} from "../_services/user.service";
 import {FileValidator} from "ngx-material-file-input";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {LangChangedEvent, TranslocoService} from "@ngneat/transloco";
+import {Categories} from "../entities/categories";
+import {Collection} from "../entities/collection";
+import {Availability} from "../entities/availability";
 
 export function requiredExtension(expectedExtensions: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -59,17 +63,24 @@ export class AddProductComponent implements OnInit {
   categories: string[] = [];
   productCategories: string[] = [];
   productCollection: string[] = [];
-  collection: string[] = [];
-  availabilities: string[] = [];
+  collection: Collection[] = [];
+  availabilities: Availability[] = [];
   sizes: string[] = [];
   productSizes: string[] = [];
   images: File[] = [];
 
   productImages: string[]=[];
   productAvailability:string;
-
+  index :number
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.translocoService.langChanges$.subscribe((event: LangChangedEvent) =>
+
+    {
+      // @ts-ignore
+      this.index = ['uk', 'en'].indexOf(event);
+    });
 
     if (this.data) {
       if (this.data.clothes) {
@@ -83,7 +94,7 @@ export class AddProductComponent implements OnInit {
     if (this.data) {
       if (this.data.clothes) {
         this.data.clothes.categories.forEach((element) => {
-          this.productCategories.push(element.categoryNames[0]?.title)
+          this.productCategories.push(element.categoryNames[this.index].title)
         })
       }
     }
@@ -104,7 +115,7 @@ export class AddProductComponent implements OnInit {
 
     if (this.data) {
       if (this.data.clothes) {
-       this.productAvailability = this.data.clothes.availability.availabilityNames[0].title;
+       this.productAvailability = this.data.clothes.availability.availabilityNames[this.index].title;
       }
     }
 
@@ -119,23 +130,25 @@ export class AddProductComponent implements OnInit {
     this.userService.getCollection()
       .subscribe(collection => {
         collection.forEach((element) => {
-          this.collection.push(element.collectionNames[0].title)
+          this.collection.push(element)
         })
       });
+
+
   }
 
   getCategories(): void {
     this.userService.getCategories()
       .subscribe(categories => {
         categories.forEach((element) => {
-          this.categories.push(element.categoryNames[0].title)
+          this.categories.push(element.categoryNames[this.index].title)
         })
       });
   }
   getAvailability():void{
     this.userService.getAvailability().subscribe(availability=>{
       availability.forEach((element)=>{
-        this.availabilities.push(element.availabilityNames[0].title)
+        this.availabilities.push(element)
       })
     })
   }
@@ -147,6 +160,10 @@ export class AddProductComponent implements OnInit {
           this.sizes.push(element.title)
         })
       });
+
+
+
+
   }
 
 
@@ -209,7 +226,8 @@ export class AddProductComponent implements OnInit {
     public productsService: ProductsService,
     public dialog: MatDialog,
     private userService: UserService,
-    private _snackBar:MatSnackBar
+    private _snackBar:MatSnackBar,
+    private translocoService: TranslocoService,
   ) {
 
       this.reactiveForm = this.formBuilder.group({
@@ -242,15 +260,15 @@ export class AddProductComponent implements OnInit {
         title_UA: this.data.clothes.productInformation[0].title,
         content_UA: this.data.clothes.productInformation[0].content,
         compound_UA: this.data.clothes.productInformation[0].compound,
-        title_EN: this.data.clothes.productInformation[0].title,
-        content_EN: this.data.clothes.productInformation[0].content,
-        compound_EN: this.data.clothes.productInformation[0].compound,
+        title_EN: this.data.clothes.productInformation[1].title,
+        content_EN: this.data.clothes.productInformation[1].content,
+        compound_EN: this.data.clothes.productInformation[1].compound,
         price:this.data.clothes.price,
         sizes: this.productSizes,
-        availability:this.data.clothes.availability.availabilityNames[0].title,
-        collection:this.data.clothes.collection.collectionNames[0].title,
+        availability:this.data.clothes.availability.availabilityNames[this.index].title,
+        collection:this.data.clothes.collection.collectionNames[this.index].title,
 
-        categories: this.productCategories,
+        categories:this.productCategories,
         previews: this.productImages
 
       });
@@ -266,9 +284,11 @@ export class AddProductComponent implements OnInit {
    if(this.data) {
       this.productsService.updateClothe(
         this.data.clothes.id,
+        this.data.clothes.productInformation[0].id,
         this.reactiveForm.value.title_UA,
         this.reactiveForm.value.content_UA,
         this.reactiveForm.value.compound_UA,
+        this.data.clothes.productInformation[1].id,
         this.reactiveForm.value.title_EN,
         this.reactiveForm.value.content_EN,
         this.reactiveForm.value.compound_EN,

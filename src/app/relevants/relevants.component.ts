@@ -4,6 +4,7 @@ import {ProductsService} from "../products.service";
 import {UserService} from "../_services/user.service";
 import {ActivatedRoute, Router, RouterModule, Routes} from "@angular/router";
 import {Subscription} from "rxjs";
+import {LangChangedEvent, TranslocoService} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-relevants',
@@ -14,21 +15,27 @@ import {Subscription} from "rxjs";
 })
 export class RelevantsComponent implements OnInit {
   clothes:  Product[]=[];
-  paramsSub: Subscription;
+  index:number;
 
   constructor(private userService:UserService,
               private router: Router,
               private ngZone:NgZone,
-              private activeRoute: ActivatedRoute) { }
+              private activeRoute: ActivatedRoute,
+              private translocoService:TranslocoService) { }
 
   ngOnInit(): void {
     this.getPublicContent();
-    const params = +this.activeRoute.snapshot.params;
+    // @ts-ignore
+    this.translocoService.langChanges$.subscribe((event: LangChangedEvent) =>
+    {
+      // @ts-ignore
+      this.index = ['uk', 'en'].indexOf(event);
+    });
   }
 
 
   getPublicContent(): void {
     this.userService.getPublicContent()
-      .subscribe(heroes =>this.clothes = heroes.slice(0, 4));/*определяет сколько фото на главной*/
+      .subscribe(clothes =>this.clothes = clothes.slice(0, 4));/*определяет сколько фото на главной*/
   }
 }

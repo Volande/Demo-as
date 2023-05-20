@@ -8,6 +8,8 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Categories} from "../entities/categories";
 import {Availability} from "../entities/availability";
+import {LangChangedEvent, TranslocoService} from "@ngneat/transloco";
+import {Collection} from "../entities/collection";
 
 @Injectable({
   providedIn: 'root'
@@ -19,22 +21,24 @@ import {Availability} from "../entities/availability";
 })
 export class MarketComponent implements OnInit {
   clothes: Product[];
-  categories: string[] = [];
+  categories: Categories[] = [];
   categoryNames:string[]=[];
 
-  availabilities: string[] = [];
-  collection: string[] = [];
+  availabilities: Availability[] = [];
+  collection: Collection[] = [];
   sizes: string[] = [];
   searchByCollection: string;
 
   collectionFilter: string[] = [];
   reactiveForm: FormGroup;
+  index:number;
 
 
   constructor(@Optional() @Inject(MAT_DIALOG_DATA) public data: { clothes: Product },
               private productsService: ProductsService,
               private userService: UserService,
               private formBuilder: FormBuilder,
+              private translocoService:TranslocoService
 
   ) {
     this.reactiveForm = this.formBuilder.group({
@@ -60,13 +64,20 @@ export class MarketComponent implements OnInit {
     this.initFormByCollection();
     this.searchProductByCollection();
     this.onSubmit();
+
+    // @ts-ignore
+    this.translocoService.langChanges$.subscribe((event: LangChangedEvent) =>
+    {
+      // @ts-ignore
+      this.index = ['uk', 'en'].indexOf(event);
+    });
   }
 
   getCollection(): void {
     this.userService.getCollection()
       .subscribe(collection => {
         collection.forEach((element) => {
-          this.collection.push(element.collectionNames[0].title)
+          this.collection.push(element)
         })
       });
 
@@ -76,16 +87,14 @@ export class MarketComponent implements OnInit {
     this.userService.getCategories()
       .subscribe(categories => {
         categories.forEach((element) => {
-          element.categoryNames?.forEach((element1)=>{
-            this.categoryNames.push(element1.title)
-          })
+         this.categories.push(element);
         })
       });
   }
   getAvailability():void{
     this.userService.getAvailability().subscribe(availability=>{
       availability.forEach((element)=>{
-        this.availabilities.push(element.availabilityNames[0].title)
+        this.availabilities.push(element)
       })
     })
   }
@@ -110,16 +119,19 @@ export class MarketComponent implements OnInit {
 
   initForm() {
 
-    if ( localStorage.getItem('criterionsFilter')) {
+
+
+   if ( localStorage.getItem('criterionsFilter')) {
       let criterionsFilter: any = JSON.parse(localStorage.getItem('criterionsFilter') || '{}');
       if (criterionsFilter != '{}') {
+
 
         this.reactiveForm.patchValue({
           availability: criterionsFilter.availability,
           priceMin: criterionsFilter.priceMin,
           priceMax: criterionsFilter.priceMax,
           sizes: criterionsFilter.sizes,
-          collectionFilter: criterionsFilter.collectionFilter,
+          collectionFilter: criterionsFilter.collection,
           categories: criterionsFilter.categories
         });
 
@@ -130,19 +142,21 @@ export class MarketComponent implements OnInit {
   initFormByCollection(): void {
 
 
-    const s1 = window.sessionStorage.getItem("collection");
 
-    if (s1 != null) {
-      this.searchByCollection = s1;
+      const s1 = JSON.parse(window.sessionStorage.getItem("collection") || '{}');
 
-      this.reactiveForm.patchValue({
-        collectionFilter: s1.split(",")
-      });
+      if (s1 != null) {
+        this.searchByCollection = s1;
 
-      window.sessionStorage.removeItem("collection")
+        const collection = [];
+        collection.push(s1)
+        this.reactiveForm.patchValue({
+          collectionFilter: collection
+        });
+
+        window.sessionStorage.removeItem("collection")
+
     }
-
-
 
   }
 

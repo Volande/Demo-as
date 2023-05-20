@@ -6,6 +6,7 @@ import {Size} from "../entities/size";
 import {Products_cart} from "../entities/products_cart";
 import {ClothePageComponent} from "../clothe-page/clothe-page.component";
 import {Router} from "@angular/router";
+import {LangChangedEvent, TranslocoService} from "@ngneat/transloco";
 
 @Component({
   selector: 'app-basket',
@@ -20,11 +21,12 @@ export class BasketComponent implements OnInit {
 
   size: Size[];
 
-  clothesNew: Product;
+  index :number
 
 
   constructor(private productsService: ProductsService,
-              private router: Router,) {
+              private router: Router,
+              private translocoService: TranslocoService,) {
   }
 
   ngOnInit(): void {
@@ -51,6 +53,13 @@ export class BasketComponent implements OnInit {
       this.sum();
     })
 
+    // @ts-ignore
+    this.translocoService.langChanges$.subscribe((event: LangChangedEvent) =>
+
+    {
+      // @ts-ignore
+      this.index = ['uk', 'en'].indexOf(event);
+    });
   }
 
   decreaseCartItem(clothe: Product) {

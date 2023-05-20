@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, Renderer2} from '@angular/core';
+import {Component, EventEmitter, Injectable, OnChanges, OnInit, Output, Renderer2, SimpleChanges} from '@angular/core';
 import {Product} from "../entities/product";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../products.service";
@@ -13,7 +13,9 @@ import {ConfirmationDeleteProductComponent} from "../confirmation-delete-product
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Size} from "../entities/size";
 import {Product_dto} from "../entities/product_dto";
-import {TranslocoService} from "@ngneat/transloco";
+import {LangChangedEvent, TranslocoService} from "@ngneat/transloco";
+import {TranslocoHttpLoader, TranslocoRootModule} from "../transloco-root.module";
+import {Translate2Service} from "../translate2.service";
 
 
 @Component({
@@ -21,7 +23,8 @@ import {TranslocoService} from "@ngneat/transloco";
   templateUrl: './clothe-page.component.html',
   styleUrls: ['./clothe-page.component.css']
 })
-export class ClothePageComponent implements OnInit {
+
+export class ClothePageComponent implements OnInit,OnChanges {
   clothes: Product;
   image: Image [] = [];
 
@@ -46,7 +49,7 @@ export class ClothePageComponent implements OnInit {
 
   quantity: number;
   private productNew: Product;
-  index:number;
+  index :number;
   language: string ;
 
   private nullArray:Size[] = []
@@ -62,7 +65,9 @@ export class ClothePageComponent implements OnInit {
     private formBuilder: FormBuilder,
 
     private translocoService: TranslocoService,
-    private _renderer: Renderer2
+
+    private _renderer: Renderer2,
+
 
 
   ) {
@@ -97,12 +102,13 @@ export class ClothePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getClothe();
-    this.language = this.translocoService.getDefaultLang();
-    if(this.language == "uk"){
-      this.index = 0;
-    }else {
-      this.index = 1
-    }
+    // @ts-ignore
+    this.translocoService.langChanges$.subscribe((event: LangChangedEvent) =>
+
+    {
+      // @ts-ignore
+      this.index = ['uk', 'en'].indexOf(event);
+    });
   }
 
 
@@ -112,15 +118,8 @@ export class ClothePageComponent implements OnInit {
       .subscribe(clothes => this.clothes = clothes);
   }
   changeLanguage(languageCode:string):void{
-    const messageDom = this._renderer.selectRootElement('#message');
-    this.language = languageCode;
-    if(this.language == "uk"){
-      this.index = 0;
-      messageDom.innerHTML = '<h2> <i class="fa fa-heart text-danger fa-3x"></i> hola berita mosa</h2>';
-    }else {
-      this.index = 1;
-      messageDom.innerHTML = '<i class="fa fa-check-circle text-success p-1" aria-hidden="true"></i> good';
-    }
+    this.index = ['uk','en'].indexOf(languageCode)
+
   }
 
   changeClothesBtn(): void {
@@ -145,6 +144,15 @@ export class ClothePageComponent implements OnInit {
       });
 
 
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.language = this.translocoService.getActiveLang()
+    if(this.language == "uk"){
+      this.index = 0;
+    }else {
+      this.index = 1
+    }
   }
 
 

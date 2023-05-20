@@ -11,7 +11,7 @@
           <mat-label>{{"availability"|transloco}}</mat-label>
           <mat-select id="availability" formControlName="availability" [value]="">
             <mat-option *ngFor="let choice of availabilities" [value]="choice"
-                        id="availability mat option">{{choice}}</mat-option>
+                        id="availability mat option">{{choice.availabilityNames[index].title}}</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -44,8 +44,8 @@
 
           <mat-select id="categories" formControlName="categories" multiple [value]="categories">
 
-            <mat-option *ngFor="let choice of categoryNames" [value]="choice"
-            >{{choice}}</mat-option>
+            <mat-option *ngFor="let choice of categories" [value]="choice"
+            >{{choice.categoryNames[index].title}}</mat-option>
 
           </mat-select>
 
@@ -58,7 +58,7 @@
 
           <mat-select id="collectionFilter" formControlName="collectionFilter" multiple [value]="collectionFilter">
             <mat-option *ngFor="let choice of collection" [value]="choice"
-                        id="collectionFilter mat option">{{choice}}</mat-option>
+                        id="collectionFilter mat option">{{choice.collectionNames[index].title}}</mat-option>
 
           </mat-select>
 
@@ -91,7 +91,7 @@
             <img class="image first" src="{{clothe.image[0].title}}" alt="photo">
             <img class="image second" src="{{clothe.image[1].title}}" alt="photo">
           </div>
-          {{clothe.productInformation[0].title}}
+          {{clothe.productInformation[index].title}}
           <br>
           {{clothe.price}}
         </a>
